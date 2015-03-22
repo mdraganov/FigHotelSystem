@@ -14,13 +14,14 @@
         {
 
         }
-        public Room(int numberOfBeds, int numberOfRoom, decimal initialPrice)
+        public Room(int numberOfBeds, int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom)
         {
             this.NumberOfBeds = numberOfBeds;
             this.NumberOfRoom = numberOfRoom;
             this.Price = initialPrice;
-            this.AllFeaturesInRoom = new List<Features>();
+            this.AllFeaturesInRoom = new List<Features>(featuresInRoom);
             this.IsAvailable = true;
+            CalculatePrice();
         }
         public int NumberOfRoom
         {
