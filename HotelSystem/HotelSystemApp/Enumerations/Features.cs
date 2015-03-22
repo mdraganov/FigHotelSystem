@@ -2,8 +2,8 @@
 {
     public enum Features
     {
-        None,
-        AC,
-        Bathtub,
+        None = 0,
+        AC = 25,
+        Bathtub = 15,
     }
 }

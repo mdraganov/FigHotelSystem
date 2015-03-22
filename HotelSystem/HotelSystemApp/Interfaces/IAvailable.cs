@@ -2,6 +2,8 @@
 {
     public interface IAvailable
     {
-        bool IsAvailable { get; set; }
+        bool IsAvailable { get; }
+        void CheckIn();
+        void CheckOut();
     }
 }

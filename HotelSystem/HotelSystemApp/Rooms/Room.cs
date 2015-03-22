@@ -7,52 +7,97 @@
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
-        public int NumberOfRoom { get; set; }
-        public int NumberOfBeds { get; set; }
+        private int numberOfBeds;
+        private int numberOfRoom;
+        private decimal price;
+        public Room()
+        {
 
-        public bool IsAvailable
+        }
+        public Room(int numberOfBeds, int numberOfRoom, decimal initialPrice)
+        {
+            this.NumberOfBeds = numberOfBeds;
+            this.NumberOfRoom = numberOfRoom;
+            this.Price = initialPrice;
+            this.AllFeaturesInRoom = new List<Features>();
+            this.IsAvailable = true;
+        }
+        public int NumberOfRoom
         {
             get
             {
-                throw new NotImplementedException();
+                return this.numberOfRoom;
             }
             set
             {
-                throw new NotImplementedException();
+                if (value < 100 || value > 1000)
+                {
+                    throw new ArgumentException("Invalid room number");
+                }
+                this.numberOfRoom = value;
             }
         }
+        public int NumberOfBeds 
+        { 
+            get
+            {
+                return this.numberOfBeds;
+            }
+            set
+            {
+                if (value < 1 || value > 4)
+                {
+                    throw new ArgumentException("Too many beds");
+                }
+                this.numberOfBeds = value;
+            }
+        }
+        public bool IsAvailable { get; protected set; }
 
         public decimal Price
         {
             get
             {
-                throw new NotImplementedException();
+                return this.price;
             }
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Invalid price");
+                }
+                this.price = value;
             }
         }
 
-        public List<Features> AllFeaturesInRoom
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public List<Features> AllFeaturesInRoom { get; protected set; }
 
         public void AddFeature(Features someFeature)
         {
-            throw new NotImplementedException();
+            this.AllFeaturesInRoom.Add(someFeature);
         }
 
         public void RemoveFeature(Features someFeature)
         {
-            throw new NotImplementedException();
+            this.AllFeaturesInRoom.Remove(someFeature);
         }
-
 
         public void CalculatePrice()
         {
-            throw new NotImplementedException();
+            foreach (var feature in AllFeaturesInRoom)
+            {
+                this.Price += (int)feature;
+            }
+        }
+
+        public void CheckIn()
+        {
+            this.IsAvailable = false;
+        }
+
+        public void CheckOut()
+        {
+            this.IsAvailable = true;
         }
     }
 }
