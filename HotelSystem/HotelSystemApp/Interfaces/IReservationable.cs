@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HotelSystemApp.Person;
-
-namespace HotelSystemApp
+﻿namespace HotelSystemApp.Interfaces
 {
+    using HotelSystemApp.Person;
+    using HotelSystemApp.Rooms;
+
     public interface IReservationable
     {
         void MakeReservation(Client client, Room someRoom);

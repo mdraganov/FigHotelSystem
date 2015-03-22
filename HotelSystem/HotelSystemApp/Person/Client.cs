@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HotelSystemApp.Person
+﻿namespace HotelSystemApp.Person
 {
+    using System.Collections.Generic;
+    using HotelSystemApp.Rooms;
+    using HotelSystemApp.Services;
+
     public class Client : Person
     {
         public string ID { get; set; }

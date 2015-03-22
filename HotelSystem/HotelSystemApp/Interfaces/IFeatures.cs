@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HotelSystemApp
+﻿namespace HotelSystemApp.Interfaces
 {
+    using System.Collections.Generic;
+    using HotelSystemApp.Enumerations;
+
     public interface IFeatures
     {
         List<Features> AllFeaturesInRoom { get; }

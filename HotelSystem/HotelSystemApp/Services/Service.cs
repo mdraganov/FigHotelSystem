@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HotelSystemApp
+﻿namespace HotelSystemApp.Services
 {
+    using System;
+    using HotelSystemApp.Interfaces;
+
     public abstract class Service : IPrice
     {
 

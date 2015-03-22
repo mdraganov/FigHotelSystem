@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HotelSystemApp
+﻿namespace HotelSystemApp.Rooms
 {
+    using System;
+    using System.Collections.Generic;
+    using HotelSystemApp.Enumerations;
+    using HotelSystemApp.Interfaces;
+
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
         public int NumberOfRoom { get; set; }
@@ -48,7 +48,7 @@ namespace HotelSystemApp
         {
             throw new NotImplementedException();
         }
-        
+
 
         public void CalculatePrice()
         {

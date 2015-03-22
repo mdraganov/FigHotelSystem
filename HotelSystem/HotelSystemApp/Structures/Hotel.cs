@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HotelSystemApp.Person;
-
-namespace HotelSystemApp
+﻿namespace HotelSystemApp.Structures
 {
+    using System;
+    using System.Collections.Generic;
+    using HotelSystemApp.Interfaces;
+    using HotelSystemApp.Person;
+    using HotelSystemApp.Rooms;
+    using HotelSystemApp.Services;
+
     public struct Hotel : IReservationable
     {
         public string Name { get; set; }
