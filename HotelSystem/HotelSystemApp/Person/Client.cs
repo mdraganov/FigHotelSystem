@@ -6,7 +6,19 @@
 
     public class Client : Person
     {
-        public string ID { get; set; }
+        public Client(string firstName, string lastName, string address, string phoneNumber, string email)
+            : base(firstName, lastName, address, phoneNumber, email)
+        {
+        }
+
+        public string ID
+        {
+            get
+            {
+                return this.IBAN.GetHashCode().ToString();
+            }
+        }
+
         public string IBAN { get; set; }
         public decimal Bill { get; set; }
         public Room PaidRoom { get; set; }
