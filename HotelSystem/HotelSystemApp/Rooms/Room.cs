@@ -7,29 +7,25 @@
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
-        private int numberOfBeds;
         private int numberOfRoom;
         private decimal price;
-        public Room()
-        {
 
-        }
-        public Room(int numberOfBeds, int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom)
+        public Room(int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom)
         {
-            this.NumberOfBeds = numberOfBeds;
             this.NumberOfRoom = numberOfRoom;
             this.Price = initialPrice;
             this.AllFeaturesInRoom = new List<Features>(featuresInRoom);
             this.IsAvailable = true;
             CalculatePrice();
         }
+
         public int NumberOfRoom
         {
             get
             {
                 return this.numberOfRoom;
             }
-            set
+            protected set
             {
                 if (value < 100 || value > 1000)
                 {
@@ -38,21 +34,9 @@
                 this.numberOfRoom = value;
             }
         }
-        public int NumberOfBeds 
-        { 
-            get
-            {
-                return this.numberOfBeds;
-            }
-            set
-            {
-                if (value < 1 || value > 4)
-                {
-                    throw new ArgumentException("Too many beds");
-                }
-                this.numberOfBeds = value;
-            }
-        }
+
+        public abstract int NumberOfBeds { get; protected set; }
+
         public bool IsAvailable { get; protected set; }
 
         public decimal Price
@@ -61,7 +45,7 @@
             {
                 return this.price;
             }
-            set
+            protected set
             {
                 if (value < 0)
                 {
@@ -76,18 +60,23 @@
         public void AddFeature(Features someFeature)
         {
             this.AllFeaturesInRoom.Add(someFeature);
+            this.Price += (int)someFeature;
         }
 
         public void RemoveFeature(Features someFeature)
         {
             this.AllFeaturesInRoom.Remove(someFeature);
+            this.Price -= (int)someFeature;
         }
 
         public void CalculatePrice()
         {
-            foreach (var feature in AllFeaturesInRoom)
+            if (this.AllFeaturesInRoom != null || this.AllFeaturesInRoom.Count == 0)
             {
-                this.Price += (int)feature;
+                foreach (var feature in this.AllFeaturesInRoom)
+                {
+                    this.Price += (int)feature;
+                }
             }
         }
 
