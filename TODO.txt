@@ -1,4 +1,4 @@
 TODO:
-Mariqn - Employee and subclasses
+Mariqn - Services
 Georgi - Interfaces and implementations
 Dani - class Person
