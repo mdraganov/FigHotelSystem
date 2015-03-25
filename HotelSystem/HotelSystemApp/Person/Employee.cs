@@ -1,13 +1,21 @@
 ﻿namespace HotelSystemApp.Person
 {
     using System;
+    using HotelSystemApp.Interfaces;
+    using HotelSystemApp.Enumerations;
 
-    public abstract class Employee : Person
+    public abstract class Employee : Person, IHire
     {
         private const byte MaxWorkHoursPerDay = 12;
         private decimal salary;
         private byte vacationDays;
         private byte workHoursADay;
+
+        public Employee(Person person)
+            : this(person.FirstName, person.LastName, person.Address, person.PhoneNumber, person.Email.ToString(), 0M, 0, 0)
+        {
+
+        }
 
         public Employee(string firstName, string lastName, string address, string phoneNumber, string email, decimal salary, byte vacationDays, byte workHoursADay)
             : base(firstName, lastName, address, phoneNumber, email)
@@ -59,5 +67,17 @@
                 this.workHoursADay = value;
             }
         }
+
+        public void Hire(Person person, Employees type)
+        {
+            switch(type)
+            {
+                case Employees.BellBoy: person = new BellBoy(person); break;
+                case Employees.Maid: person = new Maid(person); break;
+                case Employees.Manager: person = new Manager(person); break;
+                case Employees.Receptionist: person = new Receptionist(person); break;
+            }
+        }
+
     }
 }
