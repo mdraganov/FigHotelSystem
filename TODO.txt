@@ -2,3 +2,5 @@ TODO:
 Mariqn - Services
 Georgi - Interfaces and implementations
 Dani - class Person
+
+Niki (divided,zero) UI -слагам един базов темплйет с меню за доразвиване -  моля помагайте с имплементирането на различните методи визуално тъй като е къртовска работа а пък и не змам вашите методи какви неща вършат... идеята е да ги визуализирамв е UI-to( примерно - Add new CLient menu s name,adress, ID card , room reserved , daysIn , checkouDate , generate Invoice.. i t.n.t)
