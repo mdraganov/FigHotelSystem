@@ -43,10 +43,11 @@
   <ItemGroup>
     <Compile Include="Enumerations\Employees.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
+    <Compile Include="Exceptions\VacationDaysException.cs" />
     <Compile Include="Rooms\Apartment.cs" />
     <Compile Include="Person\BellBoy.cs" />
     <Compile Include="Person\Client.cs" />
-    <Compile Include="Exceptions\CustomException.cs" />
+    <Compile Include="Exceptions\RoomException.cs" />
     <Compile Include="Person\Employee.cs" />
     <Compile Include="Enumerations\Features.cs" />
     <Compile Include="Structures\Hotel.cs" />
