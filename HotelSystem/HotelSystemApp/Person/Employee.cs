@@ -1,8 +1,8 @@
 ﻿namespace HotelSystemApp.Person
 {
     using System;
-    using HotelSystemApp.Interfaces;
     using HotelSystemApp.Enumerations;
+    using HotelSystemApp.Interfaces;
 
     public abstract class Employee : Person, IHire
     {
@@ -14,7 +14,6 @@
         public Employee(Person person)
             : this(person.FirstName, person.LastName, person.Address, person.PhoneNumber, person.Email.ToString(), 0M, 0, 0)
         {
-
         }
 
         public Employee(string firstName, string lastName, string address, string phoneNumber, string email, decimal salary, byte vacationDays, byte workHoursADay)
@@ -70,7 +69,7 @@
 
         public void Hire(Person person, Employees type)
         {
-            switch(type)
+            switch (type)
             {
                 case Employees.BellBoy: person = new BellBoy(person); break;
                 case Employees.Maid: person = new Maid(person); break;
@@ -78,6 +77,5 @@
                 case Employees.Receptionist: person = new Receptionist(person); break;
             }
         }
-
     }
 }

@@ -10,7 +10,6 @@
         public Manager(Person person)
             : base(person)
         {
-
         }
     }
 }

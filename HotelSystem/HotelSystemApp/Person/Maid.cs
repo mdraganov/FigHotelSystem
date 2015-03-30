@@ -8,7 +8,7 @@
         }
 
         public Maid(Person person)
-            :base(person)
+            : base(person)
         {
         }
     }

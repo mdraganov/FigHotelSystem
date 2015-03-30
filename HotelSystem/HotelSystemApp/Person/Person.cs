@@ -21,7 +21,6 @@
             this.Email = new MailAddress(email);
         }
 
-
         public string FirstName
         {
             get
@@ -58,7 +57,7 @@
             }
         }
 
-        public string Address //class Address?
+        public string Address // class Address?
         {
             get
             {
@@ -129,6 +128,5 @@
                 throw new ArgumentException("Invalid email!");
             }
         }
-
     }
 }
