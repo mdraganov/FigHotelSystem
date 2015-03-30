@@ -3,6 +3,6 @@
     public interface IPrice
     {
         decimal Price { get;  }
-        void CalculatePrice();
+        decimal CalculatePrice();
     }
 }

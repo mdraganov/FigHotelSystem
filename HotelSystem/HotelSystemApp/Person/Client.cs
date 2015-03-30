@@ -13,7 +13,7 @@
         private List<Service> visitedServices;
         private List<Room> rooms;
 
-        public Client(string firstName, string lastName, string address, string phoneNumber, string email, string iban, params Room[] rooms)
+        public Client(string firstName, string lastName, string address, string phoneNumber, string email, string iban)
             : base(firstName, lastName, address, phoneNumber, email)
         {
             this.IBAN = iban;

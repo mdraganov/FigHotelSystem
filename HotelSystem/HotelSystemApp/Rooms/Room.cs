@@ -69,7 +69,7 @@
             this.Price -= (int)someFeature;
         }
 
-        public void CalculatePrice()
+        public decimal CalculatePrice()
         {
             if (this.AllFeaturesInRoom != null || this.AllFeaturesInRoom.Count == 0)
             {
@@ -78,6 +78,8 @@
                     this.Price += (int)feature;
                 }
             }
+
+            return this.Price;
         }
 
         public void CheckIn()

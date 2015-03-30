@@ -48,9 +48,9 @@
             }
         }
 
-        public virtual void CalculatePrice()
+        public virtual decimal CalculatePrice()
         {
-            this.Price = this.Price * PersonsUsingService;
+            return this.Price * PersonsUsingService;
         }
     }
 }

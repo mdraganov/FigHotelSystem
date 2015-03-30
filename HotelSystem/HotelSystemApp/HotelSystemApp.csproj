@@ -44,6 +44,7 @@
     <Compile Include="Enumerations\Employees.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
     <Compile Include="Exceptions\VacationDaysException.cs" />
+    <Compile Include="LoadTestHotel.cs" />
     <Compile Include="Rooms\Apartment.cs" />
     <Compile Include="Person\BellBoy.cs" />
     <Compile Include="Person\Client.cs" />

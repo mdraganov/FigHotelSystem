@@ -1,9 +1,9 @@
 ﻿namespace HotelSystemApp.Structures
 {
     using System;
-    using System.Text;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using HotelSystemApp.Interfaces;
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
@@ -17,10 +17,15 @@
         private List<Client> clients;
         private List<Service> services;
 
-        public Hotel(string name, List<Room> rooms)
+        public Hotel(string name)
             : this()
         {
             this.Name = name;
+        }
+
+        public Hotel(string name, List<Room> rooms)
+            : this(name)
+        {
             this.rooms = new List<Room>(rooms);
         }
 
@@ -100,10 +105,18 @@
             }
         }
 
-        public void MakeReservation(Client client, Room someRoom)
+        public void MakeReservation(string clientID, int numberOfRoom)
         {
-            this.Clients.Add(client);
-            someRoom.CheckIn();
+            var client = this.clients.Where(x => x.ID == clientID);
+            Client newClient = client as Client;
+
+            var room = this.rooms.Where(x=>x.NumberOfRoom == numberOfRoom);
+            Room newRoom = room as Room;
+            
+            newClient.AddRoom(newRoom);
+            this.Clients.Add(newClient);
+
+            newRoom.CheckIn();
         }
 
         public List<Room> AvailableRooms()
@@ -111,6 +124,26 @@
             var result = this.Rooms.Where(x => x.IsAvailable == true).ToList();
 
             return result;
+        }
+
+        public void AddClient(Client newClient)
+        {
+            this.clients.Add(newClient);
+        }
+
+        public void AddEmployee(Employee newEmployee)
+        {
+            this.employees.Add(newEmployee);
+        }
+
+        public void AddRoom(Room newRoom)
+        {
+            this.rooms.Add(newRoom);
+        }
+
+        public void AddService(Service newService)
+        {
+            this.services.Add(newService);
         }
 
         public override string ToString()

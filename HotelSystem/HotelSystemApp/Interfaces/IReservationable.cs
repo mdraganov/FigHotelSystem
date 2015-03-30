@@ -5,6 +5,6 @@
 
     public interface IReservationable
     {
-        void MakeReservation(Client client, Room someRoom);
+        void MakeReservation(string clientID, int numberOfRoom);
     }
 }

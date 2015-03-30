@@ -29,9 +29,9 @@
             }
         }
 
-        public override void CalculatePrice()
+        public override decimal CalculatePrice()
         {
-            this.Price = this.Price * this.DaysUsed;
+            return this.Price * this.DaysUsed;
         }
     }
 }
