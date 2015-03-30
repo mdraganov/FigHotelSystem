@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enumerations\Employees.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
+    <Compile Include="Enumerations\SPAProcedures.cs" />
     <Compile Include="Exceptions\VacationDaysException.cs" />
     <Compile Include="LoadTestHotel.cs" />
     <Compile Include="Rooms\Apartment.cs" />
