@@ -16,7 +16,6 @@
             this.Price = initialPrice;
             this.AllFeaturesInRoom = new List<Features>(featuresInRoom);
             this.IsAvailable = true;
-            CalculatePrice();
         }
 
         public int NumberOfRoom
