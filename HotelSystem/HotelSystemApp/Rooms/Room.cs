@@ -68,15 +68,17 @@
 
         public decimal CalculatePrice()
         {
+            var totalPrice = this.Price;
+            
             if (this.AllFeaturesInRoom != null || this.AllFeaturesInRoom.Count == 0)
             {
                 foreach (var feature in this.AllFeaturesInRoom)
                 {
-                    this.Price += (int)feature;
+                    totalPrice += (int)feature;
                 }
             }
 
-            return this.Price;
+            return totalPrice;
         }
 
         public void CheckIn()
