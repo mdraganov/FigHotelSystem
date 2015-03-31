@@ -59,13 +59,11 @@
         public void AddFeature(Features someFeature)
         {
             this.AllFeaturesInRoom.Add(someFeature);
-            this.Price += (int)someFeature;
         }
 
         public void RemoveFeature(Features someFeature)
         {
             this.AllFeaturesInRoom.Remove(someFeature);
-            this.Price -= (int)someFeature;
         }
 
         public decimal CalculatePrice()
