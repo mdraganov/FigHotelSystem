@@ -4,14 +4,17 @@
 
     public class SPA : Service
     {
-        public SPA(decimal pricePerVisit = 5, int numberOfPersons = 1)
-            : base(pricePerVisit, numberOfPersons)
+        public SPA(SPAProcedures spaProcedure, int numberOfPersons = 1)
+            : base((int)spaProcedure, numberOfPersons)
         {
+            this.SPAProcedure = spaProcedure;
         }
 
-        public override decimal CalculatePrice(SPAProcedures someSpa)
+        public SPAProcedures SPAProcedure { get; set; }
+
+        public override decimal CalculatePrice()
         {
-            return (int)someSpa * this.PersonsUsingService;
+            return (int)this.SPAProcedure * this.PersonsUsingService;
         }
     }
 }
