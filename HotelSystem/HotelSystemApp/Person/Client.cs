@@ -135,5 +135,11 @@
                 return false;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Name {0} {1}, Bill = {2}", this.FirstName, this.LastName, this.Bill);
+            //return base.ToString();
+        }
     }
 }

@@ -24,9 +24,10 @@
             {
                 return this.numberOfRoom;
             }
+
             protected set
             {
-                if (value < 100 || value > 1000)
+                if (value < 0)
                 {
                     throw new ArgumentException("Invalid room number");
                 }
@@ -69,7 +70,7 @@
         public decimal CalculatePrice()
         {
             var totalPrice = this.Price;
-            
+
             if (this.AllFeaturesInRoom != null || this.AllFeaturesInRoom.Count == 0)
             {
                 foreach (var feature in this.AllFeaturesInRoom)

@@ -9,7 +9,7 @@
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
 
-    public struct Hotel : IReservationable
+    public class Hotel : IReservationable
     {
         private string name;
         private List<Room> rooms;
@@ -18,33 +18,12 @@
         private List<Service> services;
 
         public Hotel(string name)
-            : this()
         {
             this.Name = name;
-        }
-
-        public Hotel(string name, List<Room> rooms)
-            : this(name)
-        {
-            this.rooms = new List<Room>(rooms);
-        }
-
-        public Hotel(string name, List<Room> rooms, List<Employee> employees)
-            : this(name, rooms)
-        {
-            this.employees = new List<Employee>(employees);
-        }
-
-        public Hotel(string name, List<Room> rooms, List<Employee> employees, List<Client> clients)
-            : this(name, rooms, employees)
-        {
-            this.clients = new List<Client>(clients);
-        }
-
-        public Hotel(string name, List<Room> rooms, List<Employee> employees, List<Client> clients, List<Service> services)
-            : this(name, rooms, employees, clients)
-        {
-            this.services = new List<Service>(services);
+            this.rooms = new List<Room>();
+            this.employees = new List<Employee>();
+            this.clients = new List<Client>();
+            this.services = new List<Service>();
         }
 
         public string Name
@@ -61,15 +40,16 @@
                     throw new ArgumentNullException("Hotel name can't be empty!");
                 }
 
-                foreach (char ch in value)
-                {
-                    if (!char.IsLetter(ch) || !char.IsWhiteSpace(ch))
-                    {
-                        throw new ArgumentException("Incorrect parameter hotel name!");
-                    }
+                //foreach (char ch in value)
+                //{
+                //    if (!char.IsLetter(ch) || !char.IsWhiteSpace(ch))
+                //    {
+                //        throw new ArgumentException("Incorrect parameter hotel name!");
+                //    }
 
-                    this.name = value;
-                }
+                //}
+
+                this.name = value;
             }
         }
 
@@ -110,9 +90,9 @@
             var client = this.clients.Where(x => x.ID == clientID);
             Client newClient = client as Client;
 
-            var room = this.rooms.Where(x=>x.NumberOfRoom == numberOfRoom);
+            var room = this.rooms.Where(x => x.NumberOfRoom == numberOfRoom);
             Room newRoom = room as Room;
-            
+
             newClient.AddRoom(newRoom);
             this.Clients.Add(newClient);
 
