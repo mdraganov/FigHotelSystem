@@ -18,7 +18,7 @@
   <Class Name="HotelSystemApp.Services.Service">
     <Position X="12.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAQAAAAEAA=</HashCode>
       <FileName>Services\Service.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -65,24 +65,25 @@
       <FileName>Services\Fitness.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HotelSystemApp.Services.SPA">
+  <Class Name="HotelSystemApp.Services.Spa">
     <Position X="10.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Services\SPA.cs</FileName>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Spa.cs</FileName>
+      <NewMemberFileName>Services\SPA.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Services.SwimmingPool">
     <Position X="14.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAgAAAAIAAABAAAAAQAA=</HashCode>
       <FileName>Services\SwimmingPool.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Services.Parking">
     <Position X="16" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAQAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Services\Parking.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -111,7 +112,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAgAAAgAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAADAgACAgAIAAAAAAAAgAAAMAAIAAAAAAAA=</HashCode>
       <FileName>Person\Client.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -168,7 +169,7 @@
   <Struct Name="HotelSystemApp.Structures.Hotel" Collapsed="true">
     <Position X="6.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAEACIICAQiCAAEAAAAAEAAAIAAAAA=</HashCode>
+      <HashCode>gAAAAEAAAAAAAACEACIICAQiCAAEAAAAAEACAKAAAAA=</HashCode>
       <FileName>Structures\Hotel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

@@ -1,6 +1,6 @@
 ﻿namespace HotelSystemApp.Enumerations
 {
-    public enum SPAProcedures
+    public enum SpaProcedures
     {
         Sauna = 20,
         RomanBath = 25,

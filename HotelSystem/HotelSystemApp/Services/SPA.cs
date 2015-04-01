@@ -2,15 +2,15 @@
 {
     using HotelSystemApp.Enumerations;
 
-    public class SPA : Service
+    public class Spa : Service
     {
-        public SPA(SPAProcedures spaProcedure, int numberOfPersons = 1)
+        public Spa(SpaProcedures spaProcedure, int numberOfPersons = 1)
             : base((int)spaProcedure, numberOfPersons)
         {
             this.SPAProcedure = spaProcedure;
         }
 
-        public SPAProcedures SPAProcedure { get; set; }
+        public SpaProcedures SPAProcedure { get; set; }
 
         public override decimal CalculatePrice()
         {

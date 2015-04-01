@@ -39,7 +39,7 @@
 
             hotelFig.MakeReservation(testClient1.ID, 13); 
 
-            hotelFig.AddService(new SPA(SPAProcedures.RomanBath, 1));
+            hotelFig.AddService(new Spa(SpaProcedures.RomanBath, 1));
             hotelFig.AddService(new Fitness());
             hotelFig.AddService(new Parking());
             hotelFig.AddService(new SwimmingPool());

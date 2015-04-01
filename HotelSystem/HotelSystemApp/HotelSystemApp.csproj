@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Enumerations\Employees.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
-    <Compile Include="Enumerations\SPAProcedures.cs" />
+    <Compile Include="Enumerations\SpaProcedures.cs" />
     <Compile Include="Exceptions\VacationDaysException.cs" />
     <Compile Include="LoadTestHotel.cs" />
     <Compile Include="Rooms\Apartment.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Services\Fitness.cs" />
     <Compile Include="Rooms\Room.cs" />
     <Compile Include="Services\Service.cs" />
-    <Compile Include="Services\SPA.cs" />
+    <Compile Include="Services\Spa.cs" />
     <Compile Include="Services\Sightseeing.cs" />
     <Compile Include="Rooms\Studio.cs" />
     <Compile Include="Services\SwimmingPool.cs" />
@@ -79,7 +79,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
