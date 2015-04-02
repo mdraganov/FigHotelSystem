@@ -1,6 +1,7 @@
 ﻿namespace HotelSystemApp
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using HotelSystemApp;
     using HotelSystemApp.Enumerations;
@@ -14,7 +15,6 @@
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> currentMenuChoises;
-        public List<Employees> newEmployess = new List<Employees>();
 
         public static bool Menu(Menus currentMenu)
         {
@@ -282,7 +282,7 @@
             int row = 7;
 
             int counter = 1;
-
+            var ordered = LoadTestHotel.Hotel().Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
                 WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -334,7 +334,8 @@
             Employee newStaff = ReadHireDetails(employeeType.ToLower());
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
             WriteColorString(newStaff.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-            
+
+            LoadTestHotel.Hotel().AddEmployee(newStaff);
         }
 
         private static Employee ReadHireDetails(string personal)
