@@ -12,9 +12,8 @@
     {
         public static bool Menu(Menus currentMenu)
         {
-            //Console.TreatControlCAsInput = false;
-            //Console.Clear();
-            //Console.CursorVisible = false;
+            Console.TreatControlCAsInput = false;
+            Console.CursorVisible = false;
 
             WriteColorString(new string('▬', 110), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
             WriteColorString(new string('▬', 110), 5, 23, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -22,7 +21,7 @@
 
             List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
             List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
-            List<string> staffMenuChoises = new List<string> { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
+            List<string> staffMenuChoises = new List<string> { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "RETURN" };
 
             WriteColorString("use ↑ ↓ keys and press ENTER", 45, 22, ConsoleColor.Black, ConsoleColor.White);
 
@@ -42,11 +41,12 @@
                     break;
             }
 
-            int choise = ChooseListBoxItem(currentMenuChoises, 52, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            int choise = ChooseListBoxItem(currentMenuChoises, 2, 3, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+
             if (currentMenuChoises[choise - 1] != "Exit")
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                return SubMenu(currentMenuChoises[choise - 1]);
+                SubMenu(currentMenuChoises[choise - 1]);
             }
             else
             {
@@ -74,7 +74,7 @@
                 rightSpaces[i] = maxLength - items[i].Length + 1;
             }
 
-            int lcol = ucol + maxLength + 3;
+            int lcol = ucol + 15;
             int lrow = urow + numItems + 1;
 
             DrawBox(ucol, urow, lcol, lrow, back, fore, true);
@@ -147,7 +147,7 @@
 
             Console.Write(UpperRightCorner);
             // draw sides 
-            for (int i = urow + 1; i < lrow; i++)
+            for (int i = urow + 1; i < 22; i++)
             {
                 Console.SetCursorPosition(ucol, i);
                 Console.Write(Vertical);
@@ -157,7 +157,7 @@
             }
 
             // draw bottom edge 
-            Console.SetCursorPosition(ucol, lrow);
+            Console.SetCursorPosition(ucol, 22);
             Console.Write(LowerLeftCorner);
             for (int i = ucol + 1; i < lcol; i++)
             {
@@ -194,7 +194,7 @@
             Console.WriteLine(c);
         }
 
-        static bool SubMenu(string currentMenu)
+        static void SubMenu(string currentMenu)
         {
             Console.Clear();
 
@@ -207,7 +207,8 @@
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "CLIENTS":
-                    return Menu(Menus.ClientsMenu);
+                    Menu(Menus.ClientsMenu);
+                    break;
                 case "LIST ALL":
                     ListOfClients();
                     break;
@@ -217,26 +218,29 @@
                 case "LIST STAFF":
                     ListOfStaff();
                     break;
+                case "RETURN":
+                    Menu(Menus.MainMenu);
+                    break;
                 default:
                     break;
             }
 
             WriteColorString("press ESC to return", 40, 22, ConsoleColor.Black, ConsoleColor.White);
-
-            return EscapeToMainMenu();
-        }
-
-        private static bool EscapeToMainMenu()
-        {
             while (true)
             {
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 if (pressedKey.Key == ConsoleKey.Escape)
                 {
-                    return Menu(Menus.MainMenu);
+                    Menu(Menus.MainMenu);
                 }
             }
+            //EscapeToMainMenu();
         }
+
+        //private static void EscapeToMainMenu()
+        //{
+
+        //}
 
         private static void MenuCLient()
         {
@@ -253,13 +257,13 @@
                 row++;
             }
 
-            EscapeToMainMenu();
+            //EscapeToMainMenu();
         }
 
         private static void ListOfStaff()
         {
 
-           WriteColorString("List of all employees", 5, 11, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString("List of all employees", 5, 11, ConsoleColor.Black, ConsoleColor.Yellow);
             int row = 14;
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
