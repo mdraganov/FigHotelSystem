@@ -293,6 +293,7 @@
 
             Menu(Menus.StaffMenu);
         }
+
         public static void HireStaff()
         {
             WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
