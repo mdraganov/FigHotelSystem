@@ -274,6 +274,8 @@
         }
         public static void HireStaff()
         {
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 20, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
@@ -289,35 +291,34 @@
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString("HIRE New Bellboy option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-
                     Employee newBellboy = ReadHireDetails("Bellboy");
-
                     WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newBellboy.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-
                     break;
                 case "maid":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE New Maid option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE new Maid option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newMaid = ReadHireDetails("maid");
-
                     WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newMaid.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-
-                    WriteColorString("Maid New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
                 case "manager":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("Manager New Manager Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("Manager new Manager option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newManager = ReadHireDetails("manager");
+                    WriteColorString(newManager.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
                 case "receptionist":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("Manager New Receptionist Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("Manager new Receptionist option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newReceptionis = ReadHireDetails("receptionist");
+                    WriteColorString(newReceptionis.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
             }
 
