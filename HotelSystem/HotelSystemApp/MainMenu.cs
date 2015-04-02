@@ -10,22 +10,21 @@
 
     public class MainMenu
     {
+        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
+        public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
+        public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
+        public static List<string> currentMenuChoises;
+
         public static bool Menu(Menus currentMenu)
         {
             Console.TreatControlCAsInput = false;
             Console.CursorVisible = false;
 
-            WriteColorString(new string('▬', 110), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString(new string('▬', 110), 5, 23, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString(new string('▬', 116), 2, 1, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString(new string('▬', 116), 2, 23, ConsoleColor.Black, ConsoleColor.Yellow);
             WriteColorString("{Team FIG} TelericAcademy 2015", 45, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
-
-            List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
-            List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
-            List<string> staffMenuChoises = new List<string> { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "RETURN" };
-
             WriteColorString("use ↑ ↓ keys and press ENTER", 45, 22, ConsoleColor.Black, ConsoleColor.White);
 
-            List<string> currentMenuChoises = new List<string>();
             switch (currentMenu)
             {
                 case Menus.MainMenu:
@@ -147,7 +146,7 @@
 
             Console.Write(UpperRightCorner);
             // draw sides 
-            for (int i = urow + 1; i < 22; i++)
+            for (int i = urow + 1; i < 21; i++)
             {
                 Console.SetCursorPosition(ucol, i);
                 Console.Write(Vertical);
@@ -157,7 +156,7 @@
             }
 
             // draw bottom edge 
-            Console.SetCursorPosition(ucol, 22);
+            Console.SetCursorPosition(ucol, 21);
             Console.Write(LowerLeftCorner);
             for (int i = ucol + 1; i < lcol; i++)
             {
@@ -210,13 +209,17 @@
                     Menu(Menus.ClientsMenu);
                     break;
                 case "LIST ALL":
-                    ListOfClients();
+                    if (currentMenuChoises == clientMenuChoises)
+                    {
+                        ListOfClients();
+                    }
+                    else
+                    {
+                        ListOfStaff();
+                    }
                     break;
                 case "STAFF":
                     Menu(Menus.StaffMenu);
-                    break;
-                case "LIST STAFF":
-                    ListOfStaff();
                     break;
                 case "RETURN":
                     Menu(Menus.MainMenu);
@@ -234,21 +237,10 @@
                     Menu(Menus.MainMenu);
                 }
             }
-            //EscapeToMainMenu();
-        }
-
-        //private static void EscapeToMainMenu()
-        //{
-
-        //}
-
-        private static void MenuCLient()
-        {
         }
 
         private static void ListOfClients()
         {
-            Menu(Menus.ClientsMenu);
             WriteColorString("List of all clients", 5, 0, ConsoleColor.Black, ConsoleColor.Yellow);
             int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Clients)
@@ -257,14 +249,13 @@
                 row++;
             }
 
-            //EscapeToMainMenu();
+            Menu(Menus.ClientsMenu);
         }
 
         private static void ListOfStaff()
         {
-
             WriteColorString("List of all employees", 5, 11, ConsoleColor.Black, ConsoleColor.Yellow);
-            int row = 14;
+            int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
                 WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
