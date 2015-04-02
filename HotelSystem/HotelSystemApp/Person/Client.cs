@@ -138,7 +138,7 @@
 
         public override string ToString()
         {
-            return base.ToString() + string.Format("| Bill = {0:C2}", this.Bill);
+            return base.ToString() + string.Format("| Rooms: {0} | Bill = {1:C2}", string.Join(",", this.rooms), this.Bill);
         }
     }
 }

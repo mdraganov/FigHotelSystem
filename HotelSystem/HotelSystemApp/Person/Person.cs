@@ -4,8 +4,9 @@
     using System.Net.Mail;
     using System.Text;
     using System.Text.RegularExpressions;
+    using HotelSystemApp.Interfaces;
 
-    public abstract class Person
+    public abstract class Person : IPerson
     {
         private string firstName;
         private string lastName;
@@ -133,11 +134,11 @@
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
-            result.Append(string.Format("{0} | address: {1} | phone: {2} | email: {3}", 
+            result.Append(string.Format("{0} | {1} | Contact: {2} / {3} ", 
                 (this.FirstName + " " + this.LastName).PadRight(14), 
-                this.Address.PadLeft(8), 
-                this.PhoneNumber.PadLeft(9), 
-                this.Email.Address.PadLeft(15))
+                this.Address.PadRight(8), 
+                this.PhoneNumber.PadRight(9), 
+                this.Email.Address.PadRight(15))
                 );
 
             return result.ToString();

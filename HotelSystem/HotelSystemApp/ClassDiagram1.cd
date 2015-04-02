@@ -3,7 +3,7 @@
   <Class Name="HotelSystemApp.HotelSystemAppMain" Collapsed="true">
     <Position X="17.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAACAAAAAAAAABAAICAAgAAAAAABAABAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>HotelSystemAppMain.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -68,7 +68,7 @@
   <Class Name="HotelSystemApp.Services.Spa">
     <Position X="10.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Services\Spa.cs</FileName>
       <NewMemberFileName>Services\SPA.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -106,20 +106,20 @@
     <InheritanceLine Type="HotelSystemApp.Person.Person" FixedToPoint="true">
       <Path>
         <Point X="12.5" Y="8.062" />
-        <Point X="12.5" Y="8.875" />
-        <Point X="11" Y="8.875" />
+        <Point X="12.5" Y="8.625" />
+        <Point X="11" Y="8.625" />
         <Point X="11" Y="9.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAADAgACAgAIAAAAAAAAgAAAMAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAADAgACEgAIAAAAAAAAgAAAMAAIAAAAAAAA=</HashCode>
       <FileName>Person\Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Person.Employee" Collapsed="true">
     <Position X="13.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAASAAAAAgAAAAEgAAQAIAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAASAAAAAgAAAEEgAAQAIAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Person\Employee.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -141,9 +141,10 @@
   <Class Name="HotelSystemApp.Person.Person" Collapsed="true">
     <Position X="11.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAACBAAAAgAAAgQAAAAEIAAAACAAAACAAAAAg=</HashCode>
+      <HashCode>AAAAAEAAACBAAAAkAAAgQAAAAEIAAAACAAAACAAAAAg=</HashCode>
       <FileName>Person\Person.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="HotelSystemApp.Person.Receptionist" Collapsed="true">
     <Position X="8.5" Y="11.5" Width="1.5" />
@@ -166,14 +167,6 @@
       <FileName>Exceptions\VacationDaysException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="HotelSystemApp.Structures.Hotel" Collapsed="true">
-    <Position X="6.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAAAEAAAAAAAACEACIICAQiCAAEAAAAAEACAKAAAAA=</HashCode>
-      <FileName>Structures\Hotel.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Struct>
   <Interface Name="HotelSystemApp.Interfaces.IAvailable">
     <Position X="17.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
@@ -207,6 +200,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IPrice.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="HotelSystemApp.Interfaces.IPerson">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Interfaces\IPerson.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="HotelSystemApp.Enumerations.Features">

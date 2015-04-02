@@ -8,14 +8,17 @@
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
+    using HotelSystemApp.Interfaces;
 
     public class MainMenu
     {
+        public static Hotel newHotel = LoadTestHotel.Hotel();
         public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> currentMenuChoises;
 
+        #region MainMenu
         public static bool Menu(Menus currentMenu)
         {
             Console.TreatControlCAsInput = false;
@@ -33,11 +36,11 @@
                     break;
                 case Menus.ClientsMenu:
                     currentMenuChoises = clientMenuChoises;
-                    WriteColorString("Menu CLients", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
+                    WriteColorString("CLients Menu", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case Menus.StaffMenu:
                     currentMenuChoises = staffMenuChoises;
-                    WriteColorString("Menu Staff", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
+                    WriteColorString("Staff Menu", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 default:
                     break;
@@ -197,6 +200,8 @@
             Console.WriteLine(c);
         }
 
+        #endregion
+
         static void SubMenu(string currentMenu)
         {
             Console.Clear();
@@ -212,6 +217,9 @@
                 case "CLIENTS":
                     Menu(Menus.ClientsMenu);
                     break;
+                case "STAFF":
+                    Menu(Menus.StaffMenu);
+                    break;
                 case "LIST ALL":
                     if (currentMenuChoises == clientMenuChoises)
                     {
@@ -224,9 +232,6 @@
                     break;
                 case "ADD NEW":
                     AddNewClient();
-                    break;
-                case "STAFF":
-                    Menu(Menus.StaffMenu);
                     break;
                 case "HIRE":
                     HireStaff();
@@ -251,27 +256,18 @@
 
         private static void ListOfClients()
         {
-            WriteColorString("List of all clients", 20, 3, ConsoleColor.Black, ConsoleColor.Yellow);
-            int row = 4;
-            int counter = 1;
+            WriteColorString("List of all clients", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
-            foreach (var emp in LoadTestHotel.Hotel().Clients)
+            int row = 7;
+            int counter = 1;
+            var orderedListOfClients = newHotel.Clients.OrderBy(x => x.FirstName).ThenBy(x => x.LastName);
+            foreach (var client in orderedListOfClients)
             {
-                WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 20, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", counter, client.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
                 counter++;
             }
 
-            Menu(Menus.ClientsMenu);
-        }
-
-        private static void AddNewClient()
-        {
-            WriteColorString("First name: ", 30, 5, ConsoleColor.Black, ConsoleColor.White);
-            string firstName = Console.ReadLine();
-            WriteColorString("Last name: ", 30, 6, ConsoleColor.Black, ConsoleColor.White);
-            string lastName = Console.ReadLine();
-            Console.ReadLine();
             Menu(Menus.ClientsMenu);
         }
 
@@ -280,10 +276,9 @@
             WriteColorString("List of all employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             int row = 7;
-
             int counter = 1;
-            var ordered = LoadTestHotel.Hotel().Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
-            foreach (var emp in LoadTestHotel.Hotel().Employees)
+            var ordered = newHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
+            foreach (var emp in ordered)
             {
                 WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
@@ -293,52 +288,47 @@
             Menu(Menus.StaffMenu);
         }
 
+        private static void AddNewClient()
+        {
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("Add new client", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            WriteColorString("Enter First and Last name : ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
+            string[] name = Console.ReadLine().Split(' ');
+            WriteColorString("Enter registered address : ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+            string address = Console.ReadLine();
+            WriteColorString("Enter contact phone number : ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
+            string phone = Console.ReadLine();
+            WriteColorString("Enter e-mail address : ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
+            string mail = Console.ReadLine();
+            WriteColorString("Enter IBAN : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            string iban = Console.ReadLine();
+
+            newHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
+            Menu(Menus.ClientsMenu);
+        }
+
         public static void HireStaff()
         {
             WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
-            WriteColorString(new string('▬', 50), 19, 20, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
-
             WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
-
             WriteColorString("(Bellboy, Maid, Manager, Receptionist)", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             Console.SetCursorPosition(20, 8);
             string employeeType = Console.ReadLine();
-
-            switch (employeeType.ToLower())
-            {
-                case "bellboy":
-                    FormatHireNewStaff(employeeType);
-                    break;
-                case "maid":
-                    FormatHireNewStaff(employeeType);
-                    break;
-                case "manager":
-                    FormatHireNewStaff(employeeType);
-                    break;
-                case "receptionist":
-                    FormatHireNewStaff(employeeType);
-                    break;
-            }
-
-            Menu(Menus.StaffMenu);
-
-        }
-
-        private static void FormatHireNewStaff(string employeeType)
-        {
             WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-            WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType.ToUpper()), 20, 9, ConsoleColor.Black, ConsoleColor.White);
-            WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-            Employee newStaff = ReadHireDetails(employeeType.ToLower());
+            WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType), 20, 9, ConsoleColor.Black, ConsoleColor.White);
+            Employee newStaff = ReadHireDetails(employeeType.ToString());
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-            WriteColorString(newStaff.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
 
-            LoadTestHotel.Hotel().AddEmployee(newStaff);
+            newHotel.AddEmployee(newStaff);
+            Menu(Menus.StaffMenu);
         }
 
-        private static Employee ReadHireDetails(string personal)
+        private static Employee ReadHireDetails(string employeeType)
         {
             WriteColorString("Enter First and Last name : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
             string[] name = Console.ReadLine().Split(' ');
@@ -350,32 +340,20 @@
             string mail = Console.ReadLine();
             WriteColorString("Enter monthly salary : ", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
             decimal salary = decimal.Parse(Console.ReadLine());
-            WriteColorString("Enter yearly vacantion days : ", 20, 15, ConsoleColor.Black, ConsoleColor.Gray);
-            byte vacantion = byte.Parse(Console.ReadLine());
-            WriteColorString("Enter average daily work hours : ", 20, 16, ConsoleColor.Black, ConsoleColor.Gray);
-            byte workHours = byte.Parse(Console.ReadLine());
 
-            if (personal == "bellboy")
+            switch (employeeType.ToLower())
             {
-                return new BellBoy(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
+                case "bellboy":
+                    return new BellBoy(name[0], name[1], address, phone, mail, salary);
+                case "maid":
+                    return new Maid(name[0], name[1], address, phone, mail, salary);
+                case "manager":
+                    return new Manager(name[0], name[1], address, phone, mail, salary);
+                case "receptionist":
+                    return new Receptionist(name[0], name[1], address, phone, mail, salary);
+                default:
+                    return null;
             }
-            else if (personal == "maid")
-            {
-                return new Maid(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
-            }
-            else if (personal == "manager")
-            {
-                return new Manager(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
-            }
-            else if (personal == "receptionist")
-            {
-                return new Receptionist(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
-            }
-            else
-            {
-                return null;
-            }
-
         }
     }
 
@@ -385,5 +363,4 @@
         ClientsMenu,
         StaffMenu
     }
-
 }

@@ -46,6 +46,7 @@
     <Compile Include="Enumerations\Rooms.cs" />
     <Compile Include="Enumerations\SpaProcedures.cs" />
     <Compile Include="Exceptions\VacationDaysException.cs" />
+    <Compile Include="Interfaces\IPerson.cs" />
     <Compile Include="LoadTestHotel.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Rooms\Apartment.cs" />
