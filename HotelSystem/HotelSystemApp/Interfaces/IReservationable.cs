@@ -1,7 +1,9 @@
 ﻿namespace HotelSystemApp.Interfaces
 {
+    using HotelSystemApp.Person;
+
     public interface IReservationable
     {
-        void MakeReservation(string clientID, int numberOfRoom);
+        void MakeReservation(Client client, int numberOfRoom);
     }
 }

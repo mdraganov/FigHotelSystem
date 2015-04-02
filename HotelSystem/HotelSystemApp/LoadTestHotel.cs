@@ -38,7 +38,7 @@
             firstTestHotel.AddClient(testClient1);
             firstTestHotel.AddClient(testClient2);
 
-            // hotelFig.MakeReservation(testClient1.ID, 13); 
+            //firstTestHotel.MakeReservation(testClient1, 13); 
 
             firstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
             firstTestHotel.AddService(new Fitness());

@@ -8,6 +8,7 @@
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
+    using HotelSystemApp.Structures;
 
     public class Hotel : IReservationable
     {
@@ -16,7 +17,8 @@
         private List<Employee> employees;
         private List<Client> clients;
         private List<Service> services;
-
+        private List<Reservation> reservations;
+        
         public Hotel(string name)
         {
             this.Name = name;
@@ -40,15 +42,6 @@
                     throw new ArgumentNullException("Hotel name can't be empty!");
                 }
 
-                //foreach (char ch in value)
-                //{
-                //    if (!char.IsLetter(ch) || !char.IsWhiteSpace(ch))
-                //    {
-                //        throw new ArgumentException("Incorrect parameter hotel name!");
-                //    }
-
-                //}
-
                 this.name = value;
             }
         }
@@ -57,7 +50,7 @@
         {
             get
             {
-                return this.rooms;
+                return new List<Room>(this.rooms);
             }
         }
 
@@ -65,7 +58,7 @@
         {
             get
             {
-                return this.employees;
+                return new List<Employee>(this.employees);
             }
         }
 
@@ -73,7 +66,7 @@
         {
             get
             {
-                return this.clients;
+                return new List<Client>(this.clients);
             }
         }
 
@@ -81,22 +74,22 @@
         {
             get
             {
-                return this.services;
+                return new List<Service>(this.services);
             }
         }
 
-        public void MakeReservation(string clientID, int numberOfRoom)
+        public void MakeReservation(Client client, int numberOfRoom)
         {
-            var client = this.clients.Where(x => x.ID == clientID);
-            Client newClient = client as Client;
+            Reservation newReservation = new Reservation();
+            newReservation.ClientID = client.ID;
 
             var room = this.rooms.Where(x => x.NumberOfRoom == numberOfRoom);
-            Room newRoom = room as Room;
+            Room newRoom = room as Room; // ?
 
-            newClient.AddRoom(newRoom);
-            this.Clients.Add(newClient);
-
+            client.AddRoom(newRoom);
             newRoom.CheckIn();
+
+            this.reservations.Add(newReservation);
         }
 
         public List<Room> AvailableRooms()

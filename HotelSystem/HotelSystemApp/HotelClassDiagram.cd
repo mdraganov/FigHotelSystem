@@ -51,13 +51,6 @@
       <FileName>Rooms\Studio.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HotelSystemApp.Exceptions.CustomException">
-    <Position X="0.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Exceptions\CustomException.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="HotelSystemApp.Services.Fitness">
     <Position X="9" Y="5" Width="1.5" />
     <TypeIdentifier>
@@ -166,6 +159,14 @@
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\VacationDaysException.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="HotelSystemApp.Hotel" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAAAAAAACEACIICAQiCAAEAAAAAEACAKAAAAA=</HashCode>
+      <FileName>Hotel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="HotelSystemApp.Interfaces.IAvailable">
     <Position X="17.75" Y="3.25" Width="1.5" />
