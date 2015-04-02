@@ -12,9 +12,9 @@
     {
         public static bool Menu(Menus currentMenu)
         {
-            Console.TreatControlCAsInput = false;
-            Console.Clear();
-            Console.CursorVisible = false;
+            //Console.TreatControlCAsInput = false;
+            //Console.Clear();
+            //Console.CursorVisible = false;
 
             WriteColorString(new string('▬', 110), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
             WriteColorString(new string('▬', 110), 5, 23, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -238,6 +238,7 @@
 
         private static void ListOfClients()
         {
+            Menu(Menus.ClientsMenu);
             WriteColorString("List of all clients", 5, 0, ConsoleColor.Black, ConsoleColor.Yellow);
             int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Clients)
