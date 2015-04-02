@@ -227,6 +227,9 @@
                 case "STAFF":
                     Menu(Menus.StaffMenu);
                     break;
+                case "HIRE":
+                    HireStaff();
+                    break;
                 case "RETURN":
                     Menu(Menus.MainMenu);
                     break;
@@ -275,17 +278,99 @@
 
         private static void ListOfStaff()
         {
-            WriteColorString("List of all employees", 5, 11, ConsoleColor.Black, ConsoleColor.Yellow);
-            int row = 1;
+            WriteColorString("List of all employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            int row = 7;
+
+            int counter = 1;
+
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
-                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
+                counter++;
             }
 
             Menu(Menus.StaffMenu);
         }
+        public static void HireStaff()
+        {
+            WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
+            WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            WriteColorString("(Bellboy, Maid, Manager, Receptionist)", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            Console.SetCursorPosition(20, 8);
+            string employeeType = Console.ReadLine();
+
+            switch (employeeType)
+            {
+                case "Bellboy":
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+
+                    Employee newBellboy = ReadHireDetails("Bellboy");
+
+                    WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(newBellboy.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+
+                    break;
+                case "Maid":
+                    WriteColorString("Maid New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    break;
+                case "Manager":
+                    WriteColorString("Manager New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    break;
+                case "Receptionist":
+                    WriteColorString("Receptionist New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    break;
+            }
+
+            Menu(Menus.StaffMenu);
+
+        }
+
+        private static Employee ReadHireDetails(string personal)
+        {
+            WriteColorString("Enter First and Last name!", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            string[] name = Console.ReadLine().Split(' ');
+            WriteColorString("Enter registered address!", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
+            string address = Console.ReadLine();
+            WriteColorString("Enter contatct phone number:", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
+            string phone = Console.ReadLine();
+            WriteColorString("Enter e-mail address :", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
+            string mail = Console.ReadLine();
+            WriteColorString("Enter monthly salary :", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
+            decimal salary = decimal.Parse(Console.ReadLine());
+            WriteColorString("Enter yearly vacantion days :", 20, 15, ConsoleColor.Black, ConsoleColor.Gray);
+            byte vacantion = byte.Parse(Console.ReadLine());
+            WriteColorString("Enter average daily work hours :", 20, 16, ConsoleColor.Black, ConsoleColor.Gray);
+            byte workHours = byte.Parse(Console.ReadLine());
+
+            if (personal == "Bellboy")
+            {
+                return new BellBoy(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
+            }
+            else if (personal == "Maid")
+            {
+                return new Maid(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
+            }
+            else if (personal == "Manager")
+            {
+                return new Manager(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
+            }
+            else if (personal == "Manager")
+            {
+                return new Receptionist(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 
     public enum Menus
