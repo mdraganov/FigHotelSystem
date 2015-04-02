@@ -15,12 +15,13 @@
             Console.Clear();
             Console.CursorVisible = false;
 
-            WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
+            WriteColorString(new string('▬', 110), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString(new string('▬', 110), 5, 23, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString("{Team FIG} TelericAcademy 2015", 45, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
             string[] menuchoice = { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
-            WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString("use ↑ ↓ keys and press ENTER", 45, 22, ConsoleColor.Black, ConsoleColor.White);
 
-            int choice = ChooseListBoxItem(menuchoice, 40, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            int choice = ChooseListBoxItem(menuchoice, 52, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
 
             if (menuchoice[choice - 1] != "Exit")
             {
@@ -186,7 +187,7 @@
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "CLIENTS":
-                    PrintClients();
+                    MenuCLient();
                     break;
                 case "STAFF":
                     PrintEmployees();
@@ -195,7 +196,7 @@
                     break;
             }
 
-            WriteColorString("press ESC to return", 40, 18, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString("press ESC to return", 40, 22, ConsoleColor.Black, ConsoleColor.White);
 
             while (true)
             {
@@ -207,7 +208,7 @@
             }
         }
 
-        private static void PrintClients()
+        private static void MenuCLient()
         {
             WriteColorString("List of all clients", 1, 0, ConsoleColor.Black, ConsoleColor.Yellow);
             int row = 1;
