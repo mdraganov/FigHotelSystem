@@ -32,9 +32,11 @@
                     break;
                 case Menus.ClientsMenu:
                     currentMenuChoises = clientMenuChoises;
+                    WriteColorString("Menu CLients", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case Menus.StaffMenu:
                     currentMenuChoises = staffMenuChoises;
+                    WriteColorString("Menu Staff", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 default:
                     break;
@@ -79,6 +81,7 @@
             DrawBox(ucol, urow, lcol, lrow, back, fore, true);
 
             WriteColorString(" " + items[0] + new string(' ', rightSpaces[0]), ucol + 1, urow + 1, fore, back);
+
             for (int i = 2; i <= numItems; i++)
             {
                 WriteColorString(items[i - 1], ucol + 2, urow + i, back, fore);
@@ -218,6 +221,9 @@
                         ListOfStaff();
                     }
                     break;
+                case "ADD NEW":
+                    AddNewClient();
+                    break;
                 case "STAFF":
                     Menu(Menus.StaffMenu);
                     break;
@@ -241,14 +247,29 @@
 
         private static void ListOfClients()
         {
-            WriteColorString("List of all clients", 5, 0, ConsoleColor.Black, ConsoleColor.Yellow);
-            int row = 1;
+            WriteColorString("List of all clients", 20, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+            int row = 4;
+            int counter = 1;
+
             foreach (var emp in LoadTestHotel.Hotel().Clients)
             {
-                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 20, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
+                counter++;
             }
 
+            Menu(Menus.ClientsMenu);
+        }
+
+        private static void AddNewClient()
+        {
+            // Client newClient = new Client();
+            //LoadTestHotel.Hotel().AddClient(newClient);
+            WriteColorString("First name: ", 30, 5, ConsoleColor.Black, ConsoleColor.White);
+            string firstName = Console.ReadLine();
+            WriteColorString("Last name: ", 30, 6, ConsoleColor.Black, ConsoleColor.White);
+            string lastName = Console.ReadLine();
+            Console.ReadLine();
             Menu(Menus.ClientsMenu);
         }
 
