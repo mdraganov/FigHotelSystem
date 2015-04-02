@@ -296,6 +296,8 @@
 
         public static void HireStaff()
         {
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 20, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
@@ -305,27 +307,40 @@
             Console.SetCursorPosition(20, 8);
             string employeeType = Console.ReadLine();
 
-            switch (employeeType)
+            switch (employeeType.ToLower())
             {
-                case "Bellboy":
+                case "bellboy":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE New Bellboy option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-
                     Employee newBellboy = ReadHireDetails("Bellboy");
-
                     WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newBellboy.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-
                     break;
-                case "Maid":
-                    WriteColorString("Maid New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                case "maid":
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE new Maid option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    Employee newMaid = ReadHireDetails("maid");
+                    WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(newMaid.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
-                case "Manager":
-                    WriteColorString("Manager New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                case "manager":
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("Manager new Manager option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    Employee newManager = ReadHireDetails("manager");
+                    WriteColorString(newManager.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
-                case "Receptionist":
-                    WriteColorString("Receptionist New Bellboy Option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                case "receptionist":
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("Manager new Receptionist option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                    Employee newReceptionis = ReadHireDetails("receptionist");
+                    WriteColorString(newReceptionis.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
             }
 
@@ -335,34 +350,34 @@
 
         private static Employee ReadHireDetails(string personal)
         {
-            WriteColorString("Enter First and Last name!", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter First and Last name : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
             string[] name = Console.ReadLine().Split(' ');
-            WriteColorString("Enter registered address!", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter registered address : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
             string address = Console.ReadLine();
-            WriteColorString("Enter contatct phone number:", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter contatct phone number : ", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
             string phone = Console.ReadLine();
-            WriteColorString("Enter e-mail address :", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter e-mail address : ", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
             string mail = Console.ReadLine();
-            WriteColorString("Enter monthly salary :", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter monthly salary : ", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
             decimal salary = decimal.Parse(Console.ReadLine());
-            WriteColorString("Enter yearly vacantion days :", 20, 15, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter yearly vacantion days : ", 20, 15, ConsoleColor.Black, ConsoleColor.Gray);
             byte vacantion = byte.Parse(Console.ReadLine());
-            WriteColorString("Enter average daily work hours :", 20, 16, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter average daily work hours : ", 20, 16, ConsoleColor.Black, ConsoleColor.Gray);
             byte workHours = byte.Parse(Console.ReadLine());
 
-            if (personal == "Bellboy")
+            if (personal == "bellboy")
             {
                 return new BellBoy(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
             }
-            else if (personal == "Maid")
+            else if (personal == "maid")
             {
                 return new Maid(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
             }
-            else if (personal == "Manager")
+            else if (personal == "manager")
             {
                 return new Manager(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
             }
-            else if (personal == "Manager")
+            else if (personal == "receptionist")
             {
                 return new Receptionist(name[0], name[1], address, phone, mail, salary, vacantion, workHours);
             }
