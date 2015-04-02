@@ -6,10 +6,5 @@
             : base(firstName, lastName, address, phoneNumber, email, salary, vacationDays, workHoursADay)
         {
         }
-
-        public Maid(Person person)
-            : base(person)
-        {
-        }
     }
 }

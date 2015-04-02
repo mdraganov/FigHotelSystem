@@ -266,8 +266,6 @@
 
         private static void AddNewClient()
         {
-            // Client newClient = new Client();
-            //LoadTestHotel.Hotel().AddClient(newClient);
             WriteColorString("First name: ", 30, 5, ConsoleColor.Black, ConsoleColor.White);
             string firstName = Console.ReadLine();
             WriteColorString("Last name: ", 30, 6, ConsoleColor.Black, ConsoleColor.White);
