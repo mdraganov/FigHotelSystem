@@ -234,7 +234,7 @@
             WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
             string[] menuchoice = { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
             WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
-            int choice = ChooseListBoxItem(menuchoice, 20, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            int choice = ChooseListBoxItem(menuchoice, 2, 5,  ConsoleColor.DarkCyan, ConsoleColor.Yellow);
             if (menuchoice[choice - 1] != "Exit")
             {
                 Console.BackgroundColor = ConsoleColor.Black;
@@ -254,7 +254,7 @@
             WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
-                WriteColorString(emp.ToString(), 25, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(emp.ToString(), 18, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
             }
             WriteColorString(new string('▬', 90), 5, 20, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -263,7 +263,7 @@
             WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
             string[] menuchoice = { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
             WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
-            int choice = ChooseListBoxItem(menuchoice, 5, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            int choice = ChooseListBoxItem(menuchoice, 2, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
             if (menuchoice[choice - 1] != "Exit")
             {
                 Console.BackgroundColor = ConsoleColor.Black;

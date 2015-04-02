@@ -136,9 +136,9 @@
 
             result.Append(string.Format("{0} | address: {1} | phone: {2} | email: {3}", 
                 (this.FirstName + " " + this.LastName).PadRight(15), 
-                this.Address.PadLeft(10), 
+                this.Address.PadLeft(8), 
                 this.PhoneNumber.PadLeft(10), 
-                this.Email.Address.PadLeft(20))
+                this.Email.Address.PadLeft(15))
                 );
 
             return result.ToString();
