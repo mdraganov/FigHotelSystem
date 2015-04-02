@@ -254,12 +254,17 @@
 
         private static void ListOfStaff()
         {
-            WriteColorString("List of all employees", 5, 11, ConsoleColor.Black, ConsoleColor.Yellow);
-            int row = 1;
+            WriteColorString("List of all employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            
+            int row = 7;
+
+            int counter = 1;
+
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
-                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
+                counter++;
             }
 
             Menu(Menus.StaffMenu);
