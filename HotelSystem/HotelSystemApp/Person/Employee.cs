@@ -80,8 +80,7 @@
 
         public override string ToString()
         {
-            return string.Format("Name {0} {1}, Address {2}", this.FirstName, this.LastName, this.Address);
-            //return base.ToString();
+            return base.ToString() + string.Format(" | Salary: {0:C2}", this.Salary);
         }
     }
 }

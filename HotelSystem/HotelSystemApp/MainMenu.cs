@@ -5,7 +5,6 @@
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
-    using HotelSystemApp.Structures;
     using HotelSystemApp.Services;
 
     public class MainMenu
@@ -187,11 +186,9 @@
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "CLIENTS":
-                    WriteColorString("list of all clients", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     PrintClients();
                     break;
                 case "STAFF":
-                    WriteColorString("list of all employees", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     PrintEmployees();
                     break;
                 default:
@@ -212,20 +209,21 @@
 
         private static void PrintClients()
         {
-            int row = 4;
+            WriteColorString("List of all clients", 1, 0, ConsoleColor.Black, ConsoleColor.Yellow);
+            int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Clients)
             {
-                WriteColorString(emp.ToString(), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 1, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
             }
         }
 
         private static void PrintEmployees()
         {
-            int row = 4;
+            int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
-                WriteColorString(emp.ToString(), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 1, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
             }
         }

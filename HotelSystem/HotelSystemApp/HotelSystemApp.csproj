@@ -54,7 +54,7 @@
     <Compile Include="Exceptions\RoomException.cs" />
     <Compile Include="Person\Employee.cs" />
     <Compile Include="Enumerations\Features.cs" />
-    <Compile Include="Structures\Hotel.cs" />
+    <Compile Include="Hotel.cs" />
     <Compile Include="HotelSystemAppMain.cs" />
     <Compile Include="Interfaces\IAvailable.cs" />
     <Compile Include="Interfaces\IFeatures.cs" />
@@ -80,6 +80,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Structures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

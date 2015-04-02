@@ -1,4 +1,4 @@
-﻿namespace HotelSystemApp.Structures
+﻿namespace HotelSystemApp
 {
     using System;
     using System.Collections.Generic;

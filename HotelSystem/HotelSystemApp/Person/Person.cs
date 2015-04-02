@@ -2,6 +2,7 @@
 {
     using System;
     using System.Net.Mail;
+    using System.Text;
     using System.Text.RegularExpressions;
 
     public abstract class Person
@@ -57,7 +58,7 @@
             }
         }
 
-        public string Address // class Address?
+        public string Address
         {
             get
             {
@@ -127,6 +128,20 @@
             {
                 throw new ArgumentException("Invalid email!");
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append(string.Format("{0} | address: {1} | phone: {2} | email: {3}", 
+                (this.FirstName + " " + this.LastName).PadRight(15), 
+                this.Address.PadLeft(10), 
+                this.PhoneNumber.PadLeft(10), 
+                this.Email.Address.PadLeft(20))
+                );
+
+            return result.ToString();
         }
     }
 }

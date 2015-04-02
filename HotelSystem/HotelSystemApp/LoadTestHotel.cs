@@ -4,7 +4,6 @@
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
-    using HotelSystemApp.Structures;
     using HotelSystemApp.Services;
 
     public class LoadTestHotel
@@ -28,6 +27,7 @@
             Maid testMaid2 = new Maid("Monika", "Petrova", "Pleven", "0879632112", "maid2@gmail.com", 500, 20, 8);
             BellBoy testBellBoy = new BellBoy("Georgi", "Petrov", "Pleven", "0879632113", "bboy@gmail.com", 700, 18, 6);
             Client testClient1 = new Client("Vanq", "Nikolova", "Sofia", "0899543232", "test@test.com", "AL90208110080000001039531801");
+            Client testClient2 = new Client("Mitko", "Nikolov", "Burgas", "0896432121", "client1@test.com", "BG80 BNBG 9661 1020 3456 78");
 
             firstTestHotel.AddEmployee(testManager);
             firstTestHotel.AddEmployee(testReceptionist1);
@@ -36,6 +36,7 @@
             firstTestHotel.AddEmployee(testMaid2);
             firstTestHotel.AddEmployee(testBellBoy);
             firstTestHotel.AddClient(testClient1);
+            firstTestHotel.AddClient(testClient2);
 
             // hotelFig.MakeReservation(testClient1.ID, 13); 
 
@@ -45,6 +46,7 @@
             firstTestHotel.AddService(new SwimmingPool());
 
             testClient1.AddVisitedService(new Parking());
+            testClient2.AddVisitedService(new Fitness());
 
             return firstTestHotel;
         }
