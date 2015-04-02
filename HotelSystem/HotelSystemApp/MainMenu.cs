@@ -1,6 +1,7 @@
 ﻿namespace HotelSystemApp
 {
     using System;
+    using System.Collections.Generic;
     using HotelSystemApp;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Person;
@@ -9,7 +10,7 @@
 
     public class MainMenu
     {
-        public static bool Menu()
+        public static bool Menu(Menus currentMenu)
         {
             Console.TreatControlCAsInput = false;
             Console.Clear();
@@ -18,15 +19,34 @@
             WriteColorString(new string('▬', 110), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
             WriteColorString(new string('▬', 110), 5, 23, ConsoleColor.Black, ConsoleColor.Yellow);
             WriteColorString("{Team FIG} TelericAcademy 2015", 45, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
-            string[] menuchoice = { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
+
+            List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
+            List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
+            List<string> staffMenuChoises = new List<string> { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
+
             WriteColorString("use ↑ ↓ keys and press ENTER", 45, 22, ConsoleColor.Black, ConsoleColor.White);
 
-            int choice = ChooseListBoxItem(menuchoice, 52, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            List<string> currentMenuChoises = new List<string>();
+            switch (currentMenu)
+            {
+                case Menus.MainMenu:
+                    currentMenuChoises = mainMenuChoises;
+                    break;
+                case Menus.ClientsMenu:
+                    currentMenuChoises = clientMenuChoises;
+                    break;
+                case Menus.StaffMenu:
+                    currentMenuChoises = staffMenuChoises;
+                    break;
+                default:
+                    break;
+            }
 
-            if (menuchoice[choice - 1] != "Exit")
+            int choise = ChooseListBoxItem(currentMenuChoises, 52, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            if (currentMenuChoises[choise - 1] != "Exit")
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                return SubMenu(menuchoice[choice - 1]);
+                return SubMenu(currentMenuChoises[choise - 1]);
             }
             else
             {
@@ -36,9 +56,9 @@
             return false;
         }
 
-        public static int ChooseListBoxItem(string[] items, int ucol, int urow, ConsoleColor back, ConsoleColor fore)
+        public static int ChooseListBoxItem(List<string> items, int ucol, int urow, ConsoleColor back, ConsoleColor fore)
         {
-            int numItems = items.Length;
+            int numItems = items.Count;
             int maxLength = items[0].Length;
             for (int i = 1; i < numItems; i++)
             {
@@ -174,7 +194,7 @@
             Console.WriteLine(c);
         }
 
-        static bool SubMenu(string currentMenu )
+        static bool SubMenu(string currentMenu)
         {
             Console.Clear();
 
@@ -187,14 +207,14 @@
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "CLIENTS":
-                    MenuCLient();
+                    return Menu(Menus.ClientsMenu);
+                case "LIST ALL":
+                    ListOfClients();
                     break;
                 case "STAFF":
-                    PrintEmployees();
-                    break;
+                    return Menu(Menus.StaffMenu);
                 case "LIST STAFF":
-                    WriteColorString("list of all employees", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
-                    ListStaff();
+                    ListOfStaff();
                     break;
                 default:
                     break;
@@ -207,73 +227,78 @@
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 if (pressedKey.Key == ConsoleKey.Escape)
                 {
-                    return Menu();
+                    return Menu(Menus.MainMenu);
                 }
             }
         }
 
         private static void MenuCLient()
         {
-            WriteColorString("List of all clients", 1, 0, ConsoleColor.Black, ConsoleColor.Yellow);
+        }
+
+        private static void ListOfClients()
+        {
+            WriteColorString("List of all clients", 5, 0, ConsoleColor.Black, ConsoleColor.Yellow);
             int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Clients)
             {
-                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 1, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
             }
         }
 
-        private static void PrintEmployees()
+        //private static void PrintEmployees()
+        //{
+        //    Console.TreatControlCAsInput = false;
+        //    Console.Clear();
+        //    Console.CursorVisible = false;
+
+        //    WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
+        //    WriteColorString(new string('▬', 90), 5, 20, ConsoleColor.Black, ConsoleColor.Yellow);
+        //    WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
+        //    string[] menuchoice = { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
+        //    WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
+        //    int choice = ChooseListBoxItem(menuchoice, 2, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+        //    if (menuchoice[choice - 1] != "Exit")
+        //    {
+        //        Console.BackgroundColor = ConsoleColor.Black;
+        //        SubMenu(menuchoice[choice - 1]);
+        //    }
+        //    else
+        //    {
+        //        Environment.Exit(0);
+        //    }
+
+        //}
+
+        private static void ListOfStaff()
         {
-            Console.TreatControlCAsInput = false;
-            Console.Clear();
-            Console.CursorVisible = false;
-
-            WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString(new string('▬', 90), 5, 20, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
-            string[] menuchoice = { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
-            WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
-            int choice = ChooseListBoxItem(menuchoice, 2, 5,  ConsoleColor.DarkCyan, ConsoleColor.Yellow);
-            if (menuchoice[choice - 1] != "Exit")
-            {
-                Console.BackgroundColor = ConsoleColor.Black;
-                SubMenu(menuchoice[choice - 1]);
-            }
-            else
-            {
-                Environment.Exit(0);
-            }
-
-        }
-
-        private static void ListStaff()
-        {
-
-            int row = 4;
-            WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
+            Menu(Menus.StaffMenu);
+            WriteColorString("List of all employees", 5, 0, ConsoleColor.Black, ConsoleColor.Yellow);
+            int row = 1;
             foreach (var emp in LoadTestHotel.Hotel().Employees)
             {
-                WriteColorString(emp.ToString(), 18, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("{0}.{1}", row, emp.ToString()), 5, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
             }
-            WriteColorString(new string('▬', 90), 5, 20, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString(new string('▬', 90), 5, 1, ConsoleColor.Black, ConsoleColor.Yellow);
-
-            WriteColorString("{Team FIG} TelericAcademy 2015", 30, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
-            string[] menuchoice = { "LIST STAFF", "SALARIES", "HIRE", "TASKS", "Exit" };
-            WriteColorString("use ↑ ↓ keys and press ENTER", 31, 18, ConsoleColor.Black, ConsoleColor.White);
-            int choice = ChooseListBoxItem(menuchoice, 2, 5, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
-            if (menuchoice[choice - 1] != "Exit")
-            {
-                Console.BackgroundColor = ConsoleColor.Black;
-                SubMenu(menuchoice[choice - 1]);
-            }
-            else
-            {
-                Environment.Exit(0);
-            }
+            //if (menuchoice[choice - 1] != "Exit")
+            //{
+            //    Console.BackgroundColor = ConsoleColor.Black;
+            //    SubMenu(menuchoice[choice - 1]);
+            //}
+            //else
+            //{
+            //    Environment.Exit(0);
+            //}
         }
 
     }
+
+    public enum Menus
+    {
+        MainMenu,
+        ClientsMenu,
+        StaffMenu
+    }
+
 }

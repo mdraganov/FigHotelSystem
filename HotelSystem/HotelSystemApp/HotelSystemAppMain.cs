@@ -11,7 +11,7 @@
 
             Console.Title = "Hotel Application";
 
-            MainMenu.Menu();
+            MainMenu.Menu(Menus.MainMenu);
 
             #region Methods
             //    StartupScreen();
