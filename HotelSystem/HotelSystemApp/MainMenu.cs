@@ -312,7 +312,7 @@
                     WriteColorString("HIRE New Bellboy option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newBellboy = ReadHireDetails("Bellboy");
-                    WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newBellboy.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
                     break;
                 case "maid":
@@ -320,25 +320,24 @@
                     WriteColorString("HIRE new Maid option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newMaid = ReadHireDetails("maid");
-                    WriteColorString("New employee HIRED sucsessfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newMaid.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
                 case "manager":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("Manager new Manager option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE new Manager option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newManager = ReadHireDetails("manager");
+                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newManager.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
                 case "receptionist":
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("Manager new Receptionist option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
+                    WriteColorString("HIRE new Receptionist option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                     Employee newReceptionis = ReadHireDetails("receptionist");
+                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
                     WriteColorString(newReceptionis.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
-                    WriteColorString("Maid new Bellboy option choosed!", 20, 19, ConsoleColor.Black, ConsoleColor.White);
                     break;
             }
 
@@ -352,7 +351,7 @@
             string[] name = Console.ReadLine().Split(' ');
             WriteColorString("Enter registered address : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
             string address = Console.ReadLine();
-            WriteColorString("Enter contatct phone number : ", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter contact phone number : ", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
             string phone = Console.ReadLine();
             WriteColorString("Enter e-mail address : ", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
             string mail = Console.ReadLine();
