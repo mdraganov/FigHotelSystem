@@ -14,6 +14,7 @@
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> currentMenuChoises;
+        public List<Employees> newEmployess = new List<Employees>();
 
         public static bool Menu(Menus currentMenu)
         {
@@ -308,41 +309,32 @@
             switch (employeeType.ToLower())
             {
                 case "bellboy":
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE New Bellboy option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    Employee newBellboy = ReadHireDetails("Bellboy");
-                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(newBellboy.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    FormatHireNewStaff(employeeType);
                     break;
                 case "maid":
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE new Maid option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    Employee newMaid = ReadHireDetails("maid");
-                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(newMaid.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    FormatHireNewStaff(employeeType);
                     break;
                 case "manager":
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE new Manager option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    Employee newManager = ReadHireDetails("manager");
-                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(newManager.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    FormatHireNewStaff(employeeType);
                     break;
                 case "receptionist":
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString("HIRE new Receptionist option choosed!", 20, 9, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                    Employee newReceptionis = ReadHireDetails("receptionist");
-                    WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-                    WriteColorString(newReceptionis.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+                    FormatHireNewStaff(employeeType);
                     break;
             }
 
             Menu(Menus.StaffMenu);
 
+        }
+
+        private static void FormatHireNewStaff(string employeeType)
+        {
+            WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType.ToUpper()), 20, 9, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+            Employee newStaff = ReadHireDetails(employeeType.ToLower());
+            WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString(newStaff.ToString(), 20, 18, ConsoleColor.Black, ConsoleColor.Gray);
+            
         }
 
         private static Employee ReadHireDetails(string personal)
