@@ -13,7 +13,7 @@
         public static void Main()
         {
             Console.BufferHeight = Console.WindowHeight = 25;
-            Console.BufferWidth = Console.WindowWidth = 120;
+            Console.BufferWidth = Console.WindowWidth = 140;
 
             Console.Title = "Hotel Application";
 

@@ -24,10 +24,10 @@
             Console.TreatControlCAsInput = false;
             Console.CursorVisible = false;
 
-            WriteColorString(new string('▬', 116), 2, 1, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString(new string('▬', 116), 2, 23, ConsoleColor.Black, ConsoleColor.Yellow);
-            WriteColorString("{Team FIG} TelericAcademy 2015", 45, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
-            WriteColorString("use ↑ ↓ keys and press ENTER", 45, 22, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString(new string('▬', 136), 2, 1, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString(new string('▬', 136), 2, 23, ConsoleColor.Black, ConsoleColor.Yellow);
+            WriteColorString("{Team FIG} TelericAcademy 2015", 55, 2, ConsoleColor.Black, ConsoleColor.DarkGray);
+            WriteColorString("use ↑ ↓ keys and press ENTER", 55, 22, ConsoleColor.Black, ConsoleColor.White);
 
             switch (currentMenu)
             {
@@ -311,24 +311,33 @@
 
         public static void HireStaff()
         {
-            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
-            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
-            WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
-            WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
-            WriteColorString("(Bellboy, Maid, Manager, Receptionist)", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            try
+            {
+                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString("1- Bellboy, 2- Maid, 3 - Manager, 4 - Receptionist)", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan); // !!
 
-            Console.SetCursorPosition(20, 8);
-            string employeeType = Console.ReadLine();
-            WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-            WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType), 20, 9, ConsoleColor.Black, ConsoleColor.White);
-            Employee newStaff = ReadHireDetails(employeeType.ToString());
+                Console.SetCursorPosition(20, 8);
+                int employeeType = int.Parse(Console.ReadLine());
+
+                WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
+                WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType), 20, 9, ConsoleColor.Black, ConsoleColor.White); // validation
+                Employee newStaff = ReadHireDetails(employeeType);
+                newHotel.AddEmployee(newStaff);
+            }
+            catch (Exception) // ? custom exception
+            {
+                throw new Exception("Unsuccessful entry");
+            }
+
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
 
-            newHotel.AddEmployee(newStaff);
             Menu(Menus.StaffMenu);
         }
 
-        private static Employee ReadHireDetails(string employeeType)
+        private static Employee ReadHireDetails(int employeeType)
         {
             WriteColorString("Enter First and Last name : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
             string[] name = Console.ReadLine().Split(' ');
@@ -341,15 +350,15 @@
             WriteColorString("Enter monthly salary : ", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
             decimal salary = decimal.Parse(Console.ReadLine());
 
-            switch (employeeType.ToLower())
+            switch (employeeType)
             {
-                case "bellboy":
+                case 1:
                     return new BellBoy(name[0], name[1], address, phone, mail, salary);
-                case "maid":
+                case 2:
                     return new Maid(name[0], name[1], address, phone, mail, salary);
-                case "manager":
+                case 3:
                     return new Manager(name[0], name[1], address, phone, mail, salary);
-                case "receptionist":
+                case 4:
                     return new Receptionist(name[0], name[1], address, phone, mail, salary);
                 default:
                     return null;

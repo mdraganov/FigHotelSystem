@@ -138,7 +138,7 @@
                 (this.FirstName + " " + this.LastName).PadRight(14), 
                 this.Address.PadRight(8), 
                 this.PhoneNumber.PadRight(9), 
-                this.Email.Address.PadRight(15))
+                this.Email.Address.PadLeft(15))
                 );
 
             return result.ToString();
