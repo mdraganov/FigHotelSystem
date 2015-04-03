@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using HotelSystemApp.Exceptions;
     using HotelSystemApp.Person;
 
-    enum MenusEnum
+    public enum MenusEnum
     {
         MainMenu,
         ClientsMenu,
@@ -16,7 +18,7 @@
     public class MainMenu
     {
         public static Hotel NewHotel = HotelSystemAppMain.FirstTestHotel;
-        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "SERVICES", "STAFF", "Exit" }; 
+        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "SERVICES", "STAFF", "Exit" };
         public static List<string> ClientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> StaffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> ReservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
@@ -255,10 +257,10 @@
                 case "HIRE":
                     HireStaff();
                     break;
-                case "SALARIES": 
+                case "SALARIES":
                     SalariesStaff();
                     break;
-                case "TASKS": 
+                case "TASKS":
                     MaidCleanFreeRooms();
                     break;
                 case "CHECK IN":
@@ -287,7 +289,38 @@
 
         private static void CheckInList()
         {
-            throw new NotImplementedException();
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("Make new reservation", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            try
+            {
+                WriteColorString("Enter Room №: ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
+                int numberOfRoom = int.Parse(Console.ReadLine());
+
+                WriteColorString("Client ID: CL", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+                int clientID = int.Parse(Console.ReadLine());
+
+                WriteColorString("Arrival date [DD.MM.YYYY]: ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
+                string date = Console.ReadLine();
+                DateTime dateArrive = DateTime.ParseExact(date, "d.M.yyyy", CultureInfo.InvariantCulture);
+
+                WriteColorString("Leaving date [DD.MM.YYYY]: ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
+                date = Console.ReadLine();
+                DateTime dateLeave = DateTime.ParseExact(date, "d.M.yyyy", CultureInfo.InvariantCulture);
+
+                WriteColorString("Number of guests: ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+                byte numberOfGuests = byte.Parse(Console.ReadLine());
+
+                NewHotel.MakeReservation(NewHotel.Clients[clientID - 1], numberOfRoom, dateArrive, dateLeave, numberOfGuests);
+                WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+
+                Menu(MenusEnum.Reservations);
+
+            }
+            catch (ReservationException)
+            {
+                throw;
+            }
         }
 
         private static void CheckOutList()
@@ -382,6 +415,7 @@
 
             NewHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
             WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+
             Menu(MenusEnum.ClientsMenu);
         }
 
@@ -495,7 +529,7 @@
                 WriteColorString(string.Format("    All free rooms assigned for cleaning to active maids"), 19, 5, ConsoleColor.Black, ConsoleColor.White);
             }
 
-            Menu(Menus.StaffMenu);
+            Menu(MenusEnum.StaffMenu);
         }
     }
 }

@@ -61,7 +61,6 @@
             FirstTestHotel.AddEmployee(testMaid2);
             FirstTestHotel.AddEmployee(testBellBoy);
 
-
             testBellBoy.ToggleSalaryTaken(); // turn ON/OFF the bool for taken salary (or not)
             testMaid2.ToggleSalaryTaken();
             testReceptionist1.ToggleSalaryTaken();

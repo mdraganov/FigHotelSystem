@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
+    using HotelSystemApp;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
 
@@ -20,14 +22,6 @@
             this.Bill = 0;
             this.visitedServices = new List<Service>();
             this.rooms = new List<Room>();
-        }
-
-        public string ID
-        {
-            get
-            {
-                return (this.FirstName.GetHashCode() ^ this.LastName.GetHashCode() ^ this.IBAN.GetHashCode()).ToString();
-            }
         }
 
         public string IBAN
@@ -99,8 +93,12 @@
             {
                 result.Append(string.Format("№[{0}] ", room.NumberOfRoom));
             }
-            
-            result.Append(string.Format(" | Bill = {0:C2}", this.Bill).PadLeft(30));
+
+            result.Append(string.Format(" | Bill = {0:C2}", this.Bill));
+
+            var currentClient = MainMenu.NewHotel.Clients.Where(x => x.IBAN == this.IBAN).FirstOrDefault();
+            var indexOfCurrentClient = MainMenu.NewHotel.Clients.IndexOf(currentClient) + 1;
+            result.Append(string.Format(" | ID: CL{0:D3}", indexOfCurrentClient));
             return result.ToString();
         }
 

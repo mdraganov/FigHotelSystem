@@ -100,7 +100,8 @@
             client.AddRoom(this.rooms[roomIndex]);
             this.rooms[roomIndex].CheckIn();
 
-            newReservation.ClientID = client.ID;
+            int indexOfClient = this.clients.IndexOf(client);
+            newReservation.ClientID = indexOfClient + 1;
             newReservation.NumberOfRoom = numberOfRoom;
             newReservation.CheckIn = checkIN;
             newReservation.CheckOut = checkOUT;
@@ -153,11 +154,11 @@
 
             hotel.AppendLine("Clients:");
 
-            foreach (var client in this.Clients)
-            {
-                var name = client.FirstName + " " + client.LastName;
-                hotel.AppendFormat("Name: {0,-25} ID: {1,-12} Bill: {2}\n", name, client.ID, client.Bill);
-            }
+            //foreach (var client in this.Clients)
+            //{
+            //    var name = client.FirstName + " " + client.LastName;
+            //    hotel.AppendFormat("Name: {0,-25} ID: {1,-12} Bill: {2}\n", name, client.ID, client.Bill);
+            //}
 
             hotel.AppendLine("Services:");
 

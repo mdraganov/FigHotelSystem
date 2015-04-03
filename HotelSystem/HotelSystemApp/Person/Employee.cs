@@ -72,6 +72,12 @@
             set { this.salaryTaken = value; }
         }
 
+        public bool CleanRoom
+        {
+            get { return this.cleanRoom; }
+            set { this.cleanRoom = value; }
+        }
+
         public void ToggleSalaryTaken()
         {
             if (this.SalaryTaken == false)
@@ -95,12 +101,6 @@
             //}
         }
 
-        public bool CleanRoom
-        {
-            get { return this.cleanRoom; }
-            set { this.cleanRoom = value; }
-        }
-
         public void ToogleCleanRoom()
         {
             if (this.CleanRoom == false)
@@ -112,8 +112,6 @@
                 this.CleanRoom = false;
             }
         }
-
-
 
         public override string ToString()
         {
