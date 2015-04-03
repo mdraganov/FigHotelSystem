@@ -19,6 +19,7 @@
             {
                 return this.sunBedsUsed;
             }
+
             set
             {
                 if (value < 0)
@@ -36,6 +37,7 @@
             {
                 return this.sunBedPrice;
             }
+
             set
             {
                 if (value < 0)

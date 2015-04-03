@@ -39,27 +39,6 @@
             }
         }
 
-
-        public bool SalaryTaken
-        {
-            get { return this.salaryTaken; }
-            set { this.salaryTaken = value; }
-        }
-
-        public void ToggleSalaryTaken()
-        {
-            if (this.SalaryTaken == false)
-            {
-                this.SalaryTaken = true;
-            }
-            else
-            {
-                this.SalaryTaken = false;
-            }
-        }
-
-
-
         public byte VacationDays
         {
             get { return this.vacationDays; }
@@ -82,6 +61,24 @@
                 }
 
                 this.workHoursADay = value;
+            }
+        }
+
+        public bool SalaryTaken
+        {
+            get { return this.salaryTaken; }
+            set { this.salaryTaken = value; }
+        }
+
+        public void ToggleSalaryTaken()
+        {
+            if (this.SalaryTaken == false)
+            {
+                this.SalaryTaken = true;
+            }
+            else
+            {
+                this.SalaryTaken = false;
             }
         }
 

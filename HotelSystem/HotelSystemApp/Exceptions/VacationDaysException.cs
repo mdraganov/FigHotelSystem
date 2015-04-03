@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class VacationDaysException:Exception
+    public class VacationDaysException : Exception
     {
         private int vacationDays;
 

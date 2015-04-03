@@ -15,11 +15,12 @@
 
     public class MainMenu
     {
-        public static Hotel newHotel = HotelSystemAppMain.firstTestHotel;
-        public static List<string> mainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" };        public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
-        public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
-        public static List<string> reservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
-        public static List<string> currentMenuChoises;
+        public static Hotel NewHotel = HotelSystemAppMain.FirstTestHotel;
+        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" }; 
+        public static List<string> ClientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
+        public static List<string> StaffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
+        public static List<string> ReservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
+        public static List<string> CurrentMenuChoises;
 
         #region MainMenu
         public static bool Menu(Menus currentMenu)
@@ -35,30 +36,30 @@
             switch (currentMenu)
             {
                 case Menus.MainMenu:
-                    currentMenuChoises = mainMenuChoises;
+                    CurrentMenuChoises = MainMenuChoises;
                     break;
                 case Menus.ClientsMenu:
-                    currentMenuChoises = clientMenuChoises;
+                    CurrentMenuChoises = ClientMenuChoises;
                     WriteColorString("CLients Menu", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case Menus.StaffMenu:
-                    currentMenuChoises = staffMenuChoises;
+                    CurrentMenuChoises = StaffMenuChoises;
                     WriteColorString("Staff Menu", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case Menus.Reservations:
-                    currentMenuChoises = reservationsMenuChoises;
-                    WriteColorString("Reservations Menu", 2, 2, ConsoleColor.Black, ConsoleColor.Yellow);
+                    CurrentMenuChoises = ReservationsMenuChoises;
+                    WriteColorString("Reservation Menu", 2, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 default:
                     break;
             }
 
-            int choise = ChooseListBoxItem(currentMenuChoises, 2, 3, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
+            int choise = ChooseListBoxItem(CurrentMenuChoises, 2, 3, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
 
-            if (currentMenuChoises[choise - 1] != "Exit")
+            if (CurrentMenuChoises[choise - 1] != "Exit")
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                SubMenu(currentMenuChoises[choise - 1]);
+                SubMenu(CurrentMenuChoises[choise - 1]);
             }
             else
             {
@@ -229,18 +230,18 @@
                 case "CLIENTS":
                     Menu(Menus.ClientsMenu);
                     break;
-                case "STAFF": 
+                case "STAFF":
                     Menu(Menus.StaffMenu);
                     break;
                 case "SERVICES": // Service
                     ServicesPriceInfo();
                     break;
                 case "LIST ALL":
-                    if (currentMenuChoises == clientMenuChoises)
+                    if (CurrentMenuChoises == ClientMenuChoises)
                     {
                         ListOfClients();
                     }
-                    else if (currentMenuChoises == staffMenuChoises)
+                    else if (CurrentMenuChoises == StaffMenuChoises)
                     {
                         ListOfStaff();
                     }
@@ -255,14 +256,16 @@
                 case "HIRE":
                     HireStaff();
                     break;
- case "SALARIES": 
+                case "SALARIES":
                     SalariesStaff();
-                    break;  case "CHECK IN":
+                    break;
+                case "CHECK IN":
                     WriteColorString("check in test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "CHECK OUT":
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
-                    break;                case "RETURN":
+                    break;
+                case "RETURN":
                     Menu(Menus.MainMenu);
                     break;
                 default:
@@ -286,7 +289,7 @@
 
             int row = 7;
             int counter = 1;
-            var orderedListOfClients = newHotel.Clients.OrderBy(x => x.FirstName).ThenBy(x => x.LastName);
+            var orderedListOfClients = NewHotel.Clients.OrderBy(x => x.FirstName).ThenBy(x => x.LastName);
             foreach (var client in orderedListOfClients)
             {
                 WriteColorString(string.Format("{0}.{1}", counter, client.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -303,7 +306,7 @@
 
             int row = 7;
             int counter = 1;
-            var ordered = newHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
+            var ordered = NewHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
             foreach (var emp in ordered)
             {
                 WriteColorString(string.Format("{0}.{1}", counter, emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -314,13 +317,13 @@
             Menu(Menus.StaffMenu);
         }
 
-private static void ListOfReservations()
+        private static void ListOfReservations()
         {
             WriteColorString("List of all reservations", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             int row = 7;
             int counter = 1;
-            var ordered = newHotel.Reservations.OrderBy(x => x.NumberOfRoom);
+            var ordered = NewHotel.Reservations.OrderBy(x => x.NumberOfRoom);
             foreach (var res in ordered)
             {
                 WriteColorString(string.Format("{0}.{1}", counter, res.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -329,21 +332,26 @@ private static void ListOfReservations()
             }
 
             Menu(Menus.Reservations);
-        }private static void SalariesStaff()
+        }
+
+        private static void SalariesStaff()
         {
             WriteColorString("Salaries of employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             int row = 7;
             int counter = 1;
-            var ordered = newHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
+            var ordered = NewHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
             foreach (var emp in ordered)
             {
-                WriteColorString(string.Format("Name: {0,15}    Salary: {1,5}     Salary Taken : {2}", emp.FirstName+" "+emp.LastName , emp.Salary, emp.SalaryTaken ? "No" : "Yes"), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                WriteColorString(string.Format("Name: {0,15}    Salary: {1,5}     Salary Taken : {2}", emp.FirstName + " " + emp.LastName, emp.Salary, emp.SalaryTaken ? "No" : "Yes"), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
                 row++;
                 counter++;
             }
+
             Menu(Menus.StaffMenu);
-        }        private static void AddNewClient()
+        }
+
+        private static void AddNewClient()
         {
             WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
@@ -360,7 +368,7 @@ private static void ListOfReservations()
             WriteColorString("Enter IBAN : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
             string iban = Console.ReadLine();
 
-            newHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
+            NewHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
             WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
             Menu(Menus.ClientsMenu);
         }
@@ -381,7 +389,7 @@ private static void ListOfReservations()
                 WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
                 WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType), 20, 9, ConsoleColor.Black, ConsoleColor.White); // validation
                 Employee newStaff = ReadHireDetails(employeeType);
-                newHotel.AddEmployee(newStaff);
+                NewHotel.AddEmployee(newStaff);
             }
             catch (Exception) // ? custom exception
             {
@@ -425,7 +433,7 @@ private static void ListOfReservations()
             WriteColorString("List of all ROOMS", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
 
             int row = 7;
-            var ordered = newHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenBy(x => x.NumberOfRoom);
+            var ordered = NewHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenBy(x => x.NumberOfRoom);
             foreach (var room in ordered)
             {
                 WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
@@ -441,7 +449,7 @@ private static void ListOfReservations()
             WriteColorString("Price list of all services", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
 
             int row = 7;
-            var ordered = newHotel.Services.OrderBy(x => x.Price);
+            var ordered = NewHotel.Services.OrderBy(x => x.Price);
             foreach (var serv in ordered)
             {
                 WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);

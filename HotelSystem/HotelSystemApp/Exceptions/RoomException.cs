@@ -6,7 +6,8 @@
     {
         private int availableRooms;
 
-        public RoomException(string message, int availableRooms):base(message)
+        public RoomException(string message, int availableRooms)
+            : base(message)
         {
             this.AvailableRooms = availableRooms;
         }

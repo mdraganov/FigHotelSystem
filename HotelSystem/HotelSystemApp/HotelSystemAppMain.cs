@@ -8,7 +8,7 @@
 
     public class HotelSystemAppMain
     {
-        public static Hotel firstTestHotel = new Hotel("Family Hotel - The Sweet Fig");
+        public static Hotel FirstTestHotel = new Hotel("Family Hotel - The Sweet Fig");
 
         public static void Main()
         {
@@ -17,15 +17,15 @@
             Console.Title = "Hotel Application";
 
             #region TEST AREA
-            firstTestHotel.AddRoom(new OneBedroomRoom(11, 40));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(12, 80));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(13, 95));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(14, 95));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(21, 95));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(22, 95));
-            firstTestHotel.AddRoom(new Apartment(23, 140, 2));
+            FirstTestHotel.AddRoom(new OneBedroomRoom(11, 40));
+            FirstTestHotel.AddRoom(new TwoBedroomRoom(12, 80));
+            FirstTestHotel.AddRoom(new TwoBedroomRoom(13, 95));
+            FirstTestHotel.AddRoom(new TwoBedroomRoom(14, 95));
+            FirstTestHotel.AddRoom(new TwoBedroomRoom(21, 95));
+            FirstTestHotel.AddRoom(new TwoBedroomRoom(22, 95));
+            FirstTestHotel.AddRoom(new Apartment(23, 140, 2));
 
-            var rooms = firstTestHotel.Rooms;
+            var rooms = FirstTestHotel.Rooms;
             int count = 0;
             foreach (var rm in rooms)
             {
@@ -33,11 +33,13 @@
                 {
                     rm.AddFeature(Features.Jacuzzi);
                 }
+
                 if (count % 2 == 0)
                 {
                     rm.AddFeature(Features.SnackBar);
                     rm.AddFeature(Features.Computer);
                 }
+
                 rm.AddFeature(Features.Bathtub);
                 rm.AddFeature(Features.AC);
                 count++;
@@ -52,29 +54,28 @@
             Client testClient1 = new Client("Vanq", "Nikolova", "Sofia", "0899543232", "client1@test.com", "AL90208110080000001039531801");
             Client testClient2 = new Client("Mitko", "Petrov", "Burgas", "0896432121", "client2@test.com", "BG80 BNBG 9661 1020 3456 78");
 
-            firstTestHotel.AddEmployee(testManager);
-            firstTestHotel.AddEmployee(testReceptionist1);
-            firstTestHotel.AddEmployee(testReceptionist2);
-            firstTestHotel.AddEmployee(testMaid1);
-            firstTestHotel.AddEmployee(testMaid2);
-            firstTestHotel.AddEmployee(testBellBoy);
+            FirstTestHotel.AddEmployee(testManager);
+            FirstTestHotel.AddEmployee(testReceptionist1);
+            FirstTestHotel.AddEmployee(testReceptionist2);
+            FirstTestHotel.AddEmployee(testMaid1);
+            FirstTestHotel.AddEmployee(testMaid2);
+            FirstTestHotel.AddEmployee(testBellBoy);
 
             testBellBoy.ToggleSalaryTaken(); // turn ON/OFF the bool for taken salary (or not)
             testMaid2.ToggleSalaryTaken();
             testReceptionist1.ToggleSalaryTaken();
-            
 
-            firstTestHotel.AddClient(testClient1);
-            firstTestHotel.AddClient(testClient2);
+            FirstTestHotel.AddClient(testClient1);
+            FirstTestHotel.AddClient(testClient2);
 
-            firstTestHotel.MakeReservation(testClient1, 13, new DateTime(2015, 05, 01), new DateTime(2015, 05, 07), 2);
-            firstTestHotel.MakeReservation(testClient2, 21, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
-            firstTestHotel.MakeReservation(testClient2, 12, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
+            FirstTestHotel.MakeReservation(testClient1, 13, new DateTime(2015, 05, 01), new DateTime(2015, 05, 07), 2);
+            FirstTestHotel.MakeReservation(testClient2, 21, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
+            FirstTestHotel.MakeReservation(testClient2, 12, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
 
-            firstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
-            firstTestHotel.AddService(new Fitness());
-            firstTestHotel.AddService(new Parking());
-            firstTestHotel.AddService(new SwimmingPool());
+            FirstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
+            FirstTestHotel.AddService(new Fitness());
+            FirstTestHotel.AddService(new Parking());
+            FirstTestHotel.AddService(new SwimmingPool());
 
             testClient1.AddVisitedService(new Parking());
             testClient2.AddVisitedService(new Fitness());

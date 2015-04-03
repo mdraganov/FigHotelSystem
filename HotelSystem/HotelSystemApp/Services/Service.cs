@@ -1,8 +1,8 @@
 ﻿namespace HotelSystemApp.Services
 {
     using System;
-    using HotelSystemApp.Interfaces;
     using System.Text;
+    using HotelSystemApp.Interfaces;
 
     public abstract class Service : IPrice
     {
@@ -21,6 +21,7 @@
             {
                 return this.personsUsingService;
             }
+
             set
             {
                 if (value < 1)
@@ -38,6 +39,7 @@
             {
                 return this.price;
             }
+
             set
             {
                 if (value < 0)
@@ -51,14 +53,14 @@
 
         public virtual decimal CalculatePrice()
         {
-            return this.Price * PersonsUsingService;
+            return this.Price * this.PersonsUsingService;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(string.Format("Service: {0}",this.GetType().Name + Environment.NewLine));
+            sb.Append(string.Format("Service: {0}", this.GetType().Name + Environment.NewLine));
             sb.Append(string.Format("                   Price (person/day): {0}", this.Price + Environment.NewLine));
             sb.AppendLine(Environment.NewLine);
 

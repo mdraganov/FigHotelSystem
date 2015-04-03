@@ -1,7 +1,7 @@
 ﻿namespace HotelSystemApp.Interfaces
 {
-    using HotelSystemApp.Person;
     using HotelSystemApp.Enumerations;
+    using HotelSystemApp.Person;
 
     public interface IHire
     {

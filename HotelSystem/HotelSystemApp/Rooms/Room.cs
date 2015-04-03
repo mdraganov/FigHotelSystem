@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Linq;
+    using System.Text;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
 
@@ -65,7 +65,7 @@
         {
             get
             {
-                return this.featuresInRoom;;
+                return this.featuresInRoom;
             }
         }
 

@@ -72,7 +72,8 @@
         }
 
         public List<Service> Services
-        {           get { return this.services; }
+        {
+            get { return this.services; }
             set { this.services = value; }
         }
 
@@ -91,7 +92,6 @@
             return result;
         }
 
- 
         public void MakeReservation(Client client, int numberOfRoom, DateTime checkIN, DateTime checkOUT, byte numberOfGuests)
         {
             Reservation newReservation = new Reservation();
@@ -99,13 +99,14 @@
             var roomIndex = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
             client.AddRoom(this.rooms[roomIndex]);
             this.rooms[roomIndex].CheckIn();
-            
+
             newReservation.ClientID = client.ID;
             newReservation.NumberOfRoom = numberOfRoom;
-                        newReservation.CheckIn = checkIN;
+            newReservation.CheckIn = checkIN;
             newReservation.CheckOut = checkOUT;
             newReservation.NumberOfGuests = numberOfGuests;
             newReservation.DateOfReservation = DateTime.Now;
+
             this.reservations.Add(newReservation);
         }
 

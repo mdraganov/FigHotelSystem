@@ -2,7 +2,8 @@
 {
     public interface IPrice
     {
-        decimal Price { get;  }
+        decimal Price { get; }
+
         decimal CalculatePrice();
     }
 }

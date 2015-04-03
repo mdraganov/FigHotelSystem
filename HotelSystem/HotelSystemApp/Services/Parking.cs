@@ -18,6 +18,7 @@
             {
                 return this.daysUsed;
             }
+
             set
             {
                 if (value < 1)

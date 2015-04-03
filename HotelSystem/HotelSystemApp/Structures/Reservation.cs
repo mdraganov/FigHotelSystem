@@ -73,9 +73,9 @@
             set
             {
                 int currentNumberOfRoom = this.NumberOfRoom;
-                var roomIndex = HotelSystemAppMain.firstTestHotel.Rooms.FindIndex(x => x.NumberOfRoom == currentNumberOfRoom);
+                var roomIndex = HotelSystemAppMain.FirstTestHotel.Rooms.FindIndex(x => x.NumberOfRoom == currentNumberOfRoom);
 
-                if (value > HotelSystemAppMain.firstTestHotel.Rooms[roomIndex].NumberOfBeds)
+                if (value > HotelSystemAppMain.FirstTestHotel.Rooms[roomIndex].NumberOfBeds)
                 {
                     throw new IndexOutOfRangeException("The number of guests cannot be more than number of beds!");
                 }
@@ -95,8 +95,8 @@
             result.Append(string.Format(" | Date of reservation: {0}", this.DateOfReservation.ToString("dd.MM.yyyy")).PadLeft(10));
 
             string currentClientID = this.ClientID;
-            var clientIndex = HotelSystemAppMain.firstTestHotel.Clients.FindIndex(x => x.ID == currentClientID);
-            result.Append(string.Format(" | Client: {0}", HotelSystemAppMain.firstTestHotel.Clients[clientIndex].LastName));
+            var clientIndex = HotelSystemAppMain.FirstTestHotel.Clients.FindIndex(x => x.ID == currentClientID);
+            result.Append(string.Format(" | Client: {0}", HotelSystemAppMain.FirstTestHotel.Clients[clientIndex].LastName));
             return result.ToString();
         }
     }
