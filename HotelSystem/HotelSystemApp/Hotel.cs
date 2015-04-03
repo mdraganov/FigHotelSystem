@@ -18,14 +18,14 @@
         private List<Client> clients;
         private List<Service> services;
         private List<Reservation> reservations;
-        
+
         public Hotel(string name)
         {
             this.Name = name;
             this.rooms = new List<Room>();
             this.employees = new List<Employee>();
             this.clients = new List<Client>();
-            this.services = new List<Service>();
+            this.Services = new List<Service>();
             this.reservations = new List<Reservation>();
         }
 
@@ -72,11 +72,8 @@
         }
 
         public List<Service> Services
-        {
-            get
-            {
-                return new List<Service>(this.services);
-            }
+        {           get { return this.services; }
+            set { this.services = value; }
         }
 
         public List<Reservation> Reservations
@@ -94,6 +91,7 @@
             return result;
         }
 
+ 
         public void MakeReservation(Client client, int numberOfRoom, DateTime checkIN, DateTime checkOUT, byte numberOfGuests)
         {
             Reservation newReservation = new Reservation();
@@ -104,11 +102,10 @@
             
             newReservation.ClientID = client.ID;
             newReservation.NumberOfRoom = numberOfRoom;
-            newReservation.CheckIn = checkIN;
+                        newReservation.CheckIn = checkIN;
             newReservation.CheckOut = checkOUT;
             newReservation.NumberOfGuests = numberOfGuests;
             newReservation.DateOfReservation = DateTime.Now;
-
             this.reservations.Add(newReservation);
         }
 
