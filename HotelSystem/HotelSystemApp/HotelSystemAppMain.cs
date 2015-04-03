@@ -83,7 +83,7 @@
             #endregion
 
             #region Calling the menus
-            MainMenu.Menu(Menus.MainMenu);
+            MainMenu.Menu(MenusEnum.MainMenu);
             #endregion
         }
     }
