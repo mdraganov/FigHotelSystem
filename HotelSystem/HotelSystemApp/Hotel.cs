@@ -26,6 +26,7 @@
             this.employees = new List<Employee>();
             this.clients = new List<Client>();
             this.services = new List<Service>();
+            this.reservations = new List<Reservation>();
         }
 
         public string Name
@@ -78,18 +79,12 @@
             }
         }
 
-        public void MakeReservation(Client client, int numberOfRoom)
+        public List<Reservation> Reservations
         {
-            Reservation newReservation = new Reservation();
-            newReservation.ClientID = client.ID;
-
-            var room = this.rooms.Where(x => x.NumberOfRoom == numberOfRoom);
-            Room newRoom = room as Room; // ?
-
-            client.AddRoom(newRoom);
-            newRoom.CheckIn();
-
-            this.reservations.Add(newReservation);
+            get
+            {
+                return new List<Reservation>(this.reservations);
+            }
         }
 
         public List<Room> AvailableRooms()
@@ -97,6 +92,20 @@
             var result = this.Rooms.Where(x => x.IsAvailable == true).ToList();
 
             return result;
+        }
+
+        public void MakeReservation(Client client, int numberOfRoom)
+        {
+            Reservation newReservation = new Reservation();
+
+            var roomIndex = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            client.AddRoom(this.rooms[roomIndex]);
+            this.rooms[roomIndex].CheckIn();
+            
+            newReservation.ClientID = client.ID;
+            newReservation.NumberOfRoom = numberOfRoom;
+            
+            this.reservations.Add(newReservation);
         }
 
         public void AddClient(Client newClient)
@@ -157,6 +166,5 @@
 
             return hotel.ToString();
         }
-
     }
 }

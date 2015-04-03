@@ -1,13 +1,12 @@
 ﻿namespace HotelSystemApp.Rooms
 {
     using System;
-    using System.Collections.Generic;
-    using HotelSystemApp.Enumerations;
+
     public class Apartment : Room
     {
         private int numberOfBathRooms;
 
-        public Apartment(int numberOfRoom, decimal initialPrice,int numberOfBathRooms)
+        public Apartment(int numberOfRoom, decimal initialPrice, int numberOfBathRooms)
             : base(numberOfRoom, initialPrice)
         {
             this.NumberOfBathRooms = numberOfBathRooms;
@@ -22,12 +21,14 @@
             {
                 return this.numberOfBathRooms;
             }
+
             private set
             {
                 if (value < 1)
                 {
                     throw new ArgumentException("Invalid number of bathrooms");
                 }
+
                 this.numberOfBathRooms = value;
             }
         }

@@ -5,7 +5,7 @@
 
     public interface IFeatures
     {
-        List<Features> AllFeaturesInRoom { get; set; }
+        List<Features> AllFeaturesInRoom { get; }
 
         void AddFeature(Features someFeature);
 

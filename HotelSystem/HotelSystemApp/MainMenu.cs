@@ -1,15 +1,16 @@
 ﻿namespace HotelSystemApp
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
-    using HotelSystemApp;
-    using HotelSystemApp.Enumerations;
+    using System.Linq;
     using HotelSystemApp.Person;
-    using HotelSystemApp.Rooms;
-    using HotelSystemApp.Services;
-    using HotelSystemApp.Interfaces;
 
+    public enum Menus
+    {
+        MainMenu,
+        ClientsMenu,
+        StaffMenu
+    }
 
     public class MainMenu
     {
@@ -158,7 +159,11 @@
             {
                 Console.SetCursorPosition(ucol, i);
                 Console.Write(Vertical);
-                if (fill) Console.Write(fillLine);
+                if (fill)
+                {
+                    Console.Write(fillLine);
+                }
+
                 Console.SetCursorPosition(lcol, i);
                 Console.Write(Vertical);
             }
@@ -195,7 +200,7 @@
             Console.Clear();
         }
 
-        static void PrintOnPosition(int x, int y, string c)
+        private static void PrintOnPosition(int x, int y, string c)
         {
             Console.SetCursorPosition(x, y);
             Console.WriteLine(c);
@@ -203,7 +208,7 @@
 
         #endregion
 
-        static void SubMenu(string currentMenu)
+        private static void SubMenu(string currentMenu)
         {
             Console.Clear();
 
@@ -311,10 +316,11 @@
             string iban = Console.ReadLine();
 
             newHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
+            WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
             Menu(Menus.ClientsMenu);
         }
 
-        public static void HireStaff()
+        private static void HireStaff()
         {
             try
             {
@@ -339,7 +345,6 @@
 
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
             Menu(Menus.StaffMenu);
-
         }
 
         private static Employee ReadHireDetails(int employeeType)
@@ -370,28 +375,20 @@
             }
         }
 
-        public static void ListRooms()
+        private static void ListRooms()
         {
-
             WriteColorString("List of all ROOMS", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
 
             int row = 7;
             var ordered = newHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenByDescending(x => x.Price);
-            foreach (var emp in ordered)
+            foreach (var room in ordered)
             {
                 WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString(string.Format("{0}", emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
-                row+=2;
+                WriteColorString(string.Format("{0}", room.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
+                row += 2;
             }
 
             Menu(Menus.MainMenu);
         }
-    }
-
-    public enum Menus
-    {
-        MainMenu,
-        ClientsMenu,
-        StaffMenu
     }
 }

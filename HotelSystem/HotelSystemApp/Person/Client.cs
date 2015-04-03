@@ -63,18 +63,18 @@
             }
         }
 
-        public void AddRoom(Room room)
-        {
-            this.rooms.Add(room);
-            this.Bill += room.Price;
-        }
-
         public List<Service> VisitedServices
         {
             get
             {
                 return new List<Service>(this.visitedServices);
             }
+        }
+
+        public void AddRoom(Room room)
+        {
+            this.rooms.Add(room);
+            this.Bill += room.Price;
         }
 
         public void AddVisitedService(Service service)
@@ -87,6 +87,11 @@
         {
             this.visitedServices.Remove(service);
             this.bill -= service.Price;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + string.Format("| Rooms: {0} | Bill = {1:C2}", string.Join(",", this.rooms), this.Bill);
         }
 
         private bool ValidateBankAccount(string bankAccount)
@@ -134,11 +139,6 @@
             {
                 return false;
             }
-        }
-
-        public override string ToString()
-        {
-            return base.ToString() + string.Format("| Rooms: {0} | Bill = {1:C2}", string.Join(",", this.rooms), this.Bill);
         }
     }
 }

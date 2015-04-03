@@ -112,6 +112,18 @@
             }
         }
 
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(string.Format("{0} | {1} | Contact: {2} / {3} ", 
+                (this.FirstName + " " + this.LastName).PadRight(14), 
+                this.Address.PadRight(8), 
+                this.PhoneNumber.PadRight(9), 
+                this.Email.Address.PadLeft(15)));
+
+            return result.ToString();
+        }
+
         private void CheckPhone(string phone)
         {
             if (!Regex.IsMatch(phone.Trim(), @"\+?[()\d- ]+"))
@@ -129,19 +141,6 @@
             {
                 throw new ArgumentException("Invalid email!");
             }
-        }
-
-        public override string ToString()
-        {
-            StringBuilder result = new StringBuilder();
-            result.Append(string.Format("{0} | {1} | Contact: {2} / {3} ", 
-                (this.FirstName + " " + this.LastName).PadRight(14), 
-                this.Address.PadRight(8), 
-                this.PhoneNumber.PadRight(9), 
-                this.Email.Address.PadLeft(15))
-                );
-
-            return result.ToString();
         }
     }
 }

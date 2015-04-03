@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
-    using System.Text;
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
@@ -16,7 +16,7 @@
         {
             this.NumberOfRoom = numberOfRoom;
             this.Price = initialPrice;
-            this.AllFeaturesInRoom = new List<Features>();
+            this.featuresInRoom = new List<Features>();
             this.IsAvailable = true;
         }
 
@@ -33,6 +33,7 @@
                 {
                     throw new ArgumentException("Invalid room number");
                 }
+
                 this.numberOfRoom = value;
             }
         }
@@ -47,22 +48,25 @@
             {
                 return this.price;
             }
+
             protected set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException("Invalid price");
                 }
+
                 this.price = value;
             }
         }
 
         public List<Features> AllFeaturesInRoom
         {
-            get { return this.featuresInRoom; }
-            set { this.featuresInRoom = value; }
+            get
+            {
+                return new List<Features>(this.featuresInRoom);
+            }
         }
-
 
         public void AddFeature(Features someFeature)
         {
@@ -110,8 +114,8 @@
             }
 
             sb.Append(string.Format("Room[{0}] ", this.NumberOfRoom));
-            sb.Append(string.Format("   Type: {0,5} ", this.GetType().Name));
-            sb.Append(string.Format("   Price/Day: ${0,2} ", this.Price));
+            sb.Append(string.Format("   Type: {0,15} ", this.GetType().Name));
+            sb.Append(string.Format("   Price/Day: ${0,4} ", this.Price));
             sb.AppendLine(string.Format("   Available: {0,5} ", this.IsAvailable ? "YES" : "NO"));
             sb.AppendLine(string.Format("                   Extra features: {0}", stringedFeatures.Count == 0 ? "None" : string.Join(", ", stringedFeatures))); // this is not showing properly
 

@@ -3,14 +3,14 @@
   <Class Name="HotelSystemApp.HotelSystemAppMain" Collapsed="true">
     <Position X="17.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAEAAAA=</HashCode>
       <FileName>HotelSystemAppMain.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Rooms.Room">
     <Position X="3.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgBAAAACQAgBAAAAAIAAAAAAAAAAAIBAAAAAIAMAAA=</HashCode>
+      <HashCode>AAgBAAAACQAgBAAEAAIAAAAAAAAAAAIBAAAAAIAMAAA=</HashCode>
       <FileName>Rooms\Room.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -163,11 +163,18 @@
   <Class Name="HotelSystemApp.Hotel" Collapsed="true">
     <Position X="17.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAEAAAAAAAACEACIICAQiCAAEAAAAAEACAKAAAAA=</HashCode>
+      <HashCode>gAAAAEAAAAAAAACEECIICBQiCAAEAAAAAEACAKAAAAA=</HashCode>
       <FileName>Hotel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Struct Name="HotelSystemApp.Structures.Reservation" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Structures\Reservation.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Interface Name="HotelSystemApp.Interfaces.IAvailable">
     <Position X="17.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>

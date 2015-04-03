@@ -1,13 +1,10 @@
 ﻿namespace HotelSystemApp
 {
     using System;
-    using System.Collections.Generic;
-    using HotelSystemApp;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
-    using System.Linq;
 
     public class HotelSystemAppMain
     {
@@ -53,7 +50,7 @@
             firstTestHotel.AddClient(testClient1);
             firstTestHotel.AddClient(testClient2);
 
-            //firstTestHotel.MakeReservation(testClient1, 13); 
+            firstTestHotel.MakeReservation(testClient1, 13); 
             firstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
             firstTestHotel.AddService(new Fitness());
             firstTestHotel.AddService(new Parking());
