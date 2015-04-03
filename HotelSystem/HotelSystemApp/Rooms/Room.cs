@@ -64,7 +64,7 @@
         {
             get
             {
-                return new List<Features>(this.featuresInRoom);
+                return this.featuresInRoom;;
             }
         }
 
