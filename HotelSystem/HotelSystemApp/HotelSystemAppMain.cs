@@ -26,10 +26,21 @@
             firstTestHotel.AddRoom(new Apartment(23, 140, 2));
 
             var rooms = firstTestHotel.Rooms;
+            int count = 0;
             foreach (var rm in rooms)
             {
+                if (count % 3 == 0)
+                {
+                    rm.AddFeature(Features.Jacuzzi);
+                }
+                if (count % 2 == 0)
+                {
+                    rm.AddFeature(Features.SnackBar);
+                    rm.AddFeature(Features.Computer);
+                }
                 rm.AddFeature(Features.Bathtub);
                 rm.AddFeature(Features.AC);
+                count++;
             }
 
             Manager testManager = new Manager("Ivan", "Ivanov", "Varna", "0881234567", "test@gmail.com", 2000, 25, 12);

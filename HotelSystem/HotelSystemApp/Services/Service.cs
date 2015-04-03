@@ -2,6 +2,7 @@
 {
     using System;
     using HotelSystemApp.Interfaces;
+    using System.Text;
 
     public abstract class Service : IPrice
     {
@@ -51,6 +52,17 @@
         public virtual decimal CalculatePrice()
         {
             return this.Price * PersonsUsingService;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(string.Format("Service: {0}",this.GetType().Name + Environment.NewLine));
+            sb.Append(string.Format("                   Price (person/day): {0}", this.Price + Environment.NewLine));
+            sb.AppendLine(Environment.NewLine);
+
+            return sb.ToString();
         }
     }
 }

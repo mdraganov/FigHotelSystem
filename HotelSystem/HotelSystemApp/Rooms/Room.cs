@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Linq;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
 
@@ -108,7 +109,7 @@
             StringBuilder sb = new StringBuilder();
 
             List<string> stringedFeatures = new List<string>();
-            foreach (var ft in this.AllFeaturesInRoom)
+            foreach (var ft in this.AllFeaturesInRoom.OrderBy(x => x.ToString().Length))
             {
                 stringedFeatures.Add(ft.ToString());
             }

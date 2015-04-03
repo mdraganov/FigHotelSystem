@@ -15,7 +15,7 @@
     public class MainMenu
     {
         public static Hotel newHotel = HotelSystemAppMain.firstTestHotel;
-        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" };
+        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "ROOMS INFO", "SERVICES", "CLIENTS", "STAFF", "Exit" };
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> currentMenuChoises;
@@ -227,8 +227,11 @@
                 case "CLIENTS":
                     Menu(Menus.ClientsMenu);
                     break;
-                case "STAFF":
+                case "STAFF": 
                     Menu(Menus.StaffMenu);
+                    break;
+                case "SERVICES": // Service
+                    ServicesPriceInfo();
                     break;
                 case "LIST ALL":
                     if (currentMenuChoises == clientMenuChoises)
@@ -386,6 +389,23 @@
                 WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
                 WriteColorString(string.Format("{0}", room.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
                 row += 2;
+            }
+
+            Menu(Menus.MainMenu);
+        }
+
+
+        private static void ServicesPriceInfo()
+        {
+            WriteColorString("Price list of all services", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
+
+            int row = 7;
+            var ordered = newHotel.Services.OrderBy(x => x.Price);
+            foreach (var serv in ordered)
+            {
+                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString(string.Format("{0}", serv.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
+                row += 3;
             }
 
             Menu(Menus.MainMenu);
