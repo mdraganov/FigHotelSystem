@@ -317,7 +317,7 @@
                 row++;
                 counter++;
             }
-            Menu(Menus.MainMenu);
+            Menu(Menus.StaffMenu);
         }
 
 
