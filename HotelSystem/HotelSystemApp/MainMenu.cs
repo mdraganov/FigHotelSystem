@@ -5,7 +5,7 @@
     using System.Linq;
     using HotelSystemApp.Person;
 
-    public enum Menus
+    public enum MenusEnum
     {
         MainMenu,
         ClientsMenu,
@@ -23,7 +23,7 @@
         public static List<string> CurrentMenuChoises;
 
         #region MainMenu
-        public static bool Menu(Menus currentMenu)
+        public static bool Menu(MenusEnum currentMenu)
         {
             Console.TreatControlCAsInput = false;
             Console.CursorVisible = false;
@@ -35,18 +35,18 @@
 
             switch (currentMenu)
             {
-                case Menus.MainMenu:
+                case MenusEnum.MainMenu:
                     CurrentMenuChoises = MainMenuChoises;
                     break;
-                case Menus.ClientsMenu:
+                case MenusEnum.ClientsMenu:
                     CurrentMenuChoises = ClientMenuChoises;
                     WriteColorString("CLients Menu", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
-                case Menus.StaffMenu:
+                case MenusEnum.StaffMenu:
                     CurrentMenuChoises = StaffMenuChoises;
                     WriteColorString("Staff Menu", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
-                case Menus.Reservations:
+                case MenusEnum.Reservations:
                     CurrentMenuChoises = ReservationsMenuChoises;
                     WriteColorString("Reservation Menu", 2, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
@@ -221,17 +221,17 @@
             switch (currentMenu)
             {
                 case "RESERVATIONS":
-                    Menu(Menus.Reservations);
+                    Menu(MenusEnum.Reservations);
                     break;
                 case "ROOMS INFO":
                     WriteColorString("Information about all hotel rooms", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     ListRooms();
                     break;
                 case "CLIENTS":
-                    Menu(Menus.ClientsMenu);
+                    Menu(MenusEnum.ClientsMenu);
                     break;
                 case "STAFF":
-                    Menu(Menus.StaffMenu);
+                    Menu(MenusEnum.StaffMenu);
                     break;
                 case "SERVICES": // Service
                     ServicesPriceInfo();
@@ -260,13 +260,13 @@
                     SalariesStaff();
                     break;
                 case "CHECK IN":
-                    WriteColorString("check in test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+                    CheckInList();
                     break;
                 case "CHECK OUT":
-                    WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+                    CheckOutList();
                     break;
                 case "RETURN":
-                    Menu(Menus.MainMenu);
+                    Menu(MenusEnum.MainMenu);
                     break;
                 default:
                     break;
@@ -278,9 +278,19 @@
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 if (pressedKey.Key == ConsoleKey.Escape)
                 {
-                    Menu(Menus.MainMenu);
+                    Menu(MenusEnum.MainMenu);
                 }
             }
+        }
+
+        private static void CheckInList()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void CheckOutList()
+        {
+            throw new NotImplementedException();
         }
 
         private static void ListOfClients()
@@ -297,7 +307,7 @@
                 counter++;
             }
 
-            Menu(Menus.ClientsMenu);
+            Menu(MenusEnum.ClientsMenu);
         }
 
         private static void ListOfStaff()
@@ -314,7 +324,7 @@
                 counter++;
             }
 
-            Menu(Menus.StaffMenu);
+            Menu(MenusEnum.StaffMenu);
         }
 
         private static void ListOfReservations()
@@ -331,7 +341,7 @@
                 counter++;
             }
 
-            Menu(Menus.Reservations);
+            Menu(MenusEnum.Reservations);
         }
 
         private static void SalariesStaff()
@@ -348,7 +358,7 @@
                 counter++;
             }
 
-            Menu(Menus.StaffMenu);
+            Menu(MenusEnum.StaffMenu);
         }
 
         private static void AddNewClient()
@@ -370,7 +380,7 @@
 
             NewHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
             WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-            Menu(Menus.ClientsMenu);
+            Menu(MenusEnum.ClientsMenu);
         }
 
         private static void HireStaff()
@@ -397,7 +407,7 @@
             }
 
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-            Menu(Menus.StaffMenu);
+            Menu(MenusEnum.StaffMenu);
         }
 
         private static Employee ReadHireDetails(int employeeType)
@@ -440,7 +450,7 @@
                 row += 2;
             }
 
-            Menu(Menus.MainMenu);
+            Menu(MenusEnum.MainMenu);
         }
 
         private static void ServicesPriceInfo()
@@ -456,7 +466,7 @@
                 row += 3;
             }
 
-            Menu(Menus.MainMenu);
+            Menu(MenusEnum.MainMenu);
         }
     }
 }
