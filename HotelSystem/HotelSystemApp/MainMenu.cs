@@ -325,7 +325,24 @@
 
         private static void CheckOutList()
         {
-            throw new NotImplementedException();
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("Check out rooms", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            try
+            {
+                WriteColorString("Enter room for checking-out: ", 20, 6, ConsoleColor.Black, ConsoleColor.White);
+                int numberOfRoom = int.Parse(Console.ReadLine());
+                NewHotel.CheckOutRoom(numberOfRoom);
+                //ewHotel.Reservations
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            Menu(MenusEnum.Reservations);
         }
 
         private static void ListOfClients()

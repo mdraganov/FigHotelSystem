@@ -102,6 +102,7 @@
 
             int indexOfClient = this.clients.IndexOf(client);
             newReservation.ClientID = indexOfClient + 1;
+            client.ClientID = indexOfClient + 1;
             newReservation.NumberOfRoom = numberOfRoom;
             newReservation.CheckIn = checkIN;
             newReservation.CheckOut = checkOUT;
@@ -109,6 +110,20 @@
             newReservation.DateOfReservation = DateTime.Now;
 
             this.reservations.Add(newReservation);
+        }
+
+        public void CheckOutRoom(int numberOfRoom)
+        {
+            var indexOfRoomForCheckingOut = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            this.rooms[indexOfRoomForCheckingOut].CheckOut();
+
+            var indexOfReservation = this.reservations.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            this.reservations.RemoveAt(indexOfReservation);
+
+            var indexOfClient = this.reservations.Where(x => x.NumberOfRoom == numberOfRoom).Select(x => x.ClientID).FirstOrDefault();
+           
+           //ar indexOfClient = this.reservations.FindIndex(x => x.ClientID == numberOfRoom);
+           this.clients[indexOfClient + 1].RemoveRoom(this.rooms[indexOfRoomForCheckingOut]);
         }
 
         public void AddClient(Client newClient)

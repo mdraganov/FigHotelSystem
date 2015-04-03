@@ -49,6 +49,8 @@
             private set { this.bill = value; }
         }
 
+        public int ClientID { get; set; }
+
         public List<Room> PaidRooms
         {
             get
@@ -69,6 +71,12 @@
         {
             this.rooms.Add(room);
             this.Bill += room.Price;
+        }
+
+        public void RemoveRoom(Room room)
+        {
+            this.rooms.Remove(room);
+            this.bill -= room.Price;
         }
 
         public void AddVisitedService(Service service)
