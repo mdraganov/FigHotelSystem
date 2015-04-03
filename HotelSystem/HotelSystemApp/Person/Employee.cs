@@ -11,6 +11,7 @@
         private byte vacationDays;
         private byte workHoursADay;
         private bool salaryTaken;
+        private bool cleanRoom;
 
         public Employee(string firstName, string lastName, string address, string phoneNumber, string email, decimal salary, byte vacationDays = 20, byte workHoursADay = 8)
             : base(firstName, lastName, address, phoneNumber, email)
@@ -19,6 +20,7 @@
             this.VacationDays = vacationDays;
             this.WorkHoursADay = workHoursADay;
             this.ToggleSalaryTaken();
+            this.ToogleCleanRoom();
         }
 
         public decimal Salary
@@ -92,6 +94,26 @@
             //    case Employees.Receptionist: person = new Receptionist(person); break;
             //}
         }
+
+        public bool CleanRoom
+        {
+            get { return this.cleanRoom; }
+            set { this.cleanRoom = value; }
+        }
+
+        public void ToogleCleanRoom()
+        {
+            if (this.CleanRoom == false)
+            {
+                this.CleanRoom = true;
+            }
+            else
+            {
+                this.CleanRoom = false;
+            }
+        }
+
+
 
         public override string ToString()
         {

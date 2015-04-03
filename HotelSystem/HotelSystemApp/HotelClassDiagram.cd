@@ -3,7 +3,7 @@
   <Class Name="HotelSystemApp.HotelSystemAppMain" Collapsed="true">
     <Position X="17.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAEAAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>HotelSystemAppMain.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -18,7 +18,7 @@
   <Class Name="HotelSystemApp.Services.Service">
     <Position X="12.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAQAAAAEAA=</HashCode>
+      <HashCode>AAABAAAAAQAAAAAEAAAAAAAAAAAAAAIAAAAQAAAAEAA=</HashCode>
       <FileName>Services\Service.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -112,7 +112,7 @@
   <Class Name="HotelSystemApp.Person.Employee" Collapsed="true">
     <Position X="13.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAASAAAAAgAAAEEgAAQAIAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAASAAAAAgAAAEEgAAQAIAACAAAAABAAAAAAAAACA=</HashCode>
       <FileName>Person\Employee.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -120,7 +120,7 @@
   <Class Name="HotelSystemApp.Person.Maid" Collapsed="true">
     <Position X="10.75" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Person\Maid.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -171,7 +171,7 @@
   <Struct Name="HotelSystemApp.Structures.Reservation" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAAAAAAEAAIABgAEAAIAAAAAAAAAAAAAIQAAAAEIAAA=</HashCode>
       <FileName>Structures\Reservation.cs</FileName>
     </TypeIdentifier>
   </Struct>
@@ -220,7 +220,7 @@
   <Enum Name="HotelSystemApp.Enumerations.Features">
     <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAIAEAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAABAAAAAAAAAAAAAABAAAEAAIAEAAAA=</HashCode>
       <FileName>Enumerations\Features.cs</FileName>
     </TypeIdentifier>
   </Enum>
