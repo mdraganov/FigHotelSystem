@@ -10,9 +10,10 @@
     using HotelSystemApp.Services;
     using HotelSystemApp.Interfaces;
 
+
     public class MainMenu
     {
-        public static Hotel newHotel = LoadTestHotel.Hotel();
+        public static Hotel newHotel = HotelSystemAppMain.firstTestHotel;
         public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
@@ -317,7 +318,7 @@
                 WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
                 WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
                 WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString("1- Bellboy, 2- Maid, 3 - Manager, 4 - Receptionist)", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan); // !!
+                WriteColorString("1- Bellboy, 2- Maid, 3 - Manager, 4 - Receptionist", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan); // !!
 
                 Console.SetCursorPosition(20, 8);
                 int employeeType = int.Parse(Console.ReadLine());
