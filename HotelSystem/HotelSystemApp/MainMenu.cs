@@ -9,15 +9,17 @@
     {
         MainMenu,
         ClientsMenu,
-        StaffMenu
+        StaffMenu,
+        Reservations
     }
 
     public class MainMenu
     {
         public static Hotel newHotel = HotelSystemAppMain.firstTestHotel;
-        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" };
+        public static List<string> mainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" };
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
+        public static List<string> reservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
         public static List<string> currentMenuChoises;
 
         #region MainMenu
@@ -43,6 +45,10 @@
                 case Menus.StaffMenu:
                     currentMenuChoises = staffMenuChoises;
                     WriteColorString("Staff Menu", 5, 2, ConsoleColor.Black, ConsoleColor.Yellow);
+                    break;
+                case Menus.Reservations:
+                    currentMenuChoises = reservationsMenuChoises;
+                    WriteColorString("Reservations Menu", 2, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 default:
                     break;
@@ -214,11 +220,8 @@
 
             switch (currentMenu)
             {
-                case "CHECK IN":
-                    WriteColorString("check in test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
-                    break;
-                case "CHECK OUT":
-                    WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+                case "RESERVATIONS":
+                    Menu(Menus.Reservations);
                     break;
                 case "ROOMS INFO":
                     WriteColorString("Information about all hotel rooms", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -235,9 +238,13 @@
                     {
                         ListOfClients();
                     }
-                    else
+                    else if (currentMenuChoises == staffMenuChoises)
                     {
                         ListOfStaff();
+                    }
+                    else
+                    {
+                        ListOfReservations();
                     }
                     break;
                 case "ADD NEW":
@@ -245,6 +252,12 @@
                     break;
                 case "HIRE":
                     HireStaff();
+                    break;
+                case "CHECK IN":
+                    WriteColorString("check in test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+                    break;
+                case "CHECK OUT":
+                    WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case "RETURN":
                     Menu(Menus.MainMenu);
@@ -296,6 +309,23 @@
             }
 
             Menu(Menus.StaffMenu);
+        }
+
+        private static void ListOfReservations()
+        {
+            WriteColorString("List of all reservations", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            int row = 7;
+            int counter = 1;
+            var ordered = newHotel.Reservations.OrderBy(x => x.NumberOfRoom);
+            foreach (var res in ordered)
+            {
+                WriteColorString(string.Format("{0}.{1}", counter, res.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                row++;
+                counter++;
+            }
+
+            Menu(Menus.Reservations);
         }
 
         private static void AddNewClient()

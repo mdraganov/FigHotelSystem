@@ -94,7 +94,7 @@
             return result;
         }
 
-        public void MakeReservation(Client client, int numberOfRoom)
+        public void MakeReservation(Client client, int numberOfRoom, DateTime checkIN, DateTime checkOUT, byte numberOfGuests)
         {
             Reservation newReservation = new Reservation();
 
@@ -104,7 +104,11 @@
             
             newReservation.ClientID = client.ID;
             newReservation.NumberOfRoom = numberOfRoom;
-            
+            newReservation.CheckIn = checkIN;
+            newReservation.CheckOut = checkOUT;
+            newReservation.NumberOfGuests = numberOfGuests;
+            newReservation.DateOfReservation = DateTime.Now;
+
             this.reservations.Add(newReservation);
         }
 
