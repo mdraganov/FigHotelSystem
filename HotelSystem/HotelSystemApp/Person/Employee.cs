@@ -10,6 +10,7 @@
         private decimal salary;
         private byte vacationDays;
         private byte workHoursADay;
+        private bool salaryTaken;
 
         public Employee(string firstName, string lastName, string address, string phoneNumber, string email, decimal salary, byte vacationDays = 20, byte workHoursADay = 8)
             : base(firstName, lastName, address, phoneNumber, email)
@@ -17,6 +18,7 @@
             this.Salary = salary;
             this.VacationDays = vacationDays;
             this.WorkHoursADay = workHoursADay;
+            this.ToggleSalaryTaken();
         }
 
         public decimal Salary
@@ -36,6 +38,27 @@
                 this.salary = value;
             }
         }
+
+
+        public bool SalaryTaken
+        {
+            get { return this.salaryTaken; }
+            set { this.salaryTaken = value; }
+        }
+
+        public void ToggleSalaryTaken()
+        {
+            if (this.SalaryTaken == false)
+            {
+                this.SalaryTaken = true;
+            }
+            else
+            {
+                this.SalaryTaken = false;
+            }
+        }
+
+
 
         public byte VacationDays
         {

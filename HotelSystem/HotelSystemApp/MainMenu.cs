@@ -249,6 +249,9 @@
                 case "HIRE":
                     HireStaff();
                     break;
+                case "SALARIES": 
+                    SalariesStaff();
+                    break;
                 case "RETURN":
                     Menu(Menus.MainMenu);
                     break;
@@ -300,6 +303,23 @@
 
             Menu(Menus.StaffMenu);
         }
+
+        private static void SalariesStaff()
+        {
+            WriteColorString("Salaries of employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            int row = 7;
+            int counter = 1;
+            var ordered = newHotel.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.Salary);
+            foreach (var emp in ordered)
+            {
+                WriteColorString(string.Format("Name: {0,15}    Salary: {1,5}     Salary Taken : {2}", emp.FirstName+" "+emp.LastName , emp.Salary, emp.SalaryTaken ? "No" : "Yes"), 19, row, ConsoleColor.Black, ConsoleColor.Yellow);
+                row++;
+                counter++;
+            }
+            Menu(Menus.MainMenu);
+        }
+
 
         private static void AddNewClient()
         {
@@ -393,7 +413,6 @@
 
             Menu(Menus.MainMenu);
         }
-
 
         private static void ServicesPriceInfo()
         {
