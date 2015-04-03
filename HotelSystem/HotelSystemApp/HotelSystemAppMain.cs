@@ -7,6 +7,7 @@
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
+    using System.Linq;
 
     public class HotelSystemAppMain
     {
@@ -19,13 +20,20 @@
             Console.Title = "Hotel Application";
 
             #region TEST AREA
-            firstTestHotel.AddRoom(new OneBedroomRoom(11, 40, new List<Features> { Features.None }));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(12, 80, new List<Features> { Features.None }));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(13, 95, new List<Features> { Features.AC, Features.Bathtub }));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(14, 95, new List<Features> { Features.AC }));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(21, 95, new List<Features> { Features.AC }));
-            firstTestHotel.AddRoom(new TwoBedroomRoom(22, 95, new List<Features> { Features.None }));
-            firstTestHotel.AddRoom(new Apartment(23, 140, new List<Features> { Features.AC, Features.Bathtub }, 2));
+            firstTestHotel.AddRoom(new OneBedroomRoom(11, 40));
+            firstTestHotel.AddRoom(new TwoBedroomRoom(12, 80));
+            firstTestHotel.AddRoom(new TwoBedroomRoom(13, 95));
+            firstTestHotel.AddRoom(new TwoBedroomRoom(14, 95));
+            firstTestHotel.AddRoom(new TwoBedroomRoom(21, 95));
+            firstTestHotel.AddRoom(new TwoBedroomRoom(22, 95));
+            firstTestHotel.AddRoom(new Apartment(23, 140, 2));
+
+            var rooms = firstTestHotel.Rooms;
+            foreach (var rm in rooms)
+            {
+                rm.AddFeature(Features.Bathtub);
+                rm.AddFeature(Features.AC);
+            }
 
             Manager testManager = new Manager("Ivan", "Ivanov", "Varna", "0881234567", "test@gmail.com", 2000, 25, 12);
             Receptionist testReceptionist1 = new Receptionist("Galia", "Ivanova", "Varna", "0897654321", "rec1@gmail.com", 1200, 20, 12);

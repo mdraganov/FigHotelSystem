@@ -14,7 +14,7 @@
     public class MainMenu
     {
         public static Hotel newHotel = HotelSystemAppMain.firstTestHotel;
-        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "CLIENTS", "STAFF", "Exit" };
+        public static List<string> mainMenuChoises = new List<string> { "CHECK IN", "CHECK OUT", "ROOMS INFO", "CLIENTS", "STAFF", "Exit" };
         public static List<string> clientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> staffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> currentMenuChoises;
@@ -215,6 +215,10 @@
                 case "CHECK OUT":
                     WriteColorString("check out test", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
+                case "ROOMS INFO":
+                    WriteColorString("Information about all hotel rooms", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
+                    ListRooms();
+                    break;
                 case "CLIENTS":
                     Menu(Menus.ClientsMenu);
                     break;
@@ -334,8 +338,8 @@
             }
 
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-
             Menu(Menus.StaffMenu);
+
         }
 
         private static Employee ReadHireDetails(int employeeType)
@@ -364,6 +368,23 @@
                 default:
                     return null;
             }
+        }
+
+        public static void ListRooms()
+        {
+
+            WriteColorString("List of all ROOMS", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
+
+            int row = 7;
+            var ordered = newHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenByDescending(x => x.Price);
+            foreach (var emp in ordered)
+            {
+                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString(string.Format("{0}", emp.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
+                row+=2;
+            }
+
+            Menu(Menus.MainMenu);
         }
     }
 

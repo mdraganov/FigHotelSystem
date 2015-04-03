@@ -7,8 +7,8 @@
     {
         private int numberOfBathRooms;
 
-        public Apartment(int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom,int numberOfBathRooms)
-            : base(numberOfRoom, initialPrice, featuresInRoom)
+        public Apartment(int numberOfRoom, decimal initialPrice,int numberOfBathRooms)
+            : base(numberOfRoom, initialPrice)
         {
             this.NumberOfBathRooms = numberOfBathRooms;
             this.NumberOfBeds = 4;

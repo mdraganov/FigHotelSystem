@@ -4,17 +4,19 @@
     using System.Collections.Generic;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
+    using System.Text;
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
         private int numberOfRoom;
         private decimal price;
+        private List<Features> featuresInRoom;
 
-        public Room(int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom)
+        public Room(int numberOfRoom, decimal initialPrice)
         {
             this.NumberOfRoom = numberOfRoom;
             this.Price = initialPrice;
-            this.AllFeaturesInRoom = new List<Features>(featuresInRoom);
+            this.AllFeaturesInRoom = new List<Features>();
             this.IsAvailable = true;
         }
 
@@ -55,7 +57,12 @@
             }
         }
 
-        public List<Features> AllFeaturesInRoom { get; protected set; }
+        public List<Features> AllFeaturesInRoom
+        {
+            get { return this.featuresInRoom; }
+            set { this.featuresInRoom = value; }
+        }
+
 
         public void AddFeature(Features someFeature)
         {
@@ -90,6 +97,25 @@
         public void CheckOut()
         {
             this.IsAvailable = true;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            List<string> stringedFeatures = new List<string>();
+            foreach (var ft in this.AllFeaturesInRoom)
+            {
+                stringedFeatures.Add(ft.ToString());
+            }
+
+            sb.Append(string.Format("Room[{0}] ", this.NumberOfRoom));
+            sb.Append(string.Format("   Type: {0,5} ", this.GetType().Name));
+            sb.Append(string.Format("   Price/Day: ${0,2} ", this.Price));
+            sb.AppendLine(string.Format("   Available: {0,5} ", this.IsAvailable ? "YES" : "NO"));
+            sb.AppendLine(string.Format("                   Extra features: {0}", stringedFeatures.Count == 0 ? "None" : string.Join(", ", stringedFeatures))); // this is not showing properly
+
+            return sb.ToString();
         }
     }
 }

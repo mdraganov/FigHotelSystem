@@ -5,8 +5,8 @@
     using HotelSystemApp.Enumerations;
     public class TwoBedroomRoom : Room
     {
-        public TwoBedroomRoom(int numberOfRoom, decimal initialPrice, List<Features> featuresInRoom)
-            : base(numberOfRoom, initialPrice, featuresInRoom)
+        public TwoBedroomRoom(int numberOfRoom, decimal initialPrice)
+            : base(numberOfRoom, initialPrice)
         {
             this.NumberOfBeds = 2;
         }
