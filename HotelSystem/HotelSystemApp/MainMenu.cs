@@ -5,7 +5,7 @@
     using System.Linq;
     using HotelSystemApp.Person;
 
-    public enum MenusEnum
+    enum MenusEnum
     {
         MainMenu,
         ClientsMenu,
@@ -256,8 +256,11 @@
                 case "HIRE":
                     HireStaff();
                     break;
-                case "SALARIES":
+                case "SALARIES": 
                     SalariesStaff();
+                    break;
+                case "TASKS": 
+                    MaidCleanFreeRooms();
                     break;
                 case "CHECK IN":
                     CheckInList();
@@ -461,12 +464,39 @@
             var ordered = NewHotel.Services.OrderBy(x => x.Price);
             foreach (var serv in ordered)
             {
-                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
                 WriteColorString(string.Format("{0}", serv.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
                 row += 3;
             }
 
             Menu(MenusEnum.MainMenu);
+        }
+
+        private static void MaidCleanFreeRooms()
+        {
+            WriteColorString("Free rooms for maid service (cleaning, changing)", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
+
+            int row = 7;
+            var roomsForClean = NewHotel.Rooms.Where(x => x.IsAvailable);
+            foreach (var room in roomsForClean)
+            {
+                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+                WriteColorString(string.Format("Room [{0}] needs Maid attention", room.NumberOfRoom.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
+                row += 2;
+            }
+            WriteColorString(string.Format("Press ENTER to assign all free rooms to current MAIDs"), 19, row, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+                foreach (var emp in NewHotel.Employees.Where(x => x.GetType().Name.ToLower() == "maid"))
+                {
+                    emp.ToogleCleanRoom();
+                }
+                Console.Clear();
+                WriteColorString(string.Format("    All free rooms assigned for cleaning to active maids"), 19, 5, ConsoleColor.Black, ConsoleColor.White);
+            }
+
+            Menu(Menus.StaffMenu);
         }
     }
 }
