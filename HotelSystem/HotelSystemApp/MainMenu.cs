@@ -225,7 +225,6 @@
                     Menu(Menus.Reservations);
                     break;
                 case "ROOMS INFO":
-                    WriteColorString("Information about all hotel rooms", 30, 3, ConsoleColor.Black, ConsoleColor.Yellow);
                     ListRooms();
                     break;
                 case "CLIENTS":
