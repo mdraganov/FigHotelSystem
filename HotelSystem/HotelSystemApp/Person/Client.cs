@@ -91,7 +91,17 @@
 
         public override string ToString()
         {
-            return base.ToString() + string.Format("| Rooms: {0} | Bill = {1:C2}", string.Join(",", this.rooms), this.Bill);
+            StringBuilder result = new StringBuilder(base.ToString());
+
+            result.Append(string.Format("| Rooms: "));
+
+            foreach (var room in this.rooms)
+            {
+                result.Append(string.Format("№[{0}] ", room.NumberOfRoom));
+            }
+            
+            result.Append(string.Format(" | Bill = {0:C2}", this.Bill).PadLeft(30));
+            return result.ToString();
         }
 
         private bool ValidateBankAccount(string bankAccount)

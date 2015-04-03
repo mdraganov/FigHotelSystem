@@ -50,7 +50,10 @@
             firstTestHotel.AddClient(testClient1);
             firstTestHotel.AddClient(testClient2);
 
-            firstTestHotel.MakeReservation(testClient1, 13); 
+            firstTestHotel.MakeReservation(testClient1, 13);
+            firstTestHotel.MakeReservation(testClient2, 21);
+            firstTestHotel.MakeReservation(testClient2, 12);
+            
             firstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
             firstTestHotel.AddService(new Fitness());
             firstTestHotel.AddService(new Parking());

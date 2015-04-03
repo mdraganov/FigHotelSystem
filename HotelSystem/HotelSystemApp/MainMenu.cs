@@ -380,7 +380,7 @@
             WriteColorString("List of all ROOMS", 20, 4, ConsoleColor.Black, ConsoleColor.Cyan);
 
             int row = 7;
-            var ordered = newHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenByDescending(x => x.Price);
+            var ordered = newHotel.Rooms.OrderBy(x => x.NumberOfBeds).ThenBy(x => x.NumberOfRoom);
             foreach (var room in ordered)
             {
                 WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
