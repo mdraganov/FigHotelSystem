@@ -25,7 +25,7 @@
             this.rooms = new List<Room>();
             this.employees = new List<Employee>();
             this.clients = new List<Client>();
-            this.Services = new List<Service>();
+            this.services = new List<Service>();
             this.reservations = new List<Reservation>();
         }
 
@@ -73,8 +73,8 @@
 
         public List<Service> Services
         {
-            get { return this.services; }
-            set { this.services = value; }
+            get { return new List<Service>(this.services); }
+
         }
 
         public List<Reservation> Reservations
