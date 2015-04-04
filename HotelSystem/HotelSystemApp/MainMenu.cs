@@ -19,7 +19,7 @@
     public class MainMenu
     {
         public static Hotel NewHotel = HotelSystemAppMain.FirstTestHotel;
-        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "SERVICES", "STAFF", "Exit" };
+        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "SERVICES", "STAFF", "About", "Exit" };
         public static List<string> ClientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
         public static List<string> StaffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
         public static List<string> ReservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
@@ -151,7 +151,7 @@
             const char UpperRightCorner = '\u2510';
             const char LowerLeftCorner = '\u2514';
             const char LowerRightCorner = '\u2518';
-            string fillLine = fill ? new string(' ', lcol - ucol - 1) : "";
+            string fillLine = fill ? new string(' ', lcol - ucol - 1) : string.Empty;
 
             SetColors(back, fore);
             // draw top edge 
@@ -262,6 +262,9 @@
                     break;
                 case "CHECK OUT":
                     CheckOutList();
+                    break;
+                case "About":
+                    InfoAboutHotel();
                     break;
                 case "RETURN":
                     Menu(MenusEnum.MainMenu);
@@ -623,6 +626,7 @@
                 WriteColorString(string.Format("Room [{0}] needs Maid attention", room.NumberOfRoom.ToString()), 19, row, ConsoleColor.Black, ConsoleColor.White);
                 row += 2;
             }
+
             WriteColorString(string.Format("Press ENTER to assign all free rooms to current MAIDs"), 19, row, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             ConsoleKeyInfo pressedKey = Console.ReadKey(true);
@@ -632,11 +636,25 @@
                 {
                     emp.ToogleCleanRoom();
                 }
+
                 Console.Clear();
                 WriteColorString(string.Format("    All free rooms assigned for cleaning to active maids"), 19, 5, ConsoleColor.Black, ConsoleColor.White);
             }
 
             Menu(MenusEnum.StaffMenu);
+        }
+
+        private static void InfoAboutHotel()
+        {
+            int row = 4;
+
+            foreach (var line in NewHotel.ToString())
+            {
+                WriteColorString(line, 20, row, ConsoleColor.Black, ConsoleColor.Green);
+                row++;
+            }
+
+            Menu(MenusEnum.MainMenu);
         }
     }
 }

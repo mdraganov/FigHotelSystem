@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelSystemApp.Exceptions
+﻿namespace HotelSystemApp.Exceptions
 {
+    using System;
+
     public class ReservationException : ApplicationException
     {
         public ReservationException(string msg)
-            :base(msg)
+            : base(msg)
         {
         }
 

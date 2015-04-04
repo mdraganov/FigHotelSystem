@@ -17,6 +17,7 @@
             Console.Title = "Hotel Application";
 
             #region TEST AREA
+            FirstTestHotel.Address = "Velingrad";
             FirstTestHotel.AddRoom(new OneBedroomRoom(11, 40));
             FirstTestHotel.AddRoom(new TwoBedroomRoom(12, 80));
             FirstTestHotel.AddRoom(new TwoBedroomRoom(13, 95));
@@ -79,9 +80,8 @@
             testClient2.AddVisitedService(new Fitness());
             #endregion
 
-            #region Calling the menus
+            
             MainMenu.Menu(MenusEnum.MainMenu);
-            #endregion
         }
     }
 }

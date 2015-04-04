@@ -14,6 +14,7 @@
     public class Hotel : IReservationable
     {
         private string name;
+        private string address;
         private List<Room> rooms;
         private List<Employee> employees;
         private List<Client> clients;
@@ -48,6 +49,24 @@
             }
         }
 
+        public string Address
+        {
+            get
+            {
+                return this.address;
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("Hotel address cannot be null or empty!");
+                }
+
+                this.address = value;
+            }
+        }
+
         public List<Room> Rooms
         {
             get
@@ -75,7 +94,6 @@
         public List<Service> Services
         {
             get { return new List<Service>(this.services); }
-
         }
 
         public List<Reservation> Reservations
@@ -130,6 +148,7 @@
             {
                 throw new ClientIDException(clientID);
             }
+
             try
             {
                 this.rooms[indexOfRoomForCheckingOut].CheckOut();
@@ -147,7 +166,6 @@
 
             this.reservations.RemoveAt(indexOfReservation);
             this.clients.RemoveAt(indexOfClient);
-
         }
 
         public void AddClient(Client newClient)
@@ -170,43 +188,29 @@
             this.services.Add(newService);
         }
 
-        public override string ToString()
+        public List<string> ToString()
         {
-            StringBuilder hotel = new StringBuilder();
+            List<string> result = new List<string>();
 
             Console.SetCursorPosition(20, 1);
-            hotel.AppendFormat("*** {0} ***\n", this.Name.ToUpper());
-            hotel.AppendLine("Rooms:");
+            result.Add(string.Format("*** {0} ***\n", this.Name.ToUpper()));
+            result.Add(Environment.NewLine);
+            result.Add(string.Format("Address: {0}", this.Address));
+            result.Add(string.Format("Number of rooms: {0}", this.rooms.Count));
+            result.Add(string.Format("Number of employees: {0}", this.employees.Count));
+            result.Add(string.Format("Number of registered clients: {0}", this.clients.Count));
+            result.Add(string.Format("Number of services: {0}", this.services.Count));
+            result.Add(Environment.NewLine);
 
-            foreach (var room in this.Rooms)
+            result.Add("List of employees:");
+
+            var sortedEmployees = this.employees.OrderBy(x => x.LastName).ToList();
+            for (int i = 0; i < sortedEmployees.Count; i++)
             {
-                hotel.AppendFormat("Number: {0,-5} Price: {1,-5} Type: {2,-10}\n", room.NumberOfRoom, room.Price, room.GetType().Name);
+                result.Add(string.Format("Name: {0} - {1}", sortedEmployees[i].LastName.PadRight(10), sortedEmployees[i].GetType().Name));
             }
 
-            hotel.AppendLine("Employees:");
-
-            foreach (var employee in this.Employees)
-            {
-                var name = employee.FirstName + " " + employee.LastName;
-                hotel.AppendFormat("Name: {0,-25} Position: {1,-10}\n", name, employee.GetType().Name);
-            }
-
-            hotel.AppendLine("Clients:");
-
-            //foreach (var client in this.Clients)
-            //{
-            //    var name = client.FirstName + " " + client.LastName;
-            //    hotel.AppendFormat("Name: {0,-25} ID: {1,-12} Bill: {2}\n", name, client.ID, client.Bill);
-            //}
-
-            hotel.AppendLine("Services:");
-
-            foreach (var service in this.Services)
-            {
-                hotel.AppendFormat("Service: {0,-15} Price per hour: {1,-10}\n", service.GetType().Name, service.Price);
-            }
-
-            return hotel.ToString();
+            return result;
         }
     }
 }

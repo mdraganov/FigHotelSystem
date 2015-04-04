@@ -51,7 +51,7 @@
         
         public override decimal CalculatePrice()
         {
-            return this.Price * this.PersonsUsingService + this.SunBedsUsed * this.SunBedPrice;
+            return (this.Price * this.PersonsUsingService) + (this.SunBedsUsed * this.SunBedPrice);
         }
     }
 }

@@ -6,7 +6,6 @@
     {
         public RoomAvailableException()
         {
-
         }
 
         public RoomAvailableException(string msg)

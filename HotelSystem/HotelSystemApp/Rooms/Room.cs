@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text;
     using HotelSystemApp.Enumerations;
-    using HotelSystemApp.Interfaces;
     using HotelSystemApp.Exceptions;
+    using HotelSystemApp.Interfaces;
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
