@@ -13,13 +13,5 @@
             : base(msg)
         {
         }
-
-        public override string Message
-        {
-            get
-            {
-                return "The room is NOT available!";
-            }
-        }
     }
 }

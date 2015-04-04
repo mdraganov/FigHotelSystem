@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using HotelSystemApp.Exceptions;
     using HotelSystemApp.Interfaces;
     using HotelSystemApp.Person;
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
     using HotelSystemApp.Structures;
-    using HotelSystemApp.Exceptions;
 
     public class Hotel : IReservationable
     {
@@ -119,14 +119,35 @@
 
         public void CheckOutRoom(int numberOfRoom, string clientID)
         {
-            var indexOfRoomForCheckingOut = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
-            this.rooms[indexOfRoomForCheckingOut].CheckOut();
+            int indexOfRoomForCheckingOut = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            if (indexOfRoomForCheckingOut == -1)
+            {
+                throw new RoomNumberException(numberOfRoom);
+            }
 
-            var indexOfReservation = this.reservations.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            int indexOfClient = this.clients.FindIndex(x => x.ClientID == clientID);
+            if (indexOfClient == -1)
+            {
+                throw new ClientIDException(clientID);
+            }
+            try
+            {
+                this.rooms[indexOfRoomForCheckingOut].CheckOut();
+            }
+            catch (Exception)
+            {
+                throw new RoomAvailableException("The room is already available!");
+            }
+
+            int indexOfReservation = this.reservations.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            if (this.reservations[indexOfReservation].ClientID != clientID)
+            {
+                throw new ReservationException("Invalid reservation");
+            }
+
             this.reservations.RemoveAt(indexOfReservation);
-
-            var indexOfClient = this.clients.FindIndex(x => x.ClientID == clientID);
             this.clients.RemoveAt(indexOfClient);
+
         }
 
         public void AddClient(Client newClient)

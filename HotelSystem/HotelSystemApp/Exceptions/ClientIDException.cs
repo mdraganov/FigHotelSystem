@@ -26,7 +26,7 @@
         {
             get
             {
-                return "Invalid Client ID: " + this.clientID;
+                return "Invalid Client ID " + this.clientID;
             }
         }
     }

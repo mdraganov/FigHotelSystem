@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\ClientIDException.cs" />
     <Compile Include="Exceptions\EmployeeTypeException.cs" />
     <Compile Include="Exceptions\DateReservationException.cs" />
+    <Compile Include="Exceptions\ReservationException.cs" />
     <Compile Include="Exceptions\RoomAvailableException.cs" />
     <Compile Include="Exceptions\RoomBedroomsException.cs" />
     <Compile Include="Interfaces\IMaid.cs" />

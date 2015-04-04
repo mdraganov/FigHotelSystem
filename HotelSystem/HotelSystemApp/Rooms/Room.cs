@@ -99,7 +99,7 @@
         {
             if (!this.IsAvailable)
             {
-                throw new RoomAvailableException();
+                throw new RoomAvailableException("The room is NOT available");
             }
 
             this.IsAvailable = false;
@@ -107,6 +107,11 @@
 
         public void CheckOut()
         {
+            if (this.IsAvailable)
+            {
+                throw new RoomAvailableException("The room is already available!");
+            }
+
             this.IsAvailable = true;
         }
 

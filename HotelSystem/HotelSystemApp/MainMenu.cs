@@ -202,13 +202,6 @@
             Console.ForegroundColor = fore;
         }
 
-        public static void CleanUp()
-        {
-            Console.ResetColor();
-            Console.CursorVisible = true;
-            Console.Clear();
-        }
-
         private static void PrintOnPosition(int x, int y, string c)
         {
             Console.SetCursorPosition(x, y);
@@ -375,13 +368,38 @@
                 string clientID = Console.ReadLine().ToUpper();
                 NewHotel.CheckOutRoom(numberOfRoom, clientID);
             }
+            catch (RoomNumberException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (RoomAvailableException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (ClientIDException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (ReservationException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (FormatException)
+            {
+                WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
             catch (Exception)
             {
-                //throw new ReservationException();
+                WriteColorString("Try again!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
             }
 
             WriteColorString("The room checked out successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
-
             Menu(MenusEnum.Reservations);
         }
 
