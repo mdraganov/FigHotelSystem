@@ -45,7 +45,7 @@
         {
             get { return this.bill; }
 
-            private set { this.bill = value; }
+            set { this.bill = value; }
         }
 
         public string ClientID
@@ -89,7 +89,6 @@
         public void AddRoom(Room room)
         {
             this.room = room;
-            this.Bill += room.Price;
         }
 
         public void AddVisitedService(Service service)

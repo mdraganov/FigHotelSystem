@@ -6,6 +6,7 @@
     using System.Text;
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
+    using HotelSystemApp.Exceptions;
 
     public abstract class Room : IAvailable, IFeatures, IPrice
     {
@@ -96,6 +97,11 @@
 
         public void CheckIn()
         {
+            if (!this.IsAvailable)
+            {
+                throw new RoomAvailableException();
+            }
+
             this.IsAvailable = false;
         }
 

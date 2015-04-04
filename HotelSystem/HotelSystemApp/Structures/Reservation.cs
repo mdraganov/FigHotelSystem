@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Text;
+    using HotelSystemApp.Exceptions;
 
     public struct Reservation
     {
@@ -38,7 +39,7 @@
             {
                 if (value < DateTime.Now)
                 {
-                    throw new IndexOutOfRangeException("CheckIn cannot be earlier than today!");
+                    throw new DateReservationException("CheckIn date cannot be earlier than today!");
                 }
 
                 this.checkIn = value;
@@ -56,7 +57,7 @@
             {
                 if (value < this.checkIn)
                 {
-                    throw new IndexOutOfRangeException("CheckOUT date cannot be earlier than CheckIn date!");
+                    throw new DateReservationException("CheckOUT date cannot be earlier than CheckIn date!");
                 }
 
                 this.checkOut = value;
@@ -72,12 +73,13 @@
 
             set
             {
-                int currentNumberOfRoom = this.NumberOfRoom;
-                var roomIndex = HotelSystemAppMain.FirstTestHotel.Rooms.FindIndex(x => x.NumberOfRoom == currentNumberOfRoom);
+                int numberOfCurrentRoom = this.NumberOfRoom;
+                var roomIndex = HotelSystemAppMain.FirstTestHotel.Rooms.FindIndex(x => x.NumberOfRoom == numberOfCurrentRoom);
 
-                if (value > HotelSystemAppMain.FirstTestHotel.Rooms[roomIndex].NumberOfBeds)
+                int numberOfBeds = HotelSystemAppMain.FirstTestHotel.Rooms[roomIndex].NumberOfBeds;
+                if (value > numberOfBeds)
                 {
-                    throw new IndexOutOfRangeException("The number of guests cannot be more than number of beds!");
+                    throw new RoomBedroomsException(numberOfBeds);
                 }
 
                 this.numberOfGuests = value;

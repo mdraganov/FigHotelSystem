@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelSystemApp.Exceptions
+﻿namespace HotelSystemApp.Exceptions
 {
-    using HotelSystemApp.Enumerations;
+    using System;
 
     public class EmployeeTypeException : Exception
     {

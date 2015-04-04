@@ -7,8 +7,6 @@
     using System.Threading;
     using HotelSystemApp.Exceptions;
     using HotelSystemApp.Person;
-    using HotelSystemApp.Interfaces;
-    using HotelSystemApp.Enumerations;
 
     public enum MenusEnum
     {
@@ -237,7 +235,7 @@
                 case "STAFF":
                     Menu(MenusEnum.StaffMenu);
                     break;
-                case "SERVICES": // Service
+                case "SERVICES":
                     ServicesPriceInfo();
                     break;
                 case "LIST ALL":
@@ -279,15 +277,15 @@
                     break;
             }
 
-            WriteColorString("press ESC to return", 40, 22, ConsoleColor.Black, ConsoleColor.White);
-            while (true)
-            {
-                ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-                if (pressedKey.Key == ConsoleKey.Escape)
-                {
-                    Menu(MenusEnum.MainMenu);
-                }
-            }
+            //WriteColorString("press ESC to return", 40, 22, ConsoleColor.Black, ConsoleColor.White);
+            //while (true)
+            //{
+            //    ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+            //    if (pressedKey.Key == ConsoleKey.Escape)
+            //    {
+            //        Menu(MenusEnum.MainMenu);
+            //    }
+            //}
         }
 
         private static void CheckInList()
@@ -315,16 +313,51 @@
                 WriteColorString("Number of guests: ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
                 byte numberOfGuests = byte.Parse(Console.ReadLine());
 
-                var indexOfClient = NewHotel.Clients.FindIndex(x => x.ClientID == clientID);
+                int indexOfClient = NewHotel.Clients.FindIndex(x => x.ClientID == clientID);
+                if (indexOfClient == -1)
+                {
+                    throw new ClientIDException("Invalid ID", clientID);
+                }
+
                 NewHotel.MakeReservation(NewHotel.Clients[indexOfClient], numberOfRoom, dateArrive, dateLeave, numberOfGuests);
+            }
+            catch (RoomNumberException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (RoomAvailableException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (ClientIDException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (DateReservationException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (RoomBedroomsException ex)
+            {
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
+            }
+            catch (FormatException)
+            {
+                WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
             }
             catch (Exception)
             {
-                throw new ReservationException("");
+                WriteColorString("Unsuccessful input!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.Reservations);
             }
 
             WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
-
             Menu(MenusEnum.Reservations);
         }
 
@@ -425,23 +458,34 @@
             WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Add new client", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            try
+            {
+                WriteColorString("Enter First name : ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
+                string firstName = Console.ReadLine().Trim();
+                WriteColorString("Enter Last name : ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+                string lastName = Console.ReadLine().Trim();
+                WriteColorString("Enter address : ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
+                string address = Console.ReadLine();
+                WriteColorString("Enter phone number : ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
+                string phone = Console.ReadLine().Trim();
+                WriteColorString("Enter e-mail address : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+                string mail = Console.ReadLine().Trim();
+                WriteColorString("Enter IBAN : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
+                string iban = Console.ReadLine();
+                NewHotel.AddClient(new Client(firstName, lastName, address, phone, mail, iban));
+            }
+            catch (FormatException)
+            {
+                WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.ClientsMenu);
+            }
+            catch (Exception)
+            {
+                WriteColorString("Unsuccessful input!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.ClientsMenu);
+            }
 
-            WriteColorString("Enter First name : ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
-            string firstName = Console.ReadLine().Trim();
-            WriteColorString("Enter Last name : ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
-            string lastName = Console.ReadLine().Trim();
-            WriteColorString("Enter address : ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
-            string address = Console.ReadLine();
-            WriteColorString("Enter phone number : ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
-            string phone = Console.ReadLine().Trim();
-            WriteColorString("Enter e-mail address : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
-            string mail = Console.ReadLine().Trim();
-            WriteColorString("Enter IBAN : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
-            string iban = Console.ReadLine();
-
-            NewHotel.AddClient(new Client(firstName, lastName, address, phone, mail, iban));
             WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
-
             Menu(MenusEnum.ClientsMenu);
         }
 
@@ -465,28 +509,28 @@
             catch (EmployeeTypeException ex)
             {
                 WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
-                ClearConsoleException();
+                ClearConsoleException(MenusEnum.StaffMenu);
             }
             catch (FormatException)
             {
                 WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
-                ClearConsoleException();
+                ClearConsoleException(MenusEnum.StaffMenu);
             }
             catch (Exception)
             {
                 WriteColorString("Unsuccessful input!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
-                ClearConsoleException();
+                ClearConsoleException(MenusEnum.StaffMenu);
             }
 
             WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
             Menu(MenusEnum.StaffMenu);
         }
 
-        private static void ClearConsoleException()
+        private static void ClearConsoleException(MenusEnum type)
         {
             Thread.Sleep(2500);
             Console.Clear();
-            Menu(MenusEnum.StaffMenu);
+            Menu(type);
         }
 
         private static Employee ReadHireDetails(int employeeType)

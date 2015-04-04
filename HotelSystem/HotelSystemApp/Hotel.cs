@@ -9,6 +9,7 @@
     using HotelSystemApp.Rooms;
     using HotelSystemApp.Services;
     using HotelSystemApp.Structures;
+    using HotelSystemApp.Exceptions;
 
     public class Hotel : IReservationable
     {
@@ -96,8 +97,14 @@
         {
             Reservation newReservation = new Reservation();
 
-            var roomIndex = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            int roomIndex = this.rooms.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            if (roomIndex == -1)
+            {
+                throw new RoomNumberException(numberOfRoom);
+            }
+
             client.AddRoom(this.rooms[roomIndex]);
+            client.Bill = (checkOUT.Day - checkIN.Day) * this.rooms[roomIndex].Price;
             this.rooms[roomIndex].CheckIn();
 
             newReservation.ClientID = client.ClientID;

@@ -146,18 +146,11 @@
       <FileName>Person\Receptionist.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HotelSystemApp.Exceptions.RoomException" Collapsed="true">
+  <Class Name="HotelSystemApp.Exceptions.RoomNumberException" Collapsed="true">
     <Position X="6.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Exceptions\RoomException.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HotelSystemApp.Exceptions.VacationDaysException" Collapsed="true">
-    <Position X="6.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Exceptions\VacationDaysException.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Exceptions\RoomNumberException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Hotel" Collapsed="true">
