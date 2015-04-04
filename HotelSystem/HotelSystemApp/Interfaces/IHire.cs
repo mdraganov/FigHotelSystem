@@ -5,6 +5,6 @@
 
     public interface IHire
     {
-      void Hire(Person person, Employees type);
+      void Hire(Person person, EmployeesEnum type);
     }
 }

@@ -105,14 +105,14 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAADAgACEgAIAAAAAAAAgAAAMAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAALAAACEgAAAAAAQIAAgAAAMAAIAAAAAAAA=</HashCode>
       <FileName>Person\Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HotelSystemApp.Person.Employee" Collapsed="true">
     <Position X="13.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAASAAAAAgAAAEEgAAQAIAACAAAAABAAAAAAAAACA=</HashCode>
+      <HashCode>AEIBASAAAQAgAAAEEgAAQAIAACAAAAABAAAAAAAAACA=</HashCode>
       <FileName>Person\Employee.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -120,7 +120,7 @@
   <Class Name="HotelSystemApp.Person.Maid" Collapsed="true">
     <Position X="10.75" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Person\Maid.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -163,7 +163,7 @@
   <Class Name="HotelSystemApp.Hotel" Collapsed="true">
     <Position X="17.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAEAAAAAAAACEECIICBQiCAAEAAAAAEACAKAAAAA=</HashCode>
+      <HashCode>gAAAAEAAAAAAAACEECIJCBQiCAAEAAAAAEACAKAAAAA=</HashCode>
       <FileName>Hotel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -224,11 +224,11 @@
       <FileName>Enumerations\Features.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="HotelSystemApp.Enumerations.Employees" Collapsed="true">
+  <Enum Name="HotelSystemApp.Enumerations.EmployeesEnum" Collapsed="true">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAQAAAAAAAAAAAAAAAABAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Enumerations\Employees.cs</FileName>
+      <FileName>Enumerations\EmployeeEnum.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="HotelSystemApp.Enumerations.Rooms" Collapsed="true">

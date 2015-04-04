@@ -92,12 +92,6 @@
             this.Bill += room.Price;
         }
 
-        public void RemoveRoom(Room room)
-        {
-            this.bill -= room.Price; // ??
-            this.room = null;
-        }
-
         public void AddVisitedService(Service service)
         {
             this.visitedServices.Add(service);
@@ -114,7 +108,7 @@
         {
             StringBuilder result = new StringBuilder(base.ToString());
 
-            result.Append(string.Format("| Room: {0,4}", this.ReservedRoom));
+            result.Append(string.Format(" | Room: {0,4}", this.ReservedRoom));
             result.Append(string.Format(" | Bill = {0}", this.Bill.ToString(string.Format("C2")).PadLeft(10)));
             result.Append(string.Format(" | ID: {0,4}", this.ClientID));
 

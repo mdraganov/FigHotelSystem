@@ -4,8 +4,11 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using HotelSystemApp.Exceptions;
     using HotelSystemApp.Person;
+    using HotelSystemApp.Interfaces;
+    using HotelSystemApp.Enumerations;
 
     public enum MenusEnum
     {
@@ -320,7 +323,7 @@
                 throw new ReservationException("");
             }
 
-            WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
 
             Menu(MenusEnum.Reservations);
         }
@@ -344,7 +347,7 @@
                 //throw new ReservationException();
             }
 
-            WriteColorString("The room checked out successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString("The room checked out successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
 
             Menu(MenusEnum.Reservations);
         }
@@ -423,75 +426,96 @@
             WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Add new client", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
 
-            WriteColorString("Enter First and Last name : ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
-            string[] name = Console.ReadLine().Split(' ');
-            WriteColorString("Enter registered address : ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter First name : ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
+            string firstName = Console.ReadLine().Trim();
+            WriteColorString("Enter Last name : ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+            string lastName = Console.ReadLine().Trim();
+            WriteColorString("Enter address : ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
             string address = Console.ReadLine();
-            WriteColorString("Enter contact phone number : ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
-            string phone = Console.ReadLine();
-            WriteColorString("Enter e-mail address : ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
-            string mail = Console.ReadLine();
-            WriteColorString("Enter IBAN : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter phone number : ", 20, 9, ConsoleColor.Black, ConsoleColor.Gray);
+            string phone = Console.ReadLine().Trim();
+            WriteColorString("Enter e-mail address : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            string mail = Console.ReadLine().Trim();
+            WriteColorString("Enter IBAN : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
             string iban = Console.ReadLine();
 
-            NewHotel.AddClient(new Client(name[0], name[1], address, phone, mail, iban));
-            WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+            NewHotel.AddClient(new Client(firstName, lastName, address, phone, mail, iban));
+            WriteColorString("New client added successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
 
             Menu(MenusEnum.ClientsMenu);
         }
 
         private static void HireStaff()
         {
+            WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            WriteColorString("1 - Bellboy, 2 - Maid, 3 - Manager, 4 - Receptionist", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan);
+            Console.SetCursorPosition(20, 8);
             try
             {
-                WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString("Hire new employees", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString("Choose employee type :", 20, 6, ConsoleColor.Black, ConsoleColor.DarkCyan);
-                WriteColorString("1- Bellboy, 2- Maid, 3 - Manager, 4 - Receptionist", 20, 7, ConsoleColor.Black, ConsoleColor.DarkCyan); // !!
-
-                Console.SetCursorPosition(20, 8);
                 int employeeType = int.Parse(Console.ReadLine());
 
-                WriteColorString(new string('▬', 50), 20, 8, ConsoleColor.Black, ConsoleColor.White);
-                WriteColorString(string.Format("HIRE new {0} option choosed!", employeeType), 20, 9, ConsoleColor.Black, ConsoleColor.White); // validation
+                WriteColorString(new string('▬', 50), 20, 9, ConsoleColor.Black, ConsoleColor.White);
+
                 Employee newStaff = ReadHireDetails(employeeType);
                 NewHotel.AddEmployee(newStaff);
             }
-            catch (Exception) // ? custom exception
+            catch (EmployeeTypeException ex)
             {
-                throw new Exception("Unsuccessful entry");
+                WriteColorString(ex.Message, 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException();
+            }
+            catch (FormatException)
+            {
+                WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException();
+            }
+            catch (Exception)
+            {
+                WriteColorString("Unsuccessful input!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException();
             }
 
-            WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+            WriteColorString("New employee HIRED successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.Green);
+            Menu(MenusEnum.StaffMenu);
+        }
+
+        private static void ClearConsoleException()
+        {
+            Thread.Sleep(2500);
+            Console.Clear();
             Menu(MenusEnum.StaffMenu);
         }
 
         private static Employee ReadHireDetails(int employeeType)
         {
-            WriteColorString("Enter First and Last name : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
-            string[] name = Console.ReadLine().Split(' ');
-            WriteColorString("Enter registered address : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter First name : ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
+            string firstName = Console.ReadLine().Trim();
+            WriteColorString("Enter Last name : ", 20, 11, ConsoleColor.Black, ConsoleColor.Gray);
+            string lastName = Console.ReadLine().Trim();
+            WriteColorString("Enter address : ", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
             string address = Console.ReadLine();
-            WriteColorString("Enter contact phone number : ", 20, 12, ConsoleColor.Black, ConsoleColor.Gray);
-            string phone = Console.ReadLine();
-            WriteColorString("Enter e-mail address : ", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
-            string mail = Console.ReadLine();
-            WriteColorString("Enter monthly salary : ", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
+            WriteColorString("Enter phone number : ", 20, 13, ConsoleColor.Black, ConsoleColor.Gray);
+            string phone = Console.ReadLine().Trim();
+            WriteColorString("Enter e-mail address : ", 20, 14, ConsoleColor.Black, ConsoleColor.Gray);
+            string mail = Console.ReadLine().Trim();
+            WriteColorString("Enter monthly salary : ", 20, 15, ConsoleColor.Black, ConsoleColor.Gray);
             decimal salary = decimal.Parse(Console.ReadLine());
 
             switch (employeeType)
             {
                 case 1:
-                    return new BellBoy(name[0], name[1], address, phone, mail, salary);
+                    return new BellBoy(firstName, lastName, address, phone, mail, salary);
                 case 2:
-                    return new Maid(name[0], name[1], address, phone, mail, salary);
+                    return new Maid(firstName, lastName, address, phone, mail, salary);
                 case 3:
-                    return new Manager(name[0], name[1], address, phone, mail, salary);
+                    return new Manager(firstName, lastName, address, phone, mail, salary);
                 case 4:
-                    return new Receptionist(name[0], name[1], address, phone, mail, salary);
+                    return new Receptionist(firstName, lastName, address, phone, mail, salary);
                 default:
-                    return null;
+                    throw new EmployeeTypeException(employeeType);
             }
         }
 

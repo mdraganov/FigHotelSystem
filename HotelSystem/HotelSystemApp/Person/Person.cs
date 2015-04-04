@@ -119,7 +119,7 @@
             result.Append(string.Format(" | {0}", this.Address.PadRight(8)));
             result.Append(string.Format(" | Contact:"));
             result.Append(string.Format(" {0} /", this.PhoneNumber.PadRight(11)));
-            result.Append(string.Format(" {0} ", this.Email.Address.PadLeft(18)));
+            result.Append(string.Format(" {0}", this.Email.Address.PadLeft(18)));
 
             return result.ToString();
         }

@@ -42,9 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\Employees.cs" />
+    <Compile Include="Enumerations\EmployeeEnum.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
     <Compile Include="Enumerations\SpaProcedures.cs" />
+    <Compile Include="Exceptions\EmployeeTypeException.cs" />
     <Compile Include="Exceptions\ReservationException.cs" />
     <Compile Include="Exceptions\VacationDaysException.cs" />
     <Compile Include="Interfaces\IMaid.cs" />

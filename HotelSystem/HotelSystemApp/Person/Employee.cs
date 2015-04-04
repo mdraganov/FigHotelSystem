@@ -90,7 +90,7 @@
             }
         }
 
-        public void Hire(Person person, Employees type)
+        public void Hire(Person person, EmployeesEnum type)
         {
             //switch (type)
             //{
@@ -116,7 +116,7 @@
         public override string ToString()
         {
             return base.ToString() + string.Format(" | Position: {0} | Salary: {1}", 
-                this.GetType().Name.PadLeft(12), this.Salary.ToString(string.Format("C2")).PadLeft(10));
+                this.GetType().Name.PadLeft(12), this.Salary.ToString(string.Format("C2")).PadLeft(9));
         }
     }
 }

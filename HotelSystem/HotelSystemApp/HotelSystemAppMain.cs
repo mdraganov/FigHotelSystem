@@ -51,7 +51,6 @@
             Maid testMaid1 = new Maid("Ana", "Stefanova", "Plovdiv", "0896547338", "maid1@gmail.com", 500, 20, 8);
             Maid testMaid2 = new Maid("Monika", "Petrova", "Pleven", "0879632112", "maid2@gmail.com", 500, 20, 8);
             BellBoy testBellBoy = new BellBoy("Georgi", "Petrov", "Pleven", "0879632113", "bboy@gmail.com", 700, 18, 6);
-           // Client testClient0 = new Client("Pesho", "Pesho", "Pernik", "0899511112", "client0@test.com", "AL90208110080000001039531801");
             Client testClient1 = new Client("Vanq", "Nikolova", "Sofia", "0899543232", "client1@test.com", "AL90208110080000001039531801");
             Client testClient2 = new Client("Mitko", "Petrov", "Burgas", "0896432121", "client2@test.com", "BG80 BNBG 9661 1020 3456 78");
 
@@ -61,7 +60,6 @@
             FirstTestHotel.AddEmployee(testMaid1);
             FirstTestHotel.AddEmployee(testMaid2);
             FirstTestHotel.AddEmployee(testBellBoy);
-            //FirstTestHotel.AddClient(testClient0);
             FirstTestHotel.AddClient(testClient1);
             FirstTestHotel.AddClient(testClient2);
 
