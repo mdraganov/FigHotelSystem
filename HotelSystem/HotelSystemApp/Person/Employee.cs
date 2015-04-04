@@ -115,7 +115,8 @@
 
         public override string ToString()
         {
-            return base.ToString() + string.Format(" | Position: {0} | Salary: ${1:2}", this.GetType().Name.PadRight(12), this.Salary.ToString().PadRight(10));
+            return base.ToString() + string.Format(" | Position: {0} | Salary: {1}", 
+                this.GetType().Name.PadLeft(12), this.Salary.ToString(string.Format("C2")).PadLeft(10));
         }
     }
 }

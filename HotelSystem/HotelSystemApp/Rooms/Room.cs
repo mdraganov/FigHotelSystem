@@ -116,7 +116,7 @@
 
             sb.Append(string.Format("Room[{0}] ", this.NumberOfRoom));
             sb.Append(string.Format("   Type: {0,15} ", this.GetType().Name));
-            sb.Append(string.Format("   Price/Day: ${0,4} ", this.Price));
+            sb.Append(string.Format("   Price/Day: {0} ", this.Price.ToString(string.Format("C2")).PadLeft(8)));
             sb.AppendLine(string.Format("   Available: {0,5} ", this.IsAvailable ? "YES" : "NO"));
             sb.AppendLine(string.Format("                   Extra features: {0}", stringedFeatures.Count == 0 ? "None" : string.Join(", ", stringedFeatures))); // this is not showing properly
 

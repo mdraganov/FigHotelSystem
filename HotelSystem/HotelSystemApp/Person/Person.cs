@@ -37,7 +37,7 @@
                     throw new ArgumentNullException("The firstName cannot be empty");
                 }
 
-                this.firstName = value;
+                this.firstName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(value.ToLower());
             }
         }
 
@@ -55,7 +55,7 @@
                     throw new ArgumentNullException("The lastName cannot be empty");
                 }
 
-                this.lastName = value;
+                this.lastName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(value.ToLower());
             }
         }
 
@@ -73,7 +73,7 @@
                     throw new ArgumentNullException("The address cannot be empty");
                 }
 
-                this.address = value;
+                this.address = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(value.ToLower());
             }
         }
 
@@ -115,11 +115,11 @@
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
-            result.Append(string.Format("{0} | {1} | Contact: {2} / {3} ", 
-                (this.FirstName + " " + this.LastName).PadRight(14), 
-                this.Address.PadRight(8), 
-                this.PhoneNumber.PadRight(9), 
-                this.Email.Address.PadLeft(15)));
+            result.Append(string.Format("{0}", (this.FirstName + " " + this.LastName).PadRight(18)));
+            result.Append(string.Format(" | {0}", this.Address.PadRight(8)));
+            result.Append(string.Format(" | Contact:"));
+            result.Append(string.Format(" {0} /", this.PhoneNumber.PadRight(11)));
+            result.Append(string.Format(" {0} ", this.Email.Address.PadLeft(18)));
 
             return result.ToString();
         }

@@ -13,7 +13,7 @@
         private string iban;
         private decimal bill;
         private List<Service> visitedServices;
-        private List<Room> rooms;
+        private Room room;
 
         public Client(string firstName, string lastName, string address, string phoneNumber, string email, string iban)
             : base(firstName, lastName, address, phoneNumber, email)
@@ -21,7 +21,6 @@
             this.IBAN = iban;
             this.Bill = 0;
             this.visitedServices = new List<Service>();
-            this.rooms = new List<Room>();
         }
 
         public string IBAN
@@ -49,13 +48,33 @@
             private set { this.bill = value; }
         }
 
-        public int ClientID { get; set; }
-
-        public List<Room> PaidRooms
+        public string ClientID
         {
             get
             {
-                return new List<Room>(this.rooms);
+                if (this.room != null)
+                {
+                    return this.room.NumberOfRoom.ToString() + this.FirstName.Substring(0, 1) + this.LastName.Substring(0, 1);
+                }
+                else
+                {
+                    return "CL" + this.FirstName.Substring(0, 1) + this.LastName.Substring(0, 1);
+                }
+            }
+        }
+
+        public string ReservedRoom
+        {
+            get
+            {
+                if (this.room != null)
+                {
+                    return this.room.NumberOfRoom.ToString();
+                }
+                else
+                {
+                    return "none";
+                }
             }
         }
 
@@ -69,14 +88,14 @@
 
         public void AddRoom(Room room)
         {
-            this.rooms.Add(room);
+            this.room = room;
             this.Bill += room.Price;
         }
 
         public void RemoveRoom(Room room)
         {
-            this.rooms.Remove(room);
-            this.bill -= room.Price;
+            this.bill -= room.Price; // ??
+            this.room = null;
         }
 
         public void AddVisitedService(Service service)
@@ -95,18 +114,10 @@
         {
             StringBuilder result = new StringBuilder(base.ToString());
 
-            result.Append(string.Format("| Rooms: "));
+            result.Append(string.Format("| Room: {0,4}", this.ReservedRoom));
+            result.Append(string.Format(" | Bill = {0}", this.Bill.ToString(string.Format("C2")).PadLeft(10)));
+            result.Append(string.Format(" | ID: {0,4}", this.ClientID));
 
-            foreach (var room in this.rooms)
-            {
-                result.Append(string.Format("№[{0}] ", room.NumberOfRoom));
-            }
-
-            result.Append(string.Format(" | Bill = {0:C2}", this.Bill));
-
-            var currentClient = MainMenu.NewHotel.Clients.Where(x => x.IBAN == this.IBAN).FirstOrDefault();
-            var indexOfCurrentClient = MainMenu.NewHotel.Clients.IndexOf(currentClient) + 1;
-            result.Append(string.Format(" | ID: CL{0:D3}", indexOfCurrentClient));
             return result.ToString();
         }
 

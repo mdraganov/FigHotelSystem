@@ -42,7 +42,7 @@
                     break;
                 case MenusEnum.ClientsMenu:
                     CurrentMenuChoises = ClientMenuChoises;
-                    WriteColorString("CLients Menu", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
+                    WriteColorString("Clients Menu", 4, 2, ConsoleColor.Black, ConsoleColor.Yellow);
                     break;
                 case MenusEnum.StaffMenu:
                     CurrentMenuChoises = StaffMenuChoises;
@@ -292,13 +292,14 @@
             WriteColorString(new string('▬', 50), 19, 3, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString(new string('▬', 50), 19, 21, ConsoleColor.Black, ConsoleColor.DarkCyan);
             WriteColorString("Make new reservation", 20, 4, ConsoleColor.Black, ConsoleColor.DarkCyan);
+
             try
             {
                 WriteColorString("Enter Room №: ", 20, 6, ConsoleColor.Black, ConsoleColor.Gray);
                 int numberOfRoom = int.Parse(Console.ReadLine());
 
-                WriteColorString("Client ID: CL", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
-                int clientID = int.Parse(Console.ReadLine());
+                WriteColorString("Client ID: ", 20, 7, ConsoleColor.Black, ConsoleColor.Gray);
+                string clientID = Console.ReadLine().ToUpper();
 
                 WriteColorString("Arrival date [DD.MM.YYYY]: ", 20, 8, ConsoleColor.Black, ConsoleColor.Gray);
                 string date = Console.ReadLine();
@@ -311,16 +312,17 @@
                 WriteColorString("Number of guests: ", 20, 10, ConsoleColor.Black, ConsoleColor.Gray);
                 byte numberOfGuests = byte.Parse(Console.ReadLine());
 
-                NewHotel.MakeReservation(NewHotel.Clients[clientID - 1], numberOfRoom, dateArrive, dateLeave, numberOfGuests);
-                WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
-
-                Menu(MenusEnum.Reservations);
-
+                var indexOfClient = NewHotel.Clients.FindIndex(x => x.ClientID == clientID);
+                NewHotel.MakeReservation(NewHotel.Clients[indexOfClient], numberOfRoom, dateArrive, dateLeave, numberOfGuests);
             }
-            catch (ReservationException)
+            catch (Exception)
             {
-                throw;
+                throw new ReservationException("");
             }
+
+            WriteColorString("New reservation made successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
+
+            Menu(MenusEnum.Reservations);
         }
 
         private static void CheckOutList()
@@ -333,14 +335,16 @@
             {
                 WriteColorString("Enter room for checking-out: ", 20, 6, ConsoleColor.Black, ConsoleColor.White);
                 int numberOfRoom = int.Parse(Console.ReadLine());
-                NewHotel.CheckOutRoom(numberOfRoom);
-                //ewHotel.Reservations
+                WriteColorString("Enter Cient ID: ", 20, 7, ConsoleColor.Black, ConsoleColor.White);
+                string clientID = Console.ReadLine().ToUpper();
+                NewHotel.CheckOutRoom(numberOfRoom, clientID);
             }
             catch (Exception)
             {
-
-                throw;
+                //throw new ReservationException();
             }
+
+            WriteColorString("The room checked out successfully!", 20, 17, ConsoleColor.Black, ConsoleColor.White);
 
             Menu(MenusEnum.Reservations);
         }

@@ -51,6 +51,7 @@
             Maid testMaid1 = new Maid("Ana", "Stefanova", "Plovdiv", "0896547338", "maid1@gmail.com", 500, 20, 8);
             Maid testMaid2 = new Maid("Monika", "Petrova", "Pleven", "0879632112", "maid2@gmail.com", 500, 20, 8);
             BellBoy testBellBoy = new BellBoy("Georgi", "Petrov", "Pleven", "0879632113", "bboy@gmail.com", 700, 18, 6);
+           // Client testClient0 = new Client("Pesho", "Pesho", "Pernik", "0899511112", "client0@test.com", "AL90208110080000001039531801");
             Client testClient1 = new Client("Vanq", "Nikolova", "Sofia", "0899543232", "client1@test.com", "AL90208110080000001039531801");
             Client testClient2 = new Client("Mitko", "Petrov", "Burgas", "0896432121", "client2@test.com", "BG80 BNBG 9661 1020 3456 78");
 
@@ -60,17 +61,16 @@
             FirstTestHotel.AddEmployee(testMaid1);
             FirstTestHotel.AddEmployee(testMaid2);
             FirstTestHotel.AddEmployee(testBellBoy);
+            //FirstTestHotel.AddClient(testClient0);
+            FirstTestHotel.AddClient(testClient1);
+            FirstTestHotel.AddClient(testClient2);
 
             testBellBoy.ToggleSalaryTaken(); // turn ON/OFF the bool for taken salary (or not)
             testMaid2.ToggleSalaryTaken();
             testReceptionist1.ToggleSalaryTaken();
 
-            FirstTestHotel.AddClient(testClient1);
-            FirstTestHotel.AddClient(testClient2);
-
             FirstTestHotel.MakeReservation(testClient1, 13, new DateTime(2015, 05, 01), new DateTime(2015, 05, 07), 2);
             FirstTestHotel.MakeReservation(testClient2, 21, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
-            FirstTestHotel.MakeReservation(testClient2, 12, new DateTime(2015, 04, 10), new DateTime(2015, 04, 13), 2);
 
             FirstTestHotel.AddService(new Spa(SpaProcedures.RomanBath, 1));
             FirstTestHotel.AddService(new Fitness());

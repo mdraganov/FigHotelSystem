@@ -10,7 +10,7 @@
         private DateTime checkOut;
         private byte numberOfGuests;
 
-        public Reservation(int clientID, int numberOfRoom, DateTime checkIn, DateTime checkOut, byte numberOfGuests, DateTime dateOfReservation)
+        public Reservation(string clientID, int numberOfRoom, DateTime checkIn, DateTime checkOut, byte numberOfGuests, DateTime dateOfReservation)
             : this()
         {
             this.ClientID = clientID;
@@ -21,7 +21,7 @@
             this.DateOfReservation = dateOfReservation;
         }
 
-        public int ClientID { get; set; }
+        public string ClientID { get; set; }
 
         public int NumberOfRoom { get; set; }
 
@@ -93,7 +93,7 @@
             result.Append(string.Format(" | Leave: {0}", this.CheckOut.ToString("dd.MM.yyyy")).PadLeft(10));
             result.Append(string.Format(" | Guests: {0}", this.NumberOfGuests));
             result.Append(string.Format(" | Date of reservation: {0}", this.DateOfReservation.ToString("dd.MM.yyyy")).PadLeft(10));
-            result.Append(string.Format(" | Client ID: CL{0:D3}", this.ClientID));
+            result.Append(string.Format(" | Client ID: {0}", this.ClientID));
             return result.ToString();
         }
     }
