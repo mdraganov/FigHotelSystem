@@ -80,8 +80,7 @@
             testClient2.AddVisitedService(new Fitness());
             #endregion
 
-            
-            MainMenu.Menu(MenusEnum.MainMenu);
+            Menu.MainMenu(MenuEnum.MainMenu);
         }
     }
 }

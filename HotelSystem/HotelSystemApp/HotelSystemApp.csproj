@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\EmployeeEnum.cs" />
+    <Compile Include="Enumerations\MenuEnum.cs" />
     <Compile Include="Enumerations\Rooms.cs" />
     <Compile Include="Enumerations\SpaProcedures.cs" />
     <Compile Include="Exceptions\ClientIDException.cs" />
@@ -51,9 +52,9 @@
     <Compile Include="Exceptions\ReservationException.cs" />
     <Compile Include="Exceptions\RoomAvailableException.cs" />
     <Compile Include="Exceptions\RoomBedroomsException.cs" />
-    <Compile Include="Interfaces\IMaid.cs" />
+    <Compile Include="Interfaces\ICleanable.cs" />
     <Compile Include="Interfaces\IPerson.cs" />
-    <Compile Include="MainMenu.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Rooms\Apartment.cs" />
     <Compile Include="Person\BellBoy.cs" />
     <Compile Include="Person\Client.cs" />

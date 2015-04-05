@@ -1,9 +1,11 @@
 ﻿namespace HotelSystemApp.Interfaces
 {
-    public interface IMaid
+    public interface ICleanable
     {
         bool CleanRoom { get; set; }
 
         void ToogleCleanRoom();
     }
+
+    // DELETE ??
 }
