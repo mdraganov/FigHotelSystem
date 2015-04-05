@@ -128,7 +128,7 @@
         {
             if (!Regex.IsMatch(phone.Trim(), @"\+?[()\d- ]+"))
             {
-                throw new ArgumentException("Invalid phone!");
+                throw new FormatException("Invalid phone!");
             }
         }
 
@@ -139,7 +139,7 @@
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
                 RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
             {
-                throw new ArgumentException("Invalid email!");
+                throw new FormatException("Invalid email!");
             }
         }
     }

@@ -104,10 +104,9 @@
   <Class Name="HotelSystemApp.Person.Employee" Collapsed="true">
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEIBASAAAQAgAAAEEgAAQAIAACAAAAABAAAAAAAAACA=</HashCode>
+      <HashCode>AEIBASAAAQAgAAAEAgAAQAIAACAAAAABAAAAAAAAACA=</HashCode>
       <FileName>Person\Employee.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="HotelSystemApp.Person.Maid" Collapsed="true">
     <Position X="5" Y="3.25" Width="1.5" />
@@ -148,7 +147,7 @@
   <Class Name="HotelSystemApp.Hotel" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="17.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAEAAAAAAAACEECIJCBQiCAAEAAAAAEACAKAAAAA=</HashCode>
+      <HashCode>gAAAAEAAAAAAAACAEGIJCBQiCAIEAAACAEACAKAAAAA=</HashCode>
       <FileName>Hotel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -198,7 +197,7 @@
   <Class Name="HotelSystemApp.MainMenu" Collapsed="true">
     <Position X="13.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EEIQAAABQIAABADACEpAEQAgACAMAEAAAAgAAECAAAA=</HashCode>
+      <HashCode>EEIQAwABUIAAJADBSEpAUSAgACEOAMAAAggAAUCAAQA=</HashCode>
       <FileName>MainMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -216,13 +215,6 @@
       <FileName>Interfaces\IAvailable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="HotelSystemApp.Interfaces.IHire" Collapsed="true">
-    <Position X="15.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IHire.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="HotelSystemApp.Interfaces.IFeatures" Collapsed="true">
     <Position X="13.75" Y="5" Width="1.5" />
     <TypeIdentifier>
@@ -231,28 +223,28 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="HotelSystemApp.Interfaces.IReservationable" Collapsed="true">
-    <Position X="15.5" Y="5.75" Width="1.5" />
+    <Position X="13.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IReservationable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="HotelSystemApp.Interfaces.IPrice" Collapsed="true">
-    <Position X="13.75" Y="5.75" Width="1.5" />
+    <Position X="12" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IPrice.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="HotelSystemApp.Interfaces.IPerson" Collapsed="true">
-    <Position X="12" Y="5.75" Width="1.5" />
+    <Position X="17.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAACAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAg=</HashCode>
       <FileName>Interfaces\IPerson.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="HotelSystemApp.Interfaces.IMaid" Collapsed="true">
-    <Position X="17.25" Y="5" Width="1.5" />
+    <Position X="15.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMaid.cs</FileName>

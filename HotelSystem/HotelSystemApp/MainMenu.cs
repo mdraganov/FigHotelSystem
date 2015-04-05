@@ -18,12 +18,29 @@
 
     public class MainMenu
     {
+        private const string itemReservations = "RESERVATIONS";
+        private const string itemRoomsInfo = "ROOMS INFO";
+        private const string itemClients = "CLIENTS";
+        private const string itemServices = "SERVICES";
+        private const string itemListAll = "LIST ALL";
+        private const string itemStaff = "STAFF";
+        private const string itemAbout = "About";
+        private const string itemExit = "Exit";
+        private const string itemAddNew = "ADD NEW";
+        private const string itemReturn = "RETURN";
+        private const string itemSalaries = "SALARIES";
+        private const string itemHire = "HIRE";
+        private const string itemTasks = "TASKS";
+        private const string itemCheckIn = "CHECK IN";
+        private const string itemCheckOut = "CHECK OUT";
+
         public static Hotel NewHotel = HotelSystemAppMain.FirstTestHotel;
-        public static List<string> MainMenuChoises = new List<string> { "RESERVATIONS", "ROOMS INFO", "CLIENTS", "SERVICES", "STAFF", "About", "Exit" };
-        public static List<string> ClientMenuChoises = new List<string> { "LIST ALL", "ADD NEW", "RETURN" };
-        public static List<string> StaffMenuChoises = new List<string> { "LIST ALL", "SALARIES", "HIRE", "TASKS", "RETURN" };
-        public static List<string> ReservationsMenuChoises = new List<string> { "LIST ALL", "CHECK IN", "CHECK OUT", "RETURN" };
+        public static List<string> MainMenuChoises = new List<string> { itemReservations, itemRoomsInfo, itemClients, itemServices, itemStaff, itemAbout, itemExit };
+        public static List<string> ClientMenuChoises = new List<string> { itemListAll, itemAddNew, itemReturn };
+        public static List<string> StaffMenuChoises = new List<string> { itemListAll, itemSalaries, itemHire, itemTasks, itemReturn };
+        public static List<string> ReservationsMenuChoises = new List<string> { itemListAll, itemCheckIn, itemCheckOut, itemReturn };
         public static List<string> CurrentMenuChoises;
+
 
         #region MainMenu
         public static bool Menu(MenusEnum currentMenu)
@@ -59,7 +76,7 @@
 
             int choise = ChooseListBoxItem(CurrentMenuChoises, 2, 3, ConsoleColor.DarkCyan, ConsoleColor.Yellow);
 
-            if (CurrentMenuChoises[choise - 1] != "Exit")
+            if (CurrentMenuChoises[choise - 1] != itemExit)
             {
                 Console.BackgroundColor = ConsoleColor.Black;
                 SubMenu(CurrentMenuChoises[choise - 1]);
@@ -216,22 +233,22 @@
 
             switch (currentMenu)
             {
-                case "RESERVATIONS":
+                case itemReservations:
                     Menu(MenusEnum.Reservations);
                     break;
-                case "ROOMS INFO":
+                case itemRoomsInfo:
                     ListRooms();
                     break;
-                case "CLIENTS":
+                case itemClients:
                     Menu(MenusEnum.ClientsMenu);
                     break;
-                case "STAFF":
+                case itemStaff:
                     Menu(MenusEnum.StaffMenu);
                     break;
-                case "SERVICES":
+                case itemServices:
                     ServicesPriceInfo();
                     break;
-                case "LIST ALL":
+                case itemListAll:
                     if (CurrentMenuChoises == ClientMenuChoises)
                     {
                         ListOfClients();
@@ -245,28 +262,28 @@
                         ListOfReservations();
                     }
                     break;
-                case "ADD NEW":
+                case itemAddNew:
                     AddNewClient();
                     break;
-                case "HIRE":
+                case itemHire:
                     HireStaff();
                     break;
-                case "SALARIES":
+                case itemSalaries:
                     SalariesStaff();
                     break;
-                case "TASKS":
+                case itemTasks:
                     MaidCleanFreeRooms();
                     break;
-                case "CHECK IN":
+                case itemCheckIn:
                     CheckInList();
                     break;
-                case "CHECK OUT":
+                case itemCheckOut:
                     CheckOutList();
                     break;
-                case "About":
+                case itemAbout:
                     InfoAboutHotel();
                     break;
-                case "RETURN":
+                case itemReturn:
                     Menu(MenusEnum.MainMenu);
                     break;
                 default:
@@ -495,6 +512,11 @@
                 string iban = Console.ReadLine();
                 NewHotel.AddClient(new Client(firstName, lastName, address, phone, mail, iban));
             }
+            catch (ArgumentNullException)
+            {
+                WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
+                ClearConsoleException(MenusEnum.ClientsMenu);
+            }
             catch (FormatException)
             {
                 WriteColorString("Input was not in a correct format!", 20, 17, ConsoleColor.Black, ConsoleColor.Red);
@@ -648,7 +670,7 @@
         {
             int row = 4;
 
-            foreach (var line in NewHotel.ToString())
+            foreach (var line in NewHotel.PrintInfo())
             {
                 WriteColorString(line, 20, row, ConsoleColor.Black, ConsoleColor.Green);
                 row++;

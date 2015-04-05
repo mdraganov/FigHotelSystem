@@ -149,6 +149,12 @@
                 throw new ClientIDException(clientID);
             }
 
+            int indexOfReservation = this.reservations.FindIndex(x => x.NumberOfRoom == numberOfRoom);
+            if (indexOfReservation == -1 || this.reservations[indexOfReservation].ClientID != clientID)
+            {
+                throw new ReservationException("Invalid reservation");
+            }
+
             try
             {
                 this.rooms[indexOfRoomForCheckingOut].CheckOut();
@@ -158,11 +164,7 @@
                 throw new RoomAvailableException("The room is already available!");
             }
 
-            int indexOfReservation = this.reservations.FindIndex(x => x.NumberOfRoom == numberOfRoom);
-            if (this.reservations[indexOfReservation].ClientID != clientID)
-            {
-                throw new ReservationException("Invalid reservation");
-            }
+
 
             this.reservations.RemoveAt(indexOfReservation);
             this.clients.RemoveAt(indexOfClient);
@@ -188,7 +190,7 @@
             this.services.Add(newService);
         }
 
-        public List<string> ToString()
+        public List<string> PrintInfo()
         {
             List<string> result = new List<string>();
 

@@ -64,7 +64,6 @@
     <Compile Include="HotelSystemAppMain.cs" />
     <Compile Include="Interfaces\IAvailable.cs" />
     <Compile Include="Interfaces\IFeatures.cs" />
-    <Compile Include="Interfaces\IHire.cs" />
     <Compile Include="Interfaces\IPrice.cs" />
     <Compile Include="Interfaces\IReservationable.cs" />
     <Compile Include="Person\Maid.cs" />

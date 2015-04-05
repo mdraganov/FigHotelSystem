@@ -4,7 +4,7 @@
     using HotelSystemApp.Enumerations;
     using HotelSystemApp.Interfaces;
 
-    public abstract class Employee : Person, IHire
+    public abstract class Employee : Person
     {
         private const byte MaxWorkHoursPerDay = 12;
         private decimal salary;
@@ -90,17 +90,6 @@
             }
         }
 
-        public void Hire(Person person, EmployeesEnum type)
-        {
-            //switch (type)
-            //{
-            //    case Employees.BellBoy: person = new BellBoy(person); break;
-            //    case Employees.Maid: person = new Maid(person); break;
-            //    case Employees.Manager: person = new Manager(person); break;
-            //    case Employees.Receptionist: person = new Receptionist(person); break;
-            //}
-        }
-
         public void ToogleCleanRoom()
         {
             if (this.CleanRoom == false)
@@ -115,7 +104,7 @@
 
         public override string ToString()
         {
-            return base.ToString() + string.Format(" | Position: {0} | Salary: {1}", 
+            return base.ToString() + string.Format(" | Position: {0} | Salary: {1}",
                 this.GetType().Name.PadLeft(12), this.Salary.ToString(string.Format("C2")).PadLeft(9));
         }
     }
