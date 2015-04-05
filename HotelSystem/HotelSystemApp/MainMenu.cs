@@ -46,6 +46,7 @@
         public static bool Menu(MenusEnum currentMenu)
         {
             Console.TreatControlCAsInput = false;
+            Console.CancelKeyPress += new ConsoleCancelEventHandler(BreakHandler);
             Console.CursorVisible = false;
 
             WriteColorString(new string('▬', 136), 2, 1, ConsoleColor.Black, ConsoleColor.Yellow);
@@ -677,6 +678,11 @@
             }
 
             Menu(MenusEnum.MainMenu);
+        }
+
+        private static void BreakHandler(object sender, ConsoleCancelEventArgs e)
+        {
+            Console.Beep();
         }
     }
 }
