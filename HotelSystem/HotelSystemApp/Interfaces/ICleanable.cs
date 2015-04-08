@@ -6,6 +6,4 @@
 
         void ToogleCleanRoom();
     }
-
-    // DELETE ??
 }

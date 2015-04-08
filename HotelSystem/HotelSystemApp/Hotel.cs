@@ -18,8 +18,8 @@
         private List<Room> rooms;
         private List<Employee> employees;
         private List<Client> clients;
-        private List<Service> services;
-        private List<Reservation> reservations;
+        private IList<Service> services;
+        private IList<Reservation> reservations;
 
         public Hotel(string name)
         {
@@ -121,9 +121,9 @@
                 throw new RoomNumberException(numberOfRoom);
             }
 
+            this.rooms[roomIndex].CheckIn();
             client.AddRoom(this.rooms[roomIndex]);
             client.Bill = (checkOUT.Day - checkIN.Day) * this.rooms[roomIndex].Price;
-            this.rooms[roomIndex].CheckIn();
 
             newReservation.ClientID = client.ClientID;
             newReservation.NumberOfRoom = numberOfRoom;
@@ -163,8 +163,6 @@
             {
                 throw new RoomAvailableException("The room is already available!");
             }
-
-
 
             this.reservations.RemoveAt(indexOfReservation);
             this.clients.RemoveAt(indexOfClient);
