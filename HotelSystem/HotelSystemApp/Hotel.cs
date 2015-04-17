@@ -18,8 +18,8 @@
         private List<Room> rooms;
         private List<Employee> employees;
         private List<Client> clients;
-        private IList<Service> services;
-        private IList<Reservation> reservations;
+        private List<Service> services;
+        private List<Reservation> reservations;
 
         public Hotel(string name)
         {
